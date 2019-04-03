@@ -66,10 +66,53 @@ voteClean$Party <- recode(voteClean$Party, "Democratic Unionist Party"= "Other",
                        "Speaker" = "Other")
 table(voteClean$Party) 
 
+
+#Fill NA with missing vote by majority vote of each party or random 0/1 if 
+#majority is NA
+
+voteClean <- arrange(voteClean, Party)
+#1 - 280: Conservative
+#281 - 325: Other 
+#326 - 568: Labour
+#569 - 602: SNP
+
+c <- c(0, 280, 325, 568, 602)
+for ( i in 1:(length(c) - 1)){ # for every party
+  for (j in 4:11) { #for every vote
+      
+      zeros <- length(which(voteClean[(c[i] + 1 : c[i + 1]), j] == 0))
+      ones <- length(which(voteClean[(c[i] + 1 : c[i + 1]),j] == 1))
+      Nas <- length(which(is.na(voteClean[(c[i] + 1 : c[i + 1]),j])))
+      max <- which.is.max(c(zeros, ones, Nas))
+      
+      set.seed(123)
+      if(max == 1) voteClean[,j][is.na(voteClean[,j])] <- 0
+      if(max == 2) voteClean[,j][is.na(voteClean[,j])] <- 1
+      if(max == 3) voteClean[,j][is.na(voteClean[,j])] <- sample(c(0,1))
+      
+    }
+}
+
+sum(is.na(voteClean)) #YAY
+
+
 # EXPLORATORY ANALYSIS ----------------------------------------------------
 glimpse(voteClean)
 summary(voteClean)
 
+# #Visualise observed votes
+# library(ggplot2)
+# library(scales)
+# 
+# df <- expand.grid(factor(voteClean$Party),
+#                  factor(voteClean[, 4:11]),
+#                  factor(c(1, 0)))
+#             
+# ggplot(data = df, aes(x = voteClean[, 4:11], y = Value, fill = Vote.1)) + 
+#   geom_bar(stat='identity') + 
+#   facet_wrap(~voteClean$Party) +
+#   #scale_y_continuous(labels = percent) +
+#   theme(panel.background = element_rect(fill = "white"))   
 
 # AIM ONE: PREDICT PARTY --------------------------------------------------
 
