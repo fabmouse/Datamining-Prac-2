@@ -2,6 +2,11 @@
 #EXPLORATORY DATA ANALYSIS SCRIPT#
 ##################################
 
+#Project Aims: use an MP's vote profile to predict
+# (i) the party they represent
+# (ii) the percentage leave/remain vote for their constituency in the Brexit 
+# referendum.
+
 # LIBRARIES ---------------------------------------------------------------
 library(dplyr)
 
@@ -62,4 +67,13 @@ voteClean$Party <- recode(voteClean$Party, "Democratic Unionist Party"= "Other",
 table(voteClean$Party) 
 
 # EXPLORATORY ANALYSIS ----------------------------------------------------
+glimpse(voteClean)
+summary(voteClean)
+
+
+# AIM ONE: PREDICT PARTY --------------------------------------------------
+
+
+# AIM TWO: PREDICT LEAVE/REMAIN PERCENTAGE --------------------------------
+
 
