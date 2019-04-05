@@ -9,6 +9,17 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+*Points to think about:*  
+
+- This should be brief, no more than 4 pages in total.  
+- There should be a very succinct executive summary at the start selling your method/results.  
+- What does your approach offer this type of business? Why should they part with a large consulting fee or licence your model? If you can argue a good Return On Investment (ROI) then you’re in a good position. Feel free to speculate about costs associated with the different decisions implied. Also bear in mind this document is something of a sales pitch - it should look the part, not some dry analyst’s report.
+
+- You should also attempt to give some insight into what is driving the response.
+- You have many variables at your disposal and the client would appreciate some insight into what characterises the targets. (Note this is where the client can give your model the "sniff-test" for anything suspicious - ‘client-visible’ problems).
+
+## Executive Summary
+
 ## Introduction
 
 ## Methods
