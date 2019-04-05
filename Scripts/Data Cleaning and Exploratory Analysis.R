@@ -37,6 +37,13 @@ head(voteData)
 glimpse(voteData)
 levels(voteData$Vote.1)
 
+for(i in 4:ncol(voteData)){
+  levels(voteData[, i]) <- c("Yes", "No", "Maybe")
+}
+head(voteData)
+glimpse(voteData)
+levels(voteData$Vote.1)
+
 # voteData[, 4:11] <- apply(voteData[, 4:11], MARGIN = 2, 
 #                           FUN = recode, "Aye" = 1, "No" = 0)
 #8 warnings were produced, but I ignored them as it simply replaced "No Vote" as 
@@ -55,12 +62,14 @@ levels(voteData$Vote.1)
 ab_ind <- vector()
 
 for(i in 1:nrow(voteData)){
-  if(all(voteData[i, 4:11] == 0)) {
+  if(all(voteData[i, 4:11] == "Maybe")) {
     ab_ind <- c(ab_ind, i)
     }
 }
 
 voteClean <- voteData[- ab_ind, ]
+
+write.csv(voteClean, "Data/Factor Vote.csv", row.names = FALSE)
 
 #Note, there are still 662 missing values
 #If we delete observations where there any number of missing values then we will
@@ -74,7 +83,8 @@ table(voteClean$Party)
 # The largest were Conservative = 280, Labour = 243, Scottish National Party = 34
 # Combine the remaining parties as "Other"
 
-voteClean$Party <- recode(voteClean$Party, "Democratic Unionist Party"= "Other", 
+voteClean$Party <- recode(voteClean$Party, 
+                       "Democratic Unionist Party"= "Other", 
                        "Deputy Speaker" = "Other", 
                        "Green Party" = "Other", 
                        "Independent" = "Other", 
