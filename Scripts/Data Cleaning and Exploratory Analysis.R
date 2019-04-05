@@ -21,8 +21,17 @@ levels(voteData$Vote.1)
 #Votes are factor variables with 3 levels: "Aye", "No", and "No Vote Recorded"
 #Recode "Aye" as 1, "No" as 0 and "No Vote Recorded" as NA
 
+# for(i in 4:ncol(voteData)){
+#   levels(voteData[, i]) <- c(1, 0, NA)
+# }
+# head(voteData)
+# glimpse(voteData)
+# levels(voteData$Vote.1)
+
+#Recode "Aye" as 1, "No" as -1 and "No Vote Recorded" as 0
+
 for(i in 4:ncol(voteData)){
-  levels(voteData[, i]) <- c(1, 0, NA)
+  levels(voteData[, i]) <- c(1, -1, 0)
 }
 head(voteData)
 glimpse(voteData)
@@ -36,12 +45,21 @@ levels(voteData$Vote.1)
 #2. Remove rows with all NA values
 #There are 47 instances where the Cabinet members and SF politicians abstained 
 #throughout
+# 
+# abstained <- voteData[, 4:11] %>%
+#                       is.na() %>%
+#                       apply(MARGIN = 1, FUN = all)
+# ab_ind <- which(abstained == TRUE)
 
-abstained <- voteData[, 4:11] %>%
-                      is.na() %>%
-                      apply(MARGIN = 1, FUN = all)
-ab_ind <- which(abstained == TRUE)
-  
+
+ab_ind <- vector()
+
+for(i in 1:nrow(voteData)){
+  if(all(voteData[i, 4:11] == 0)) {
+    ab_ind <- c(ab_ind, i)
+    }
+}
+
 voteClean <- voteData[- ab_ind, ]
 
 #Note, there are still 662 missing values
@@ -66,34 +84,33 @@ voteClean$Party <- recode(voteClean$Party, "Democratic Unionist Party"= "Other",
                        "Speaker" = "Other")
 table(voteClean$Party) 
 
-
 #Fill NA with missing vote by majority vote of each party or random 0/1 if 
 #majority is NA
 
-voteClean <- arrange(voteClean, Party)
-#1 - 280: Conservative
-#281 - 325: Other 
-#326 - 568: Labour
-#569 - 602: SNP
-
-c <- c(0, 280, 325, 568, 602)
-for ( i in 1:(length(c) - 1)){ # for every party
-  for (j in 4:11) { #for every vote
-      
-      zeros <- length(which(voteClean[(c[i] + 1 : c[i + 1]), j] == 0))
-      ones <- length(which(voteClean[(c[i] + 1 : c[i + 1]),j] == 1))
-      Nas <- length(which(is.na(voteClean[(c[i] + 1 : c[i + 1]),j])))
-      max <- which.is.max(c(zeros, ones, Nas))
-      
-      set.seed(123)
-      if(max == 1) voteClean[,j][is.na(voteClean[,j])] <- 0
-      if(max == 2) voteClean[,j][is.na(voteClean[,j])] <- 1
-      if(max == 3) voteClean[,j][is.na(voteClean[,j])] <- sample(c(0,1))
-      
-    }
-}
-
-sum(is.na(voteClean)) #YAY
+# voteClean <- arrange(voteClean, Party)
+# #1 - 280: Conservative
+# #281 - 325: Other 
+# #326 - 568: Labour
+# #569 - 602: SNP
+# 
+# c <- c(0, 280, 325, 568, 602)
+# for ( i in 1:(length(c) - 1)){ # for every party
+#   for (j in 4:11) { #for every vote
+#       
+#       zeros <- length(which(voteClean[(c[i] + 1 : c[i + 1]), j] == 0))
+#       ones <- length(which(voteClean[(c[i] + 1 : c[i + 1]),j] == 1))
+#       Nas <- length(which(is.na(voteClean[(c[i] + 1 : c[i + 1]),j])))
+#       max <- which.is.max(c(zeros, ones, Nas))
+#       
+#       set.seed(123)
+#       if(max == 1) voteClean[,j][is.na(voteClean[,j])] <- 0
+#       if(max == 2) voteClean[,j][is.na(voteClean[,j])] <- 1
+#       if(max == 3) voteClean[,j][is.na(voteClean[,j])] <- sample(c(0,1))
+#       
+#     }
+# }
+# 
+# sum(is.na(voteClean)) #YAY
 
 
 # EXPLORATORY ANALYSIS ----------------------------------------------------
