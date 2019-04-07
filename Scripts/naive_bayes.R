@@ -94,7 +94,7 @@ myboot <- function(B){
     predclass <- predict(fitmodel, newdata=vote.test[,-1]) ## randomised predictions
 
     conf_mat <- table(predclass, vote.test$Party)
-    accuracy[j] <- sum(diag(conf_mat))/(sum(conf_mat)-sum(diag(conf_mat)))
+    accuracy[j] <- sum(diag(conf_mat))/(sum(conf_mat))
 
    # }
 
