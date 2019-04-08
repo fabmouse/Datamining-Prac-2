@@ -4,6 +4,7 @@ randomForestTest <-
     y.name <- unlist(strsplit(as.character(MODEL$call),split=" ")[[2]])[1]
     y.pos <- which(names(HOLDOUT)==y.name)
 
+    
     #Random forest
         L <- levels(HOLDOUT[,2])
         predicteds <- predict(MODEL,newdata=HOLDOUT)
