@@ -1,5 +1,6 @@
 randomForestTest <-
   function(MODEL,HOLDOUT) {
+    ## find the number of each rows and columns
     y.name <- unlist(strsplit(as.character(MODEL$call),split=" ")[[2]])[1]
     y.pos <- which(names(HOLDOUT)==y.name)
 
@@ -17,7 +18,7 @@ randomForestTest <-
         colnames(T) <- c(paste(L),"Total")
         rownames(T) <- c(paste(L),"Total")
         
-        return(list(CM.holdout=T,misclass.holdout=misclass.holdout,misclass.rate=misclass.rate,accuracy=accuracy)) 
+        return(list(CM.holdout=T, misclass.holdout=misclass.holdout, misclass.rate=misclass.rate, accuracy=accuracy)) 
   }
 
 CVgroup <- function(k, dataset, seed){
@@ -31,4 +32,25 @@ CVgroup <- function(k, dataset, seed){
   cvlist <- lapply(x, function(x) dataseq[temp == x])
   return(cvlist)
 }
+
+
+findgoodnumber <- function(start,end,by,mtrynumber,DATASET){
+  k = (end-start)/by
+  for (i in 1:(k+1)) {
+    numtree = (start-by + i*by)
+    model = randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train,mtry = mtrynumber,ntree = numtree)
+    prediction <- predict(model, newdata = holdout)
+    actuals <- holdout[,2]
+    T<-table(actuals,prediction,dnn=c())
+    accuracy <- sum(diag(T))/(sum(T))
+    misclass.holdout <- (T[1,2]+T[1,3]+T[1,4]+T[2,1]+T[2,3]+T[2,4]+T[3,1]+T[3,2]+T[3,4]+T[4,1]+T[4,2]+T[4,3])
+    misclass.rate <- sum(misclass.holdout)/sum(T)
+    #print(T)
+    cat("When the tree number is :", numtree,"\n")
+    cat("The accuracy is :", accuracy,"\n")
+    cat("The misclass.rate is :", misclass.rate,"\n")
+    cat("\n")
+  }
+}
+
 
