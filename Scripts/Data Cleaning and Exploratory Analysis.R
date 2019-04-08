@@ -11,13 +11,13 @@
 library(dplyr)
 
 # IMPORT THE DATASET ------------------------------------------------------
-voteData <- read.csv("Data/data combined.csv")
+voteData <- read.csv("Data/Downloaded Data.csv")
 head(voteData)
 
 # DATA CLEANING -----------------------------------------------------------
 
 #1. Change the coding of the votes
-levels(voteData$Vote.1)
+levels(voteData$Voting.1)
 #Votes are factor variables with 3 levels: "Aye", "No", and "No Vote Recorded"
 #Recode "Aye" as 1, "No" as 0 and "No Vote Recorded" as NA
 
@@ -29,20 +29,21 @@ levels(voteData$Vote.1)
 # levels(voteData$Vote.1)
 
 #Recode "Aye" as 1, "No" as -1 and "No Vote Recorded" as 0
+#Recode "gv-against\"" as -1, "gv-did-not-vote\"" as 0  and "gv-for\"" as 1, 
 
 for(i in 4:ncol(voteData)){
-  levels(voteData[, i]) <- c(1, -1, 0)
+  levels(voteData[, i]) <- c(-1, 0, 1)
 }
 head(voteData)
 glimpse(voteData)
 levels(voteData$Vote.1)
 
-for(i in 4:ncol(voteData)){
-  levels(voteData[, i]) <- c("Yes", "No", "Maybe")
-}
-head(voteData)
-glimpse(voteData)
-levels(voteData$Vote.1)
+# for(i in 4:ncol(voteData)){
+#   levels(voteData[, i]) <- c("Yes", "No", "Maybe")
+# }
+# head(voteData)
+# glimpse(voteData)
+# levels(voteData$Vote.1)
 
 # voteData[, 4:11] <- apply(voteData[, 4:11], MARGIN = 2, 
 #                           FUN = recode, "Aye" = 1, "No" = 0)
@@ -62,14 +63,12 @@ levels(voteData$Vote.1)
 ab_ind <- vector()
 
 for(i in 1:nrow(voteData)){
-  if(all(voteData[i, 4:11] == "Maybe")) {
+  if(all(voteData[i, 4:11] == 0)) {
     ab_ind <- c(ab_ind, i)
     }
 }
 
 voteClean <- voteData[- ab_ind, ]
-
-write.csv(voteClean, "Data/Factor Vote.csv", row.names = FALSE)
 
 #Note, there are still 662 missing values
 #If we delete observations where there any number of missing values then we will
@@ -83,15 +82,29 @@ table(voteClean$Party)
 # The largest were Conservative = 280, Labour = 243, Scottish National Party = 34
 # Combine the remaining parties as "Other"
 
+# voteClean$Party <- recode(voteClean$Party, 
+#                        "Democratic Unionist Party"= "Other", 
+#                        "Deputy Speaker" = "Other", 
+#                        "Green Party" = "Other", 
+#                        "Independent" = "Other", 
+#                        "Liberal Democrat" = "Other", 
+#                        "Plaid Cymru" = "Other", 
+#                        "Sinn F?in" = "Other", 
+#                        "Speaker" = "Other")
+# table(voteClean$Party) 
+
 voteClean$Party <- recode(voteClean$Party, 
-                       "Democratic Unionist Party"= "Other", 
-                       "Deputy Speaker" = "Other", 
-                       "Green Party" = "Other", 
-                       "Independent" = "Other", 
-                       "Liberal Democrat" = "Other", 
-                       "Plaid Cymru" = "Other", 
-                       "Sinn F?in" = "Other", 
-                       "Speaker" = "Other")
+                          "Con\n" = "Conservative",
+                          "Lab\n" = "Labour",
+                          "SNP\n" = "Scottish National Party",
+                          "DUP\n"= "Other", 
+                          "Grn\n" = "Other", 
+                          "Ind\n" = "Other", 
+                          "LD\n" = "Other", 
+                          "Oth\n" = "Other", 
+                          "PC\n" = "Other", 
+                          "SF\n" = "Other", 
+                          "TIG\n" = "Other")
 table(voteClean$Party) 
 
 #Fill NA with missing vote by majority vote of each party or random 0/1 if 
@@ -122,6 +135,7 @@ table(voteClean$Party)
 # 
 # sum(is.na(voteClean)) #YAY
 
+write.csv(voteClean, "Data/Final Downloaded Data.csv", row.names = FALSE)
 
 # EXPLORATORY ANALYSIS ----------------------------------------------------
 glimpse(voteClean)

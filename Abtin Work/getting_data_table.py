@@ -16,9 +16,6 @@ row = []
 with open("/Users/Abtin/Desktop/Guardian_files/table.html", "r") as f:
     i = 1
     for line in f.readlines():
-        print(row)
-
-        print(line)
 
         #selecting the party
         if(i == 3):
@@ -32,8 +29,9 @@ with open("/Users/Abtin/Desktop/Guardian_files/table.html", "r") as f:
         #percentages are written in terms of Remain
         if(i == 11):
             st = line.split('>')[1]
-            if(st=='--'):
+            if('--' in st):
                 row.append(st)
+                print(row)
             if 'Leave'  in st:
                 st = st[6:8]
                 st= 100-int(st)
@@ -44,9 +42,7 @@ with open("/Users/Abtin/Desktop/Guardian_files/table.html", "r") as f:
 
         #getting vote 1
         if(i ==16):
-            print(line)
             st =  line.split('gv-vote-blob ')[1]
-            print(st)
             st = st[:-2]
             row.append(st)
 
@@ -96,7 +92,6 @@ with open("/Users/Abtin/Desktop/Guardian_files/table.html", "r") as f:
         if (i==42):
             i = 0
             write_csv('voting_data' + '.csv', row)
-            print(row)
             row=[]
 
         i= i+1
