@@ -1396,6 +1396,7 @@ Party,Name,Constituency,Voting 1,Voting 2,Voting 3,Voting 4,Voting 5,Voting 6,Vo
 ",54,"gv-for""","gv-for""","gv-for""","gv-against""","gv-for""","gv-against""","gv-against""","gv-against"""
 "Lab
 ","Albert Owen
+","--
 ","gv-for""","gv-for""","gv-for""","gv-for""","gv-for""","gv-against""","gv-against""","gv-did-not-vote"""
 "DUP
 ","Ian Paisley
@@ -1426,6 +1427,7 @@ Party,Name,Constituency,Voting 1,Voting 2,Voting 3,Voting 4,Voting 5,Voting 6,Vo
 ",64,"gv-for""","gv-for""","gv-for""","gv-for""","gv-for""","gv-against""","gv-against""","gv-against"""
 "Con
 ","John Penrose
+","--
 ","gv-against""","gv-against""","gv-against""","gv-for""","gv-against""","gv-for""","gv-for""","gv-for"""
 "Con
 ","Andrew Percy
@@ -1729,6 +1731,7 @@ Party,Name,Constituency,Voting 1,Voting 2,Voting 3,Voting 4,Voting 5,Voting 6,Vo
 ",49,"gv-against""","gv-against""","gv-against""","gv-against""","gv-against""","gv-against""","gv-against""","gv-against"""
 "Lab
 ","Graham Stringer
+","--
 ","gv-against""","gv-against""","gv-did-not-vote""","gv-against""","gv-against""","gv-did-not-vote""","gv-for""","gv-against"""
 "Con
 ","Graham Stuart
