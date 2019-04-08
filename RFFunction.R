@@ -34,8 +34,13 @@ CVgroup <- function(k, dataset, seed){
 }
 
 
-findgoodnumber <- function(start,end,by,mtrynumber,DATASET){
+findgoodntree <- function(start,end,by,mtrynumber,DATASET){
   k = (end-start)/by
+  
+  treeNumber <- list()
+  accuracyValue <- list()
+  misclassValue <- list()
+  
   for (i in 1:(k+1)) {
     numtree = (start-by + i*by)
     model = randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train,mtry = mtrynumber,ntree = numtree)
@@ -46,11 +51,44 @@ findgoodnumber <- function(start,end,by,mtrynumber,DATASET){
     misclass.holdout <- (T[1,2]+T[1,3]+T[1,4]+T[2,1]+T[2,3]+T[2,4]+T[3,1]+T[3,2]+T[3,4]+T[4,1]+T[4,2]+T[4,3])
     misclass.rate <- sum(misclass.holdout)/sum(T)
     #print(T)
-    cat("When the tree number is :", numtree,"\n")
-    cat("The accuracy is :", accuracy,"\n")
-    cat("The misclass.rate is :", misclass.rate,"\n")
-    cat("\n")
+#   cat("When the tree number is :", numtree,"\n")
+#   cat("The accuracy is :", accuracy,"\n")
+#   cat("The misclass.rate is :", misclass.rate,"\n")
+#   cat("\n")
+
+#    print(paste("Tree number:", numtree, " Accuracy:",accuracy, " misclass rate:", misclass.rate)) 
+#    testtest <- data.frame(treenumber = numtree, Accuracy = accuracy, misclassrate = misclass.rate)
+    # add value to list
+    treeNumber[i] <- numtree
+    accuracyValue[i] <- accuracy
+    misclassValue[i] <- misclass.rate
+    
   }
+  result <- list('Tree Number' = treeNumber, 'Accuarcy' = accuracyValue, 'Misclass Rate' = misclassValue)
+  #print(treeNumber)
+  #print(accuracyValue)
+  #print(misclassValue)
+  #print(result)
+  do.call(cbind,result)
+  
+  tablevalue <- data.frame(do.call(cbind,result))
+  return(tablevalue)
+}
+
+findgoodmtry <- function(N,SEED){
+  mtrylist <- list()
+  errlist <- list()
+  set.seed(SEED)
+  for (i in 1:N) {
+    mtry_fit <- randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train,mtry = i)
+    err <- mean(mtry_fit$err.rate)
+#    print(err)
+    mtrylist[i] <- i
+    errlist[i] <- err
+  }
+  result <- list('MTRY Number' = mtrylist, 'Err' = errlist)
+  tablevalue <- data.frame(do.call(cbind,result))
+  return(tablevalue)
 }
 
 
