@@ -70,8 +70,6 @@ for(i in 1:nrow(voteData)){
 
 voteClean <- voteData[- ab_ind, ]
 
-write.csv(voteClean, "Data/Factor Vote.csv", row.names = FALSE)
-
 #Note, there are still 662 missing values
 #If we delete observations where there any number of missing values then we will
 #be left with only 281 observations.
@@ -96,6 +94,9 @@ table(voteClean$Party)
 # table(voteClean$Party) 
 
 voteClean$Party <- recode(voteClean$Party, 
+                          "Con\n" = "Conservative",
+                          "Lab\n" = "Labour",
+                          "SNP\n" = "Scottish National Party",
                           "DUP\n"= "Other", 
                           "Grn\n" = "Other", 
                           "Ind\n" = "Other", 
@@ -134,6 +135,7 @@ table(voteClean$Party)
 # 
 # sum(is.na(voteClean)) #YAY
 
+write.csv(voteClean, "Data/Final Downloaded Data.csv", row.names = FALSE)
 
 # EXPLORATORY ANALYSIS ----------------------------------------------------
 glimpse(voteClean)
