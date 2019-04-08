@@ -53,25 +53,17 @@ randomForestTest(select.rf, holdout)
 importance(select.rf)
 varImpPlot(select.rf)
 
-## Try to find the better tree number in the ranger [300:600] by calculate accuracy
-j <- seq(100, 600, by = 50)
-for (i in 1:7) {
-  numTree = (250 + 50*i)
-  
-  findnumber.rf <- randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train,mtry = 5,ntree = numTree)
-  
-  randomForestAccuracy(findnumber.rf, holdout)
-  print(numTree)
-}
 
 # try to find the good number of tree, when mtry = 5
 findgoodnumber(200,600,50,4,voteData)
 # when mtry = 4, ntrr = 450, the accuracy is 0.9723757, the misclass.rate is 0.2762431
 
 
-    
+# get the prediction and actual combined table, by 5-fold    
 k=5
+# get the random 5 lists by split the voteData
 cvlist <- CVgroup(k, voteData,seed = 100)
+# create the frame to record data
 pred <- data.frame()
 
 j <- seq(400, 600, by = 50)  # J the number of tree  
@@ -79,8 +71,6 @@ i <- 1:k                     # K-fold
 i <- rep(i, times = length(j))  
 j <- rep(j, each = k)      #多少折，each多少  
 x <- cbind(i, j)  
-
-
 
 cvtest <- function(i, j) {  
   train <- voteData[-cvlist[[i]],]  
@@ -114,7 +104,16 @@ print(accuracy)
 
 
 
-
+## Try to find the better tree number in the ranger [300:600] by calculate accuracy
+j <- seq(100, 600, by = 50)
+for (i in 1:7) {
+  numTree = (250 + 50*i)
+  
+  findnumber.rf <- randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train,mtry = 5,ntree = numTree)
+  
+  randomForestAccuracy(findnumber.rf, holdout)
+  print(numTree)
+}
 
 
 
