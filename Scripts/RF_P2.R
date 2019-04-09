@@ -1,4 +1,4 @@
-## Random Forest for question 2
+## Random Forest
 brexitData <- read.csv("data/remainORleave.csv", header = T)
 head(brexitData)
 table(brexitData$LeaveRemain)
@@ -11,7 +11,7 @@ set.seed(100)
 # Trying without validation ----------------------------------------------------
 #ON ALL DATA
 #Fit the Random Forest
-original.rf = randomForest(factor(LeaveRemain)~ Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,data = brexitData)
+original.rf = randomForest(factor(LeaveRemain)~ Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,data = brexitData, na.action = na.omit)
 ##View the forest results
 print(original.rf)
 round(importance(original.rf),2)
