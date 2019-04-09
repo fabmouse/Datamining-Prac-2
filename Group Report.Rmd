@@ -20,9 +20,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Executive Summary
 
+- The aim is to use an MP's vote profile to predict (i) the party they represent, and (ii) the percentage leave/remain vote for their constituency in the Brexit referendum.  
+
+- Methods  
+
+- Conclusion of "Best Model"
+
 ## Introduction
 
-## Methods
+## Methods  
+
+All analyses in the following report were carried out using R 3.5.1 software (R, 2018).
 
 ## Analysis and Results
 
