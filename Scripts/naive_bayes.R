@@ -8,6 +8,9 @@ data.vote <- read.csv("data/Clean Vote Data.csv", header=T)
 head(data.vote)
 table(data.vote$Party)
 
+myboot(B = 3, model = "Naive Bayes")
+
+
 
 # SENSITIVITY -------------------------------------------------------------
 fitmodel <- naiveBayes(factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
@@ -50,7 +53,6 @@ print(cm[[1]]$byClass[, metrics])
 
 
 # Trying without validation ----------------------------------------------------
-#ON ALL DATA
 #Fit the Naive Bayes
 fitmodel <- naiveBayes(factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
                          Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.vote)
@@ -87,9 +89,6 @@ mod.glm <- glm(Party ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 +
                  Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.factor)
 
 
-## bootstrap
-#B: # of boostrap
-#Vote.1 + Vote.2 + Vote.3 + Vote.4 + Vote.5 + Vote.6 + Vote.7 + Vote.8
 
 # With Caret Package -----------------------------------------------------------
 
@@ -145,5 +144,5 @@ myboot <- function(B){
   return(bootstrap_acc)
 }
 
-myboot(B = 1)
+
 
