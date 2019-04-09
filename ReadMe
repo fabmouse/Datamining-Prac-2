@@ -1,3 +1,21 @@
 Group Project for course ID5059: Knowledge Discovery and Datamining 
 
 Analysis of 27 March 2019 UK Parliamentary Votes 
+
+To do:
+
+Aim (i)
+Logistic Regression
+Support Vector Machine
+
+Aim (ii)
+Decision Trees
+Random Forest
+Logistic Regression
+Naive Bayes
+Support Vector Machine
+Random Forest 
+
+General:
+Accuracy
+Sensitivity and specificity for each class
