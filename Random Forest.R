@@ -11,7 +11,7 @@ set.seed(100)
 # Trying without validation ----------------------------------------------------
 #ON ALL DATA
 #Fit the Random Forest
-vote.rf = randomForest(Party~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = voteData)
+vote.rf = randomForest(Party~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6+Vote.7+Vote.8,data = voteData)
 ##View the forest results
 print(vote.rf)
 round(importance(vote.rf),2)
@@ -20,14 +20,14 @@ round(importance(vote.rf),2)
 train.rows <- sample(1:nrow(voteData), 0.7*nrow(voteData))
 train <- voteData[train.rows,]
 holdout <- voteData[-train.rows,]
-fit.rf <- randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train)
+fit.rf <- randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6+Vote.7+Vote.8,data = train)
 print(fit.rf)
 
 
 
 ## try to find a good mtry number
 n <- length(names(train[,4:11]))
-findgoodmtry(n,100)
+findgoodmtry(voteData[,4:11], voteData[,2],n,100,holdout)
 ## when mtry = 4, the error is minimum
 
 ## try to find a good tree number
@@ -53,7 +53,10 @@ plot(select.rf)
 
 
 # try to find the good number of tree, when mtry = 4
-findgoodntree(300,550,20,4,voteData)
+Y <- voteData$Party
+X = voteData$Vote.1+voteData$Vote.2+voteData$Vote.3+voteData$Vote.4+voteData$Vote.5+voteData$Vote.6+voteData$Vote.7+voteData$Vote.8
+findgoodntree(voteData[,4:11], voteData[,2],300,550,20,4,voteData)
+goodmtry(voteData[,4:11], voteData[,2],ntreeTry=500)
 # when mtry = 4, ntrr = 450, the accuracy is 0.9723757, the misclass.rate is 0.2762431
 
 

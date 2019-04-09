@@ -4,7 +4,6 @@ randomForestTest <-
     y.name <- unlist(strsplit(as.character(MODEL$call),split=" ")[[2]])[1]
     y.pos <- which(names(HOLDOUT)==y.name)
 
-    
     #Random forest
         L <- levels(HOLDOUT[,2])
         predicteds <- predict(MODEL,newdata=HOLDOUT)
@@ -38,7 +37,7 @@ CVgroup <- function(k, dataset, seed){
 }
 
 
-findgoodntree <- function(start,end,by,mtrynumber,DATASET){
+findgoodntree <- function(X,Y,start,end,by,mtrynumber,DATASET){
   k = (end-start)/by
   
   treeNumber <- list()
@@ -47,7 +46,7 @@ findgoodntree <- function(start,end,by,mtrynumber,DATASET){
   
   for (i in 1:(k+1)) {
     numtree = (start-by + i*by)
-    model = randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train,mtry = mtrynumber,ntree = numtree)
+    model = randomForest(X,Y,data = DATASET,mtry = mtrynumber,ntree = numtree)
     prediction <- predict(model, newdata = holdout)
     actuals <- holdout[,2]
     T<-table(actuals,prediction,dnn=c())
@@ -79,12 +78,12 @@ findgoodntree <- function(start,end,by,mtrynumber,DATASET){
   return(tablevalue)
 }
 
-findgoodmtry <- function(N,SEED){
+findgoodmtry <- function(X,Y,N,SEED,DATASET){
   mtrylist <- list()
   errlist <- list()
   set.seed(SEED)
   for (i in 1:N) {
-    mtry_fit <- randomForest(factor(Party)~ Vote.1+Vote.2+Vote.3+Vote.4+Vote.5+Vote.6++Vote.7+Vote.8,data = train,mtry = i)
+    mtry_fit <- randomForest(X,Y,data = DATASET,mtry = i)
     err <- mean(mtry_fit$err.rate)
 #    print(err)
     mtrylist[i] <- i
@@ -94,5 +93,78 @@ findgoodmtry <- function(N,SEED){
   tablevalue <- data.frame(do.call(cbind,result))
   return(tablevalue)
 }
+
+goodmtry <- function(x, y, mtryStart=if(is.factor(y)) floor(sqrt(ncol(x))) else
+  floor(ncol(x)/3), ntreeTry=50, stepFactor=2,
+  improve=0.05, trace=TRUE, plot=TRUE, doBest=FALSE, ...) {
+  if (improve < 0) stop ("improve must be non-negative.")
+  classRF <- is.factor(y)
+  errorOld <- if (classRF) {
+    randomForest(x, y, mtry=mtryStart, ntree=ntreeTry,
+                 keep.forest=FALSE, ...)$err.rate[ntreeTry,1]
+  } else {
+    randomForest(x, y, mtry=mtryStart, ntree=ntreeTry,
+                 keep.forest=FALSE, ...)$mse[ntreeTry]
+  }
+  if (trace) {
+    cat("mtry =", mtryStart, " OOB error =",
+        if (classRF) paste(100*round(errorOld, 4), "%", sep="") else
+          errorOld, "\n")
+  }
+  
+  oobError <- list()
+  oobError[[1]] <- errorOld
+  names(oobError)[1] <- mtryStart  
+  
+  for (direction in c("left", "right")) {
+    if (trace) cat("Searching", direction, "...\n")
+    Improve <- 1.1*improve
+    mtryBest <- mtryStart
+    mtryCur <- mtryStart
+    while (Improve >= improve) {
+      mtryOld <- mtryCur
+      mtryCur <- if (direction == "left") {
+        max(1, ceiling(mtryCur / stepFactor))
+      } else {
+        min(ncol(x), floor(mtryCur * stepFactor))
+      }
+      if (mtryCur == mtryOld) break
+      errorCur <- if (classRF) {
+        randomForest(x, y, mtry=mtryCur, ntree=ntreeTry,
+                     keep.forest=FALSE, ...)$err.rate[ntreeTry,"OOB"]
+      } else {
+        randomForest(x, y, mtry=mtryCur, ntree=ntreeTry,
+                     keep.forest=FALSE, ...)$mse[ntreeTry]
+      }
+      if (trace) {
+        cat("mtry =",mtryCur, "\tOOB error =",
+            if (classRF) paste(100*round(errorCur, 4), "%", sep="") else
+              errorCur, "\n")
+      }
+      oobError[[as.character(mtryCur)]] <- errorCur
+      Improve <- 1 - errorCur/errorOld
+      cat(Improve, improve, "\n")
+      if (Improve > improve) {
+        errorOld <- errorCur
+        mtryBest <- mtryCur
+      }
+    }
+  }
+  mtry <- sort(as.numeric(names(oobError)))
+  res <- unlist(oobError[as.character(mtry)])
+  res <- cbind(mtry=mtry, OOBError=res)
+  
+  if (plot) {
+    plot(res, xlab=expression(m[try]), ylab="OOB Error", type="o", log="x",
+         xaxt="n")
+    axis(1, at=res[,"mtry"])
+  }
+  
+  if (doBest) 
+    res <- randomForest(x, y, mtry=res[which.min(res[,2]), 1], ...)
+  
+  res
+}
+
 
 

@@ -1,7 +1,15 @@
 ## Random Forest
+# load dataset which include remain or leave factor, this dataset will be used for classcifacation random forest
 brexitData <- read.csv("data/remainORleave.csv", header = T)
 head(brexitData)
 table(brexitData$LeaveRemain)
+
+# load dataset which use numbers to expresee remain or leave meaning, and this data will be used for regression random forest
+beData <- read.csv("data/Final Downloaded Data.csv", header = T)
+head(beData)
+table(beData)
+
+
 library(plyr)
 library(randomForest)
 source("RFFunction.R")
@@ -15,3 +23,17 @@ original.rf = randomForest(factor(LeaveRemain)~ Voting.1+Voting.2+Voting.3+Votin
 ##View the forest results
 print(original.rf)
 round(importance(original.rf),2)
+plot(original.rf)
+
+## set train and test dataset
+train.rows <- sample(1:nrow(brexitData), 0.7*nrow(brexitData))
+train <- brexitData[train.rows,]
+test <- brexitData[-train.rows,]
+
+
+
+
+
+
+
+
