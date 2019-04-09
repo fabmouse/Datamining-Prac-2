@@ -1,3 +1,5 @@
+
+
 myboot <- function(B, model, ROC = FALSE){
   set.seed(123)
   accuracy <- vector() #vector to store the accuracy
