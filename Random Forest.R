@@ -6,6 +6,7 @@ library(plyr)
 library(randomForest)
 source("RFFunction.R")
 
+
 ## Create the forest
 set.seed(100)
 # Trying without validation ----------------------------------------------------

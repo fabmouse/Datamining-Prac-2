@@ -10,6 +10,7 @@ head(beData)
 table(beData)
 
 
+
 library(plyr)
 library(randomForest)
 source("RFFunction.R")
