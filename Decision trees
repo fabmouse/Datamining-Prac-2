@@ -1,0 +1,16 @@
+attach(voteData)
+tree.voting <- tree(Party ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 +
+                      Vote.5 + Vote.6 + Vote.7 + Vote.8, data = voteData)
+library(tree)
+plot(tree.voting)
+text(tree.voting, pretty = 0)
+
+set.seed(100)
+train=sample(1:nrow(voteData), 100)
+tree.voting1 <- tree(Party ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 +
+                       Vote.5 + Vote.6 + Vote.7 + Vote.8, data = voteData, subset = train)
+plot(tree.voting1)
+text(tree.voting1, pretty = 0)
+
+tree.predict <- predict(tree.voting1, voteData[-train,], type = "class")
+with(voteData[-train,], table(tree.predict, Party))
