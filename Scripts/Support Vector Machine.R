@@ -2,27 +2,45 @@
 
 library(e1071)
 data.vote <- read.csv("data/Clean Vote Data.csv", header=T)
-head(data.vote)
+ind <- sample(1:nrow(data.vote), 0.6 * nrow(data.vote), replace = FALSE) ## bootstrap
+data.train <- data.vote[ind, ] # training dataset
+data.test <- data.vote[-ind, ] # test dataset
 
 set.seed(123)
 
+#Set up the support vector machine
+#Kernel = 
 svmfit <- svm(factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
-                Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.vote,
-                kernel = "radial", cost = 10, gamma = 1)
-summary(svmfit)
-plot(svmfit, data.vote)
+                Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.train,
+              kernel = "linear", cost = 10, gamma = 1)
 
-?predict.svm()
+#Try a range of cost parameters
+set.seed(123)
+tunePars = tune(svm, factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
+                  Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.train, 
+                kernel ="linear",
+                ranges = list(cost = c(0.001, 0.01, 0.1, 1,5, 10, 100)))
 
+summary(tunePars)
 
-######
+bestModel<- tunePars$best.model
+summary (  bestModel)
 
-set.seed(1)
-x=rbind(50, matrix(rnorm(50*2), ncol=2))
-y=c(50, rep(0,50))
-x[y==0,2]=x[y==0,2]+2
-dat=data.frame(x=x, y=as.factor(y))
-par(mfrow=c(1,1))
-plot(x,col=(y+1))
-svmfit=svm(y~., data=dat, kernel="radial", cost=10, gamma=1)
-plot(svmfit, dat)
+#Obtain predictions and create the confusion matrix
+predclass <- predict(bestModel, data.test[, 4:11])
+conf_mat <- table(observed = data.test$Party, predicted = predclass)
+
+fit_metrics <- vector("list", length(levels(data.test$Party)))
+for (i in seq_along(fit_metrics)) {
+  positive.class <- levels(data.test$Party)[i]
+  # in the i-th iteration, use the i-th class as the positive class
+  fit_metrics[[i]] <- confusionMatrix(predclass, data.test$Party, 
+                                      positive = positive.class)
+}
+
+#Accuracy
+sum(diag(conf_mat))/(sum(conf_mat))
+
+#Sensitivity and Specificity
+fit_metrics[[1]]$byClass[, "Sensitivity"]
+fit_metrics[[1]]$byClass[, "Specificity"]

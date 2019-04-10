@@ -38,7 +38,7 @@ myboot <- function(seed, B, model, ROC = FALSE){
       predclass <- predict(fitmodel, newdata = vote.test[,-1]) ## randomised predictions
       
       #Confusion Matrix and calculate accuracy
-      conf_mat <- table(predclass, vote.test$Party)
+      conf_mat <- table(vote.test$Party, predclass)
       accuracy[j] <- sum(diag(conf_mat))/(sum(conf_mat))
       
       fit_metrics <- vector("list", length(levels(vote.test$Party)))
@@ -53,6 +53,10 @@ myboot <- function(seed, B, model, ROC = FALSE){
       spec_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Specificity"]
       
     }
+  } else if(model == "SVM") {
+    
+    print("Do nothing for now")
+    
   } else if (model == "Neural Net")
     for(j in 1:B){
       bs <- sample(1:nrow(data.vote), nrow(data.vote), replace = T) ## bootstrap
