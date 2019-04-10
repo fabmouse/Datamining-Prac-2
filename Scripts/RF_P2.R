@@ -1,16 +1,15 @@
-## Random Forest
+## Random Forest for aim(ii)
 # load dataset which include remain or leave factor, this dataset will be used for classcifacation random forest
 brexitData <- read.csv("data/remainORleave.csv", header = T)
 head(brexitData)
 table(brexitData$LeaveRemain)
+breixtdata <- na.omit(brexitData)
 
 # load dataset which use numbers to expresee remain or leave meaning, and this data will be used for regression random forest
 beData <- read.csv("data/Final Downloaded Data.csv", header = T)
 head(beData)
-table(beData)
 
-
-
+# load libraries
 library(plyr)
 library(randomForest)
 source("RFFunction.R")
@@ -20,16 +19,42 @@ set.seed(100)
 # Trying without validation ----------------------------------------------------
 #ON ALL DATA
 #Fit the Random Forest
-original.rf = randomForest(factor(LeaveRemain)~ Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,data = brexitData, na.action = na.omit)
+original.rf = randomForest(factor(LeaveRemain)~ Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,data = breixtdata)
 ##View the forest results
 print(original.rf)
 round(importance(original.rf),2)
 plot(original.rf)
 
 ## set train and test dataset
-train.rows <- sample(1:nrow(brexitData), 0.7*nrow(brexitData))
-train <- brexitData[train.rows,]
-test <- brexitData[-train.rows,]
+train.rows <- sample(1:nrow(breixtdata), 0.7*nrow(breixtdata))
+train <- breixtdata[train.rows,]
+test <- breixtdata[-train.rows,]
+
+##### try to find good mtry and ntree number
+# try to find the good mtry number
+findgoodmtry(train[,6:13], train[,3],4,100,train)
+# when the mtry number is 2, the OOB error is minimum 0.128812
+
+# try to find the good ntree number
+# via plot of random forest model to find the error minimum
+findmodel.rf = randomForest(factor(LeaveRemain)~ Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,mtry = 2,data = breixtdata, ntree = 1000)
+plot(findmodel.rf)
+# when the ntree around 350 - 650, to find a smaller range
+findgoodntree(train[,6:13], train[,3],350,650,50,2,train)
+# when the ntree range around 400 - 550, the accuracy is better. use the step of tree number is 20 to find better tree number
+findgoodntree(train[,6:13], train[,3],400,550,20,2,train)
+
+findgoodntree(train[,6:13], train[,3],440,540,10,2,train)
+# when tree number is 480, the OOB error and accuracy are good.
+# when the mtry = 2 and ntree = 480, the model is:
+modeltwo.rf <- randomForest(factor(LeaveRemain)~ Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,mtry = 2,data = breixtdata, ntree = 480)
+print(modeltwo.rf)
+round(importance(modeltwo.rf),2)
+plot(modeltwo.rf)
+
+
+
+
 
 
 
