@@ -19,16 +19,6 @@ head(voteData)
 #1. Change the coding of the votes
 levels(voteData$Voting.1)
 #Votes are factor variables with 3 levels: "Aye", "No", and "No Vote Recorded"
-#Recode "Aye" as 1, "No" as 0 and "No Vote Recorded" as NA
-
-# for(i in 4:ncol(voteData)){
-#   levels(voteData[, i]) <- c(1, 0, NA)
-# }
-# head(voteData)
-# glimpse(voteData)
-# levels(voteData$Vote.1)
-
-#Recode "Aye" as 1, "No" as -1 and "No Vote Recorded" as 0
 #Recode "gv-against\"" as -1, "gv-did-not-vote\"" as 0  and "gv-for\"" as 1, 
 
 for(i in 4:ncol(voteData)){
@@ -38,27 +28,7 @@ head(voteData)
 glimpse(voteData)
 levels(voteData$Vote.1)
 
-# for(i in 4:ncol(voteData)){
-#   levels(voteData[, i]) <- c("Yes", "No", "Maybe")
-# }
-# head(voteData)
-# glimpse(voteData)
-# levels(voteData$Vote.1)
-
-# voteData[, 4:11] <- apply(voteData[, 4:11], MARGIN = 2, 
-#                           FUN = recode, "Aye" = 1, "No" = 0)
-#8 warnings were produced, but I ignored them as it simply replaced "No Vote" as 
-#NA
-
 #2. Remove rows with all NA values
-#There are 47 instances where the Cabinet members and SF politicians abstained 
-#throughout
-# 
-# abstained <- voteData[, 4:11] %>%
-#                       is.na() %>%
-#                       apply(MARGIN = 1, FUN = all)
-# ab_ind <- which(abstained == TRUE)
-
 
 ab_ind <- vector()
 
@@ -82,60 +52,21 @@ table(voteClean$Party)
 # The largest were Conservative = 280, Labour = 243, Scottish National Party = 34
 # Combine the remaining parties as "Other"
 
-# voteClean$Party <- recode(voteClean$Party, 
-#                        "Democratic Unionist Party"= "Other", 
-#                        "Deputy Speaker" = "Other", 
-#                        "Green Party" = "Other", 
-#                        "Independent" = "Other", 
-#                        "Liberal Democrat" = "Other", 
-#                        "Plaid Cymru" = "Other", 
-#                        "Sinn F?in" = "Other", 
-#                        "Speaker" = "Other")
-# table(voteClean$Party) 
-
 voteClean$Party <- recode(voteClean$Party, 
-                          "Con\n" = "Conservative",
-                          "Lab\n" = "Labour",
-                          "SNP\n" = "Scottish National Party",
-                          "DUP\n"= "Other", 
-                          "Grn\n" = "Other", 
-                          "Ind\n" = "Other", 
-                          "LD\n" = "Other", 
-                          "Oth\n" = "Other", 
-                          "PC\n" = "Other", 
-                          "SF\n" = "Other", 
-                          "TIG\n" = "Other")
+                          "Con\n" = "CON",
+                          "Lab\n" = "LAB",
+                          "SNP\n" = "SNP",
+                          "DUP\n"= "OTH", 
+                          "Grn\n" = "OTH", 
+                          "Ind\n" = "OTH", 
+                          "LD\n" = "OTH", 
+                          "Oth\n" = "OTH", 
+                          "PC\n" = "OTH", 
+                          "SF\n" = "OTH", 
+                          "TIG\n" = "OTH")
 table(voteClean$Party) 
 
-#Fill NA with missing vote by majority vote of each party or random 0/1 if 
-#majority is NA
-
-# voteClean <- arrange(voteClean, Party)
-# #1 - 280: Conservative
-# #281 - 325: Other 
-# #326 - 568: Labour
-# #569 - 602: SNP
-# 
-# c <- c(0, 280, 325, 568, 602)
-# for ( i in 1:(length(c) - 1)){ # for every party
-#   for (j in 4:11) { #for every vote
-#       
-#       zeros <- length(which(voteClean[(c[i] + 1 : c[i + 1]), j] == 0))
-#       ones <- length(which(voteClean[(c[i] + 1 : c[i + 1]),j] == 1))
-#       Nas <- length(which(is.na(voteClean[(c[i] + 1 : c[i + 1]),j])))
-#       max <- which.is.max(c(zeros, ones, Nas))
-#       
-#       set.seed(123)
-#       if(max == 1) voteClean[,j][is.na(voteClean[,j])] <- 0
-#       if(max == 2) voteClean[,j][is.na(voteClean[,j])] <- 1
-#       if(max == 3) voteClean[,j][is.na(voteClean[,j])] <- sample(c(0,1))
-#       
-#     }
-# }
-# 
-# sum(is.na(voteClean)) #YAY
-
-write.csv(voteClean, "Data/Final Downloaded Data.csv", row.names = FALSE)
+write.csv(voteClean, "Data/Clean Vote Data.csv", row.names = FALSE)
 
 # EXPLORATORY ANALYSIS ----------------------------------------------------
 glimpse(voteClean)

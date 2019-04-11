@@ -1,603 +1,1208 @@
-"Member","Party","Constituency","Vote.1","Vote.2","Vote.3","Vote.4","Vote.5","Vote.6","Vote.7","Vote.8"
-"Diane Abbott","Labour","Hackney North and Stoke Newington","1","1","1","1","0","-1","-1","0"
-"Debbie Abrahams","Labour","Oldham East and Saddleworth","1","1","1","0","0","-1","-1","-1"
-"Nigel Adams","Conservative","Selby and Ainsty","-1","-1","-1","-1","-1","0","1","-1"
-"Bim Afolami","Conservative","Hitchin and Harpenden","0","-1","-1","1","-1","-1","0","1"
-"Adam Afriyie","Conservative","Windsor","-1","-1","-1","-1","-1","1","1","-1"
-"Peter Aldous","Conservative","Waveney","-1","-1","-1","-1","-1","-1","-1","1"
-"Rushanara Ali","Labour","Bethnal Green and Bow","1","1","1","1","1","-1","-1","-1"
-"Heidi Allen","Other","South Cambridgeshire","-1","1","-1","-1","1","-1","0","-1"
-"Rosena Allin-Khan","Labour","Tooting","1","1","1","-1","1","-1","-1","-1"
-"Mike Amesbury","Labour","Weaver Vale","1","1","1","1","0","-1","-1","0"
-"David Amess","Conservative","Southend West","-1","-1","-1","-1","-1","1","1","-1"
-"Stuart Andrew","Conservative","Pudsey","-1","-1","-1","-1","-1","1","1","-1"
-"Tonia Antoniazzi","Labour","Gower","1","1","1","-1","1","-1","-1","-1"
-"Edward Argar","Conservative","Charnwood","-1","-1","-1","-1","-1","0","-1","-1"
-"Jonathan Ashworth","Labour","Leicester South","1","1","1","1","0","-1","-1","0"
-"Victoria Atkins","Conservative","Louth and Horncastle","-1","-1","-1","-1","-1","-1","-1","-1"
-"Ian Austin","Other","Dudley North","1","-1","1","1","0","-1","-1","0"
-"Richard Bacon","Conservative","South Norfolk","-1","-1","-1","-1","-1","1","1","-1"
-"Kemi Badenoch","Conservative","Saffron Walden","-1","-1","-1","-1","-1","0","1","-1"
-"Adrian Bailey","Labour","West Bromwich West","1","1","1","1","0","-1","-1","0"
-"Steve Baker","Conservative","Wycombe","-1","-1","-1","-1","-1","1","1","-1"
-"Harriett Baldwin","Conservative","West Worcestershire","-1","-1","-1","-1","-1","0","0","0"
-"Hannah Bardell","Scottish National Party","Livingston","0","1","0","0","1","-1","-1","-1"
-"John Baron","Conservative","Basildon and Billericay","-1","-1","-1","-1","-1","1","0","-1"
-"Kevin Barron","Labour","Rother Valley","1","-1","0","-1","-1","-1","-1","-1"
-"Guto Bebb","Conservative","Aberconwy","1","1","-1","-1","1","-1","-1","1"
-"Margaret Beckett","Labour","Derby South","1","1","1","0","0","-1","-1","0"
-"Henry Bellingham","Conservative","North West Norfolk","-1","-1","-1","-1","-1","1","1","-1"
-"Hilary Benn","Labour","Leeds Central","1","1","1","1","0","-1","-1","0"
-"Richard Benyon","Conservative","Newbury","1","-1","-1","1","-1","-1","-1","-1"
-"Paul Beresford","Conservative","Mole Valley","-1","-1","-1","-1","-1","-1","-1","-1"
-"Luciana Berger","Other","Liverpool, Wavertree","-1","1","-1","-1","1","-1","-1","-1"
-"Jake Berry","Conservative","Rossendale and Darwen","-1","-1","-1","-1","-1","1","-1","-1"
-"Clive Betts","Labour","Sheffield South East","1","1","1","1","1","-1","-1","-1"
-"Mhairi Black","Scottish National Party","Paisley and Renfrewshire South","0","1","0","0","1","-1","-1","-1"
-"Ian Blackford","Scottish National Party","Ross, Skye and Lochaber","0","1","0","0","1","-1","-1","-1"
-"Bob Blackman","Conservative","Harrow East","-1","-1","-1","-1","-1","1","1","1"
-"Kirsty Blackman","Scottish National Party","Aberdeen North","0","1","0","0","1","-1","-1","-1"
-"Roberta Blackman-Woods","Labour","City of Durham","1","1","1","1","1","-1","-1","0"
-"Paul Blomfield","Labour","Sheffield Central","1","1","1","1","1","-1","-1","-1"
-"Crispin Blunt","Conservative","Reigate","-1","-1","-1","-1","-1","1","1","-1"
-"Nick Boles","Conservative","Grantham and Stamford","1","0","-1","1","-1","-1","-1","1"
-"Peter Bone","Conservative","Wellingborough","-1","-1","-1","-1","-1","1","1","-1"
-"Peter Bottomley","Conservative","Worthing West","-1","-1","-1","-1","-1","-1","0","-1"
-"Andrew Bowie","Conservative","West Aberdeenshire and Kincardine","-1","-1","-1","-1","-1","-1","-1","-1"
-"Tracy Brabin","Labour","Batley and Spen","1","0","1","1","0","-1","-1","0"
-"Ben Bradley","Conservative","Mansfield","-1","-1","-1","-1","-1","1","1","-1"
-"Ben Bradshaw","Labour","Exeter","1","1","1","0","1","-1","-1","-1"
-"Graham Brady","Conservative","Altrincham and Sale West","-1","-1","-1","-1","-1","-1","-1","-1"
-"Tom Brake","Other","Carshalton and Wallington","0","1","0","0","1","-1","-1","0"
-"Suella Braverman","Conservative","Fareham","-1","-1","-1","-1","-1","1","1","-1"
-"Kevin Brennan","Labour","Cardiff West","1","1","1","1","1","-1","-1","0"
-"Jack Brereton","Conservative","Stoke-on-Trent South","-1","-1","-1","-1","-1","1","1","-1"
-"Andrew Bridgen","Conservative","North West Leicestershire","-1","-1","-1","-1","-1","1","1","-1"
-"Steve Brine","Conservative","Winchester","1","0","-1","1","0","-1","-1","1"
-"Deidre Brock","Scottish National Party","Edinburgh North and Leith","0","1","0","0","1","-1","-1","-1"
-"Alan Brown","Scottish National Party","Kilmarnock and Loudoun","0","1","0","0","1","-1","-1","-1"
-"Lyn Brown","Labour","West Ham","1","1","1","0","1","-1","-1","-1"
-"Nicholas Brown","Labour","Newcastle upon Tyne East","1","1","1","1","0","-1","-1","0"
-"Fiona Bruce","Conservative","Congleton","-1","-1","-1","-1","-1","1","1","-1"
-"Chris Bryant","Labour","Rhondda","1","1","1","1","0","-1","-1","-1"
-"Karen Buck","Labour","Westminster North","1","1","1","0","1","-1","-1","-1"
-"Robert Buckland","Conservative","South Swindon","-1","-1","-1","-1","-1","-1","-1","-1"
-"Richard Burden","Labour","Birmingham, Northfield","1","1","1","1","0","-1","-1","-1"
-"Alex Burghart","Conservative","Brentwood and Ongar","-1","-1","-1","-1","-1","0","0","-1"
-"Richard Burgon","Labour","Leeds East","1","1","1","1","0","-1","-1","0"
-"Conor Burns","Conservative","Bournemouth West","-1","-1","-1","-1","-1","1","1","-1"
-"Alistair Burt","Conservative","North East Bedfordshire","1","0","-1","1","0","-1","-1","1"
-"Dawn Butler","Labour","Brent Central","1","1","1","0","0","-1","-1","-1"
-"Liam Byrne","Labour","Birmingham, Hodge Hill","1","1","1","1","0","-1","-1","0"
-"Vince Cable","Other","Twickenham","0","1","-1","0","1","-1","-1","-1"
-"Ruth Cadbury","Labour","Brentford and Isleworth","1","1","1","-1","1","-1","-1","-1"
-"Lisa Cameron","Scottish National Party","East Kilbride, Strathaven and Lesmahagow","0","1","0","0","1","-1","-1","-1"
-"Gregory Campbell","Other","East Londonderry","-1","-1","-1","0","-1","0","1","0"
-"Ronnie Campbell","Labour","Blyth Valley","-1","-1","-1","-1","-1","1","-1","1"
-"Alan Campbell","Labour","Tynemouth","1","1","1","0","0","-1","-1","0"
-"Dan Carden","Labour","Liverpool, Walton","1","1","1","1","0","-1","-1","0"
-"Alistair Carmichael","Other","Orkney and Shetland","0","1","0","0","1","-1","-1","0"
-"James Cartlidge","Conservative","South Suffolk","-1","-1","-1","1","-1","-1","-1","1"
-"William Cash","Conservative","Stone","-1","-1","-1","-1","-1","1","1","-1"
-"Maria Caulfield","Conservative","Lewes","-1","-1","-1","-1","-1","1","1","1"
-"Alex Chalk","Conservative","Cheltenham","1","0","-1","-1","0","-1","-1","-1"
-"Sarah Champion","Labour","Rotherham","1","-1","1","-1","-1","-1","-1","-1"
-"Douglas Chapman","Scottish National Party","Dunfermline and West Fife","0","1","0","0","1","-1","-1","-1"
-"Jenny Chapman","Labour","Darlington","1","1","1","1","0","-1","-1","0"
-"Bambos Charalambous","Labour","Enfield, Southgate","1","1","1","1","1","-1","-1","0"
-"Joanna Cherry","Scottish National Party","Edinburgh South West","0","1","0","0","1","-1","-1","-1"
-"Rehman Chishti","Conservative","Gillingham and Rainham","-1","-1","-1","-1","-1","1","0","-1"
-"Christopher Chope","Conservative","Christchurch","-1","-1","-1","-1","-1","1","1","-1"
-"Jo Churchill","Conservative","Bury St Edmunds","-1","-1","-1","-1","-1","-1","-1","-1"
-"Colin Clark","Conservative","Gordon","0","-1","-1","-1","-1","-1","0","0"
-"Kenneth Clarke","Conservative","Rushcliffe","1","0","1","1","1","-1","-1","-1"
-"Simon Clarke","Conservative","Middlesbrough South and East Cleveland","-1","-1","-1","-1","-1","1","1","-1"
-"James Cleverly","Conservative","Braintree","-1","-1","-1","-1","-1","0","-1","-1"
-"Geoffrey Clifton-Brown","Conservative","The Cotswolds","-1","-1","-1","-1","-1","1","1","-1"
-"Ann Clwyd","Labour","Cynon Valley","-1","1","-1","-1","1","-1","-1","-1"
-"Vernon Coaker","Labour","Gedling","1","1","1","1","0","-1","-1","-1"
-"Ann Coffey","Other","Stockport","-1","1","-1","-1","1","-1","-1","-1"
-"Th?r?se Coffey","Conservative","Suffolk Coastal","-1","-1","-1","-1","-1","0","0","-1"
-"Damian Collins","Conservative","Folkestone and Hythe","-1","-1","-1","1","-1","-1","-1","1"
-"Julie Cooper","Labour","Burnley","1","0","1","1","0","-1","-1","0"
-"Rosie Cooper","Labour","West Lancashire","1","-1","1","-1","-1","-1","-1","-1"
-"Yvette Cooper","Labour","Normanton, Pontefract and Castleford","1","1","1","1","0","-1","-1","0"
-"Jeremy Corbyn","Labour","Islington North","1","1","1","1","0","-1","-1","0"
-"Alberto Costa","Conservative","South Leicestershire","-1","-1","-1","1","-1","-1","-1","1"
-"Robert Courts","Conservative","Witney","-1","-1","-1","-1","-1","1","1","1"
-"Ronnie Cowan","Scottish National Party","Inverclyde","0","1","0","0","1","-1","-1","-1"
-"Neil Coyle","Labour","Bermondsey and Old Southwark","1","1","1","-1","1","-1","-1","-1"
-"Stephen Crabb","Conservative","Preseli Pembrokeshire","1","-1","-1","1","-1","-1","-1","1"
-"David Crausby","Labour","Bolton North East","1","1","1","1","1","-1","-1","-1"
-"Angela Crawley","Scottish National Party","Lanark and Hamilton East","0","1","0","0","1","-1","-1","-1"
-"Mary Creagh","Labour","Wakefield","1","1","1","0","1","-1","-1","-1"
-"Stella Creasy","Labour","Walthamstow","1","1","1","0","1","-1","-1","-1"
-"Tracey Crouch","Conservative","Chatham and Aylesford","-1","-1","-1","-1","-1","1","0","-1"
-"Jon Cruddas","Labour","Dagenham and Rainham","1","-1","1","1","-1","-1","-1","0"
-"John Cryer","Labour","Leyton and Wanstead","1","1","1","1","0","-1","-1","0"
-"Judith Cummins","Labour","Bradford South","1","0","1","0","0","-1","-1","0"
-"Alex Cunningham","Labour","Stockton North","1","1","1","1","1","-1","-1","-1"
-"Jim Cunningham","Labour","Coventry South","-1","1","1","1","-1","-1","-1","-1"
-"Janet Daby","Labour","Lewisham East","1","1","1","0","1","-1","-1","-1"
-"Nic Dakin","Labour","Scunthorpe","1","1","1","0","0","-1","-1","0"
-"Edward Davey","Other","Kingston and Surbiton","0","1","0","0","1","-1","-1","0"
-"Wayne David","Labour","Caerphilly","1","1","1","1","0","-1","-1","0"
-"Chris Davies","Conservative","Brecon and Radnorshire","-1","-1","-1","-1","-1","1","1","1"
-"David T. C. Davies","Conservative","Monmouth","-1","-1","-1","-1","-1","1","1","-1"
-"Geraint Davies","Labour","Swansea West","1","1","1","0","1","-1","-1","-1"
-"Glyn Davies","Conservative","Montgomeryshire","-1","-1","-1","-1","-1","1","1","1"
-"Mims Davies","Conservative","Eastleigh","-1","-1","-1","-1","-1","1","-1","-1"
-"Philip Davies","Conservative","Shipley","-1","-1","-1","-1","-1","1","1","-1"
-"David Davis","Conservative","Haltemprice and Howden","-1","-1","-1","-1","-1","1","-1","-1"
-"Martyn Day","Scottish National Party","Linlithgow and East Falkirk","0","1","0","0","1","-1","-1","-1"
-"Marsha De Cordova","Labour","Battersea","1","1","1","0","1","-1","-1","-1"
-"Gloria De Piero","Labour","Ashfield","1","0","1","1","0","-1","-1","0"
-"Thangam Debbonaire","Labour","Bristol West","1","1","1","1","1","-1","-1","0"
-"Emma Dent Coad","Labour","Kensington","1","1","1","-1","1","-1","-1","-1"
-"Tanmanjeet Singh Dhesi","Labour","Slough","1","1","1","1","0","-1","-1","0"
-"Caroline Dinenage","Conservative","Gosport","-1","-1","-1","-1","-1","1","1","-1"
-"Jonathan Djanogly","Conservative","Huntingdon","1","0","-1","1","-1","-1","-1","1"
-"Martin Docherty-Hughes","Scottish National Party","West Dunbartonshire","0","1","0","0","1","-1","-1","-1"
-"Anneliese Dodds","Labour","Oxford East","1","1","1","1","1","-1","-1","0"
-"Nigel Dodds","Other","Belfast North","-1","-1","-1","0","-1","0","1","0"
-"Jeffrey M. Donaldson","Other","Lagan Valley","-1","-1","-1","0","-1","0","1","0"
-"Michelle Donelan","Conservative","Chippenham","-1","-1","-1","-1","-1","0","1","-1"
-"Nadine Dorries","Conservative","Mid Bedfordshire","-1","-1","-1","-1","-1","1","1","-1"
-"Steve Double","Conservative","St Austell and Newquay","-1","-1","-1","-1","-1","1","1","-1"
-"Stephen Doughty","Labour","Cardiff South and Penarth","1","1","1","0","1","-1","-1","-1"
-"Peter Dowd","Labour","Bootle","1","1","1","1","0","-1","-1","0"
-"Oliver Dowden","Conservative","Hertsmere","-1","-1","-1","-1","-1","-1","-1","-1"
-"Jackie Doyle-Price","Conservative","Thurrock","-1","-1","-1","-1","-1","1","-1","-1"
-"Richard Drax","Conservative","South Dorset","-1","-1","-1","-1","-1","1","1","-1"
-"David Drew","Labour","Stroud","1","1","1","1","1","-1","-1","0"
-"Jack Dromey","Labour","Birmingham, Erdington","1","1","1","1","0","-1","-1","-1"
-"James Duddridge","Conservative","Rochford and Southend East","-1","-1","-1","-1","-1","1","1","-1"
-"Rosie Duffield","Labour","Canterbury","1","1","1","0","1","-1","-1","-1"
-"David Duguid","Conservative","Banff and Buchan","-1","-1","-1","-1","-1","-1","-1","1"
-"Iain Duncan Smith","Conservative","Chingford and Woodford Green","-1","-1","-1","-1","-1","1","1","-1"
-"Alan Duncan","Conservative","Rutland and Melton","0","-1","-1","0","1","-1","-1","0"
-"Philip Dunne","Conservative","Ludlow","-1","-1","-1","-1","-1","-1","1","-1"
-"Maria Eagle","Labour","Garston and Halewood","1","1","1","0","1","-1","-1","-1"
-"Angela Eagle","Labour","Wallasey","1","1","1","0","1","-1","-1","0"
-"Jonathan Edwards","Other","Carmarthen East and Dinefwr","0","1","0","1","1","-1","-1","0"
-"Clive Efford","Labour","Eltham","1","1","1","1","1","-1","-1","-1"
-"Julie Elliott","Labour","Sunderland Central","1","1","1","0","0","-1","-1","0"
-"Michael Ellis","Conservative","Northampton North","-1","-1","-1","-1","-1","1","-1","-1"
-"Louise Ellman","Labour","Liverpool, Riverside","1","1","1","-1","1","-1","-1","-1"
-"Chris Elmore","Labour","Ogmore","1","1","1","0","1","-1","-1","-1"
-"Charlie Elphicke","Conservative","Dover","-1","-1","-1","-1","-1","1","1","-1"
-"Bill Esterson","Labour","Sefton Central","1","1","1","1","1","-1","-1","-1"
-"George Eustice","Conservative","Camborne and Redruth","-1","-1","-1","1","-1","1","1","1"
-"Chris Evans","Labour","Islwyn","1","0","1","1","0","-1","-1","0"
-"Nigel Evans","Conservative","Ribble Valley","-1","-1","-1","-1","-1","1","1","-1"
-"David Evennett","Conservative","Bexleyheath and Crayford","-1","-1","-1","-1","-1","0","-1","-1"
-"Michael Fabricant","Conservative","Lichfield","-1","-1","-1","-1","-1","1","1","-1"
-"Michael Fallon","Conservative","Sevenoaks","-1","-1","-1","0","-1","-1","1","1"
-"Paul Farrelly","Labour","Newcastle-under-Lyme","1","1","1","1","1","-1","-1","-1"
-"Tim Farron","Other","Westmorland and Lonsdale","0","1","0","0","1","-1","-1","0"
-"Marion Fellows","Scottish National Party","Motherwell and Wishaw","0","1","0","0","1","-1","-1","-1"
-"Frank Field","Other","Birkenhead","-1","-1","-1","-1","-1","-1","-1","-1"
-"Mark Field","Conservative","Cities of London and Westminster","1","0","-1","-1","1","-1","1","-1"
-"Jim Fitzpatrick","Labour","Poplar and Limehouse","1","-1","1","-1","0","-1","-1","-1"
-"Colleen Fletcher","Labour","Coventry North East","1","1","1","1","0","-1","-1","0"
-"Caroline Flint","Labour","Don Valley","0","-1","1","-1","-1","-1","-1","-1"
-"Vicky Ford","Conservative","Chelmsford","1","-1","-1","1","-1","-1","-1","0"
-"Kevin Foster","Conservative","Torbay","-1","-1","-1","-1","-1","1","-1","1"
-"Yvonne Fovargue","Labour","Makerfield","1","-1","1","0","0","-1","0","0"
-"Vicky Foxcroft","Labour","Lewisham, Deptford","1","1","1","1","1","-1","-1","0"
-"Mark Francois","Conservative","Rayleigh and Wickford","-1","-1","-1","-1","-1","1","1","-1"
-"Lucy Frazer","Conservative","South East Cambridgeshire","0","-1","-1","-1","-1","-1","0","-1"
-"George Freeman","Conservative","Mid Norfolk","1","0","-1","1","-1","0","-1","1"
-"Mike Freer","Conservative","Finchley and Golders Green","-1","-1","-1","-1","1","-1","-1","-1"
-"James Frith","Labour","Bury North","1","1","1","1","1","-1","-1","0"
-"Gill Furniss","Labour","Sheffield, Brightside and Hillsborough","1","1","1","1","0","-1","-1","0"
-"Marcus Fysh","Conservative","Yeovil","-1","-1","-1","-1","-1","1","1","-1"
-"Hugh Gaffney","Labour","Coatbridge, Chryston and Bellshill","1","1","1","1","1","-1","-1","0"
-"Roger Gale","Conservative","North Thanet","-1","-1","-1","-1","-1","-1","-1","-1"
-"Mike Gapes","Other","Ilford South","-1","1","-1","-1","1","-1","-1","-1"
-"Barry Gardiner","Labour","Brent North","1","1","1","0","0","-1","-1","0"
-"Mark Garnier","Conservative","Wyre Forest","-1","0","-1","-1","-1","0","1","1"
-"Ruth George","Labour","High Peak","1","1","1","0","1","-1","-1","-1"
-"Stephen Gethins","Scottish National Party","North East Fife","0","1","0","0","1","-1","-1","-1"
-"Nusrat Ghani","Conservative","Wealden","-1","-1","-1","-1","-1","1","-1","-1"
-"Nick Gibb","Conservative","Bognor Regis and Littlehampton","-1","-1","-1","0","-1","0","-1","0"
-"Patricia Gibson","Scottish National Party","North Ayrshire and Arran","0","1","0","0","1","-1","-1","-1"
-"Preet Kaur Gill","Labour","Birmingham, Edgbaston","1","1","1","0","1","-1","-1","0"
-"Cheryl Gillan","Conservative","Chesham and Amersham","-1","-1","-1","-1","-1","-1","-1","-1"
-"Paul Girvan","Other","South Antrim","-1","-1","-1","0","-1","0","1","0"
-"John Glen","Conservative","Salisbury","-1","-1","-1","-1","-1","-1","-1","-1"
-"Mary Glindon","Labour","North Tyneside","1","0","1","1","0","-1","-1","0"
-"Roger Godsiff","Labour","Birmingham, Hall Green","1","1","1","1","1","-1","-1","-1"
-"Zac Goldsmith","Conservative","Richmond Park","-1","-1","-1","-1","-1","1","1","-1"
-"Helen Goodman","Labour","Bishop Auckland","1","1","1","1","0","-1","-1","-1"
-"Robert Goodwill","Conservative","Scarborough and Whitby","-1","-1","-1","-1","-1","1","-1","-1"
-"Patrick Grady","Scottish National Party","Glasgow North","0","1","0","0","1","-1","0","-1"
-"Luke Graham","Conservative","Ochil and South Perthshire","-1","-1","-1","-1","-1","-1","0","1"
-"Richard Graham","Conservative","Gloucester","0","-1","-1","0","-1","-1","-1","0"
-"Bill Grant","Conservative","Ayr, Carrick and Cumnock","-1","-1","-1","-1","-1","-1","-1","1"
-"Helen Grant","Conservative","Maidstone and The Weald","-1","-1","-1","-1","-1","-1","-1","-1"
-"Peter Grant","Scottish National Party","Glenrothes","0","1","0","0","1","-1","-1","-1"
-"James Gray","Conservative","North Wiltshire","-1","-1","-1","-1","-1","1","1","-1"
-"Neil Gray","Scottish National Party","Airdrie and Shotts","0","1","0","0","1","-1","-1","-1"
-"Chris Green","Conservative","Bolton West","-1","-1","-1","-1","-1","1","1","-1"
-"Damian Green","Conservative","Ashford","1","-1","-1","-1","-1","-1","0","1"
-"Kate Green","Labour","Stretford and Urmston","1","1","1","0","1","-1","-1","-1"
-"Justine Greening","Conservative","Putney","0","1","0","0","1","-1","0","0"
-"Lilian Greenwood","Labour","Nottingham South","1","1","1","0","1","-1","-1","-1"
-"Margaret Greenwood","Labour","Wirral West","1","1","1","0","0","-1","-1","0"
-"Dominic Grieve","Conservative","Beaconsfield","0","1","-1","0","1","-1","-1","-1"
-"Nia Griffith","Labour","Llanelli","1","1","1","1","0","-1","-1","0"
-"Andrew Griffiths","Conservative","Burton","-1","-1","-1","-1","-1","1","-1","-1"
-"John Grogan","Labour","Keighley","1","1","1","1","1","-1","-1","0"
-"Andrew Gwynne","Labour","Denton and Reddish","1","0","1","1","0","-1","-1","0"
-"Sam Gyimah","Conservative","East Surrey","0","1","-1","0","0","-1","-1","0"
-"Louise Haigh","Labour","Sheffield, Heeley","1","1","1","1","1","-1","-1","-1"
-"Kirstene Hair","Conservative","Angus","-1","-1","-1","-1","-1","0","0","-1"
-"Robert Halfon","Conservative","Harlow","-1","-1","-1","1","-1","-1","0","1"
-"Luke Hall","Conservative","Thornbury and Yate","-1","-1","-1","-1","-1","-1","-1","-1"
-"Fabian Hamilton","Labour","Leeds North East","1","1","1","0","1","-1","-1","-1"
-"Stephen Hammond","Conservative","Wimbledon","1","0","-1","1","1","-1","-1","1"
-"Greg Hands","Conservative","Chelsea and Fulham","-1","-1","-1","-1","-1","-1","0","-1"
-"David Hanson","Labour","Delyn","1","1","1","1","0","-1","-1","-1"
-"Emma Hardy","Labour","Kingston upon Hull West and Hessle","1","1","1","1","0","-1","-1","0"
-"Harriet Harman","Labour","Camberwell and Peckham","1","1","1","1","1","-1","-1","-1"
-"Mark Harper","Conservative","Forest of Dean","-1","-1","-1","-1","-1","1","1","-1"
-"Richard Harrington","Conservative","Watford","1","0","-1","1","1","-1","-1","0"
-"Carolyn Harris","Labour","Swansea East","1","0","1","1","0","-1","-1","0"
-"Rebecca Harris","Conservative","Castle Point","-1","-1","-1","-1","-1","1","1","-1"
-"Trudy Harrison","Conservative","Copeland","-1","-1","-1","-1","-1","1","-1","1"
-"Simon Hart","Conservative","Carmarthen West and South Pembrokeshire","-1","-1","-1","1","-1","0","0","1"
-"Helen Hayes","Labour","Dulwich and West Norwood","1","1","1","0","1","-1","-1","-1"
-"John Hayes","Conservative","South Holland and The Deepings","-1","-1","-1","-1","-1","1","1","-1"
-"Sue Hayman","Labour","Workington","1","1","1","1","0","-1","-1","0"
-"Oliver Heald","Conservative","North East Hertfordshire","1","-1","-1","0","-1","-1","-1","0"
-"John Healey","Labour","Wentworth and Dearne","1","1","1","0","0","-1","0","0"
-"James Heappey","Conservative","Wells","-1","-1","-1","-1","-1","0","0","-1"
-"Chris Heaton-Harris","Conservative","Daventry","-1","-1","-1","-1","-1","1","-1","-1"
-"Peter Heaton-Jones","Conservative","North Devon","-1","-1","-1","-1","-1","0","-1","-1"
-"Gordon Henderson","Conservative","Sittingbourne and Sheppey","-1","-1","-1","-1","-1","1","1","1"
-"Mark Hendrick","Labour","Preston","1","1","1","1","1","-1","-1","1"
-"Drew Hendry","Scottish National Party","Inverness, Nairn, Badenoch and Strathspey","0","1","0","0","1","-1","-1","-1"
-"Stephen Hepburn","Labour","Jarrow","-1","-1","-1","-1","-1","-1","-1","-1"
-"Nick Herbert","Conservative","Arundel and South Downs","1","-1","-1","1","-1","-1","-1","1"
-"Lady Hermon","Other","North Down","-1","1","-1","-1","1","-1","-1","-1"
-"Mike Hill","Labour","Hartlepool","1","-1","1","0","0","-1","-1","0"
-"Meg Hillier","Labour","Hackney South and Shoreditch","1","1","1","0","1","-1","-1","-1"
-"Simon Hoare","Conservative","North Dorset","1","-1","-1","1","-1","-1","-1","1"
-"Wera Hobhouse","Other","Bath","-1","1","-1","-1","1","-1","-1","-1"
-"Margaret Hodge","Labour","Barking","1","1","1","0","1","-1","-1","-1"
-"Sharon Hodgson","Labour","Washington and Sunderland West","1","1","1","1","0","-1","-1","-1"
-"Kate Hoey","Labour","Vauxhall","-1","-1","0","-1","-1","1","1","0"
-"Kate Hollern","Labour","Blackburn","1","1","1","1","0","0","0","0"
-"George Hollingbery","Conservative","Meon Valley","-1","-1","-1","-1","-1","-1","1","-1"
-"Kevin Hollinrake","Conservative","Thirsk and Malton","-1","-1","-1","1","-1","-1","-1","1"
-"Philip Hollobone","Conservative","Kettering","-1","-1","-1","-1","-1","1","1","-1"
-"Adam Holloway","Conservative","Gravesham","-1","-1","-1","-1","-1","1","1","-1"
-"Stewart Hosie","Scottish National Party","Dundee East","0","1","0","0","1","-1","-1","-1"
-"George Howarth","Labour","Knowsley","1","1","1","1","1","-1","-1","-1"
-"John Howell","Conservative","Henley","-1","0","-1","-1","-1","-1","-1","-1"
-"Nigel Huddleston","Conservative","Mid Worcestershire","0","-1","-1","0","-1","0","0","0"
-"Eddie Hughes","Conservative","Walsall North","-1","-1","-1","-1","-1","1","1","-1"
-"Rupa Huq","Labour","Ealing Central and Acton","1","1","1","0","1","-1","-1","-1"
-"Nick Hurd","Conservative","Ruislip, Northwood and Pinner","0","0","-1","0","-1","-1","-1","0"
-"Imran Hussain","Labour","Bradford East","1","1","1","1","0","-1","-1","0"
-"Alister Jack","Conservative","Dumfries and Galloway","-1","-1","-1","-1","-1","-1","1","-1"
-"Margot James","Conservative","Stourbridge","1","0","-1","1","0","-1","-1","0"
-"Christine Jardine","Other","Edinburgh West","0","1","0","0","1","-1","-1","0"
-"Dan Jarvis","Labour","Barnsley Central","1","-1","1","1","0","-1","-1","0"
-"Ranil Jayawardena","Conservative","North East Hampshire","-1","-1","-1","-1","-1","1","1","-1"
-"Bernard Jenkin","Conservative","Harwich and North Essex","-1","-1","-1","-1","-1","1","1","-1"
-"Andrea Jenkyns","Conservative","Morley and Outwood","-1","-1","-1","-1","-1","1","1","-1"
-"Robert Jenrick","Conservative","Newark","-1","-1","-1","-1","-1","1","-1","-1"
-"Boris Johnson","Conservative","Uxbridge and South Ruislip","-1","-1","-1","-1","-1","1","1","-1"
-"Diana Johnson","Labour","Kingston upon Hull North","1","1","1","1","0","-1","-1","-1"
-"Caroline Johnson","Conservative","Sleaford and North Hykeham","-1","-1","-1","-1","-1","1","1","-1"
-"Gareth Johnson","Conservative","Dartford","-1","-1","-1","-1","-1","1","1","-1"
-"Joseph Johnson","Conservative","Orpington","-1","1","-1","-1","-1","-1","-1","-1"
-"Andrew Jones","Conservative","Harrogate and Knaresborough","-1","-1","-1","-1","-1","-1","-1","-1"
-"Darren Jones","Labour","Bristol North West","1","1","1","0","1","-1","-1","-1"
-"Gerald Jones","Labour","Merthyr Tydfil and Rhymney","1","1","1","1","0","-1","-1","0"
-"Graham P Jones","Labour","Hyndburn","1","1","1","0","0","-1","-1","-1"
-"Helen Jones","Labour","Warrington North","1","-1","1","1","-1","-1","-1","-1"
-"David Jones","Conservative","Clwyd West","-1","-1","-1","-1","-1","1","1","-1"
-"Kevan Jones","Labour","North Durham","1","-1","1","-1","0","-1","-1","-1"
-"Marcus Jones","Conservative","Nuneaton","-1","-1","-1","-1","-1","1","-1","-1"
-"Sarah Jones","Labour","Croydon Central","1","1","1","1","1","-1","-1","0"
-"Susan Elan Jones","Labour","Clwyd South","1","1","1","0","1","-1","-1","-1"
-"Mike Kane","Labour","Wythenshawe and Sale East","1","0","1","1","0","-1","-1","0"
-"Daniel Kawczynski","Conservative","Shrewsbury and Atcham","-1","-1","-1","-1","-1","1","-1","-1"
-"Gillian Keegan","Conservative","Chichester","-1","-1","-1","-1","-1","-1","-1","0"
-"Barbara Keeley","Labour","Worsley and Eccles South","1","1","1","0","0","-1","-1","0"
-"Liz Kendall","Labour","Leicester West","1","1","1","0","1","-1","-1","-1"
-"Seema Kennedy","Conservative","South Ribble","-1","-1","-1","-1","-1","-1","-1","-1"
-"Stephen Kerr","Conservative","Stirling","-1","-1","-1","-1","-1","-1","-1","1"
-"Afzal Khan","Labour","Manchester, Gorton","1","1","1","1","0","-1","-1","0"
-"Ged Killen","Labour","Rutherglen and Hamilton West","1","1","1","0","1","-1","-1","-1"
-"Stephen Kinnock","Labour","Aberavon","1","0","1","1","0","-1","-1","1"
-"Julian Knight","Conservative","Solihull","-1","-1","-1","-1","-1","0","1","1"
-"Greg Knight","Conservative","East Yorkshire","-1","-1","-1","-1","-1","1","-1","-1"
-"Kwasi Kwarteng","Conservative","Spelthorne","-1","-1","-1","-1","-1","1","-1","-1"
-"Peter Kyle","Labour","Hove","1","1","1","1","1","-1","-1","-1"
-"Lesley Laird","Labour","Kirkcaldy and Cowdenbeath","1","1","1","1","1","-1","-1","0"
-"Ben Lake","Other","Ceredigion","0","1","0","1","1","-1","-1","0"
-"Norman Lamb","Other","North Norfolk","1","1","0","1","0","-1","-1","0"
-"David Lammy","Labour","Tottenham","0","1","1","0","1","-1","-1","-1"
-"John Lamont","Conservative","Berwickshire, Roxburgh and Selkirk","-1","-1","-1","-1","-1","0","0","-1"
-"Mark Lancaster","Conservative","Milton Keynes North","-1","-1","-1","-1","-1","1","1","-1"
-"Pauline Latham","Conservative","Mid Derbyshire","-1","-1","-1","-1","-1","0","1","-1"
-"Ian Lavery","Labour","Wansbeck","1","0","1","1","0","-1","1","0"
-"Chris Law","Scottish National Party","Dundee West","0","1","0","0","1","-1","-1","-1"
-"Phillip Lee","Conservative","Bracknell","-1","1","-1","-1","1","-1","-1","-1"
-"Karen Lee","Labour","Lincoln","1","1","1","-1","0","-1","-1","0"
-"Jeremy Lefroy","Conservative","Stafford","1","0","0","1","0","-1","0","1"
-"Edward Leigh","Conservative","Gainsborough","-1","-1","-1","-1","-1","1","1","-1"
-"Chris Leslie","Other","Nottingham East","-1","1","-1","-1","1","-1","-1","-1"
-"Oliver Letwin","Conservative","West Dorset","1","-1","-1","1","-1","-1","-1","1"
-"Emma Lewell-Buck","Labour","South Shields","1","-1","1","0","0","-1","-1","0"
-"Andrew Lewer","Conservative","Northampton South","-1","-1","-1","-1","-1","1","1","-1"
-"Clive Lewis","Labour","Norwich South","1","1","1","-1","1","-1","-1","-1"
-"Julian Lewis","Conservative","New Forest East","-1","-1","-1","-1","-1","1","1","-1"
-"Ivan Lewis","Other","Bury South","1","-1","1","1","0","-1","-1","-1"
-"Ian Liddell-Grainger","Conservative","Bridgwater and West Somerset","-1","-1","-1","-1","-1","1","-1","-1"
-"David Linden","Scottish National Party","Glasgow East","0","1","0","0","1","-1","-1","-1"
-"Emma Little Pengelly","Other","Belfast South","-1","-1","-1","0","-1","0","1","0"
-"Stephen Lloyd","Other","Eastbourne","1","0","1","1","1","-1","-1","1"
-"Tony Lloyd","Labour","Rochdale","1","1","1","1","0","-1","-1","-1"
-"Rebecca Long Bailey","Labour","Salford and Eccles","1","1","1","1","0","-1","-1","0"
-"Julia Lopez","Conservative","Hornchurch and Upminster","-1","-1","-1","-1","-1","1","1","-1"
-"Jack Lopresti","Conservative","Filton and Bradley Stoke","-1","-1","-1","-1","-1","1","-1","-1"
-"Jonathan Lord","Conservative","Woking","-1","-1","-1","-1","-1","1","1","-1"
-"Tim Loughton","Conservative","East Worthing and Shoreham","-1","-1","-1","-1","-1","1","1","-1"
-"Caroline Lucas","Other","Brighton, Pavilion","-1","1","-1","-1","1","-1","-1","-1"
-"Ian C. Lucas","Labour","Wrexham","1","1","1","1","-1","-1","-1","-1"
-"Holly Lynch","Labour","Halifax","1","1","1","1","0","-1","-1","0"
-"Craig Mackinlay","Conservative","South Thanet","-1","-1","-1","-1","-1","1","1","-1"
-"Rachel Maclean","Conservative","Redditch","-1","-1","-1","-1","-1","1","1","-1"
-"Angus Brendan MacNeil","Scottish National Party","Na h-Eileanan an Iar","0","0","0","0","1","-1","-1","-1"
-"Justin Madders","Labour","Ellesmere Port and Neston","1","-1","1","1","0","-1","-1","-1"
-"Khalid Mahmood","Labour","Birmingham, Perry Barr","1","1","1","1","0","-1","-1","0"
-"Shabana Mahmood","Labour","Birmingham, Ladywood","1","1","1","1","1","-1","-1","-1"
-"Anne Main","Conservative","St Albans","-1","-1","-1","-1","-1","1","1","-1"
-"Alan Mak","Conservative","Havant","-1","-1","-1","-1","-1","1","1","-1"
-"Seema Malhotra","Labour","Feltham and Heston","1","1","1","1","0","-1","-1","-1"
-"Kit Malthouse","Conservative","North West Hampshire","-1","-1","-1","-1","-1","1","1","-1"
-"John Mann","Labour","Bassetlaw","-1","-1","1","-1","-1","-1","-1","-1"
-"Scott Mann","Conservative","North Cornwall","-1","-1","-1","-1","-1","1","1","1"
-"Gordon Marsden","Labour","Blackpool South","1","1","1","1","-1","-1","-1","-1"
-"Sandy Martin","Labour","Ipswich","1","1","1","1","1","-1","-1","-1"
-"Rachael Maskell","Labour","York Central","1","1","1","-1","1","-1","-1","-1"
-"Paul Masterton","Conservative","East Renfrewshire","1","-1","-1","1","0","-1","-1","1"
-"Christian Matheson","Labour","City of Chester","1","1","1","-1","1","-1","-1","-1"
-"Paul Maynard","Conservative","Blackpool North and Cleveleys","-1","-1","-1","-1","-1","1","1","-1"
-"Steve McCabe","Labour","Birmingham, Selly Oak","1","1","1","1","0","-1","-1","0"
-"Kerry McCarthy","Labour","Bristol East","1","1","1","-1","1","-1","-1","-1"
-"Siobhain McDonagh","Labour","Mitcham and Morden","-1","1","-1","-1","1","-1","-1","-1"
-"Andy McDonald","Labour","Middlesbrough","1","1","1","1","0","-1","0","0"
-"Stewart Malcolm McDonald","Scottish National Party","Glasgow South","0","1","0","0","1","-1","-1","-1"
-"Stuart C. McDonald","Scottish National Party","Cumbernauld, Kilsyth and Kirkintilloch East","0","1","0","0","1","-1","-1","-1"
-"John McDonnell","Labour","Hayes and Harlington","1","1","1","1","0","-1","-1","0"
-"Pat McFadden","Labour","Wolverhampton South East","1","1","1","0","0","-1","-1","-1"
-"Conor McGinn","Labour","St Helens North","1","1","1","1","0","-1","-1","0"
-"Alison McGovern","Labour","Wirral South","1","1","1","0","0","-1","-1","-1"
-"Liz McInnes","Labour","Heywood and Middleton","1","0","1","1","0","-1","-1","0"
-"Catherine McKinnell","Labour","Newcastle upon Tyne North","1","1","1","0","1","-1","-1","-1"
-"Patrick McLoughlin","Conservative","Derbyshire Dales","-1","-1","-1","-1","-1","-1","-1","-1"
-"Jim McMahon","Labour","Oldham West and Royton","1","0","1","1","0","-1","-1","0"
-"Anna McMorrin","Labour","Cardiff North","-1","1","1","-1","1","-1","-1","-1"
-"Stephen McPartland","Conservative","Stevenage","-1","-1","-1","-1","-1","1","1","-1"
-"Esther McVey","Conservative","Tatton","-1","-1","-1","-1","-1","1","1","-1"
-"Ian Mearns","Labour","Gateshead","1","0","1","1","0","-1","-1","0"
-"Mark Menzies","Conservative","Fylde","-1","-1","-1","-1","-1","1","-1","-1"
-"Johnny Mercer","Conservative","Plymouth, Moor View","-1","-1","-1","-1","-1","1","-1","-1"
-"Huw Merriman","Conservative","Bexhill and Battle","-1","1","-1","-1","-1","1","-1","-1"
-"Stephen Metcalfe","Conservative","South Basildon and East Thurrock","-1","-1","-1","-1","-1","1","1","-1"
-"Edward Miliband","Labour","Doncaster North","1","1","1","1","0","-1","-1","0"
-"Maria Miller","Conservative","Basingstoke","-1","-1","-1","-1","-1","1","1","-1"
-"Amanda Milling","Conservative","Cannock Chase","-1","-1","-1","-1","-1","1","0","-1"
-"Nigel Mills","Conservative","Amber Valley","-1","-1","-1","-1","-1","1","1","-1"
-"Anne Milton","Conservative","Guildford","1","0","-1","0","0","-1","-1","0"
-"Andrew Mitchell","Conservative","Sutton Coldfield","1","-1","-1","0","-1","1","1","0"
-"Carol Monaghan","Scottish National Party","Glasgow North West","0","1","0","0","1","-1","-1","-1"
-"Madeleine Moon","Labour","Bridgend","1","1","1","-1","1","-1","-1","-1"
-"Damien Moore","Conservative","Southport","-1","-1","-1","-1","-1","-1","-1","-1"
-"Layla Moran","Other","Oxford West and Abingdon","0","1","0","0","1","-1","-1","0"
-"Jessica Morden","Labour","Newport East","1","1","1","0","0","-1","-1","0"
-"Nicky Morgan","Conservative","Loughborough","1","-1","-1","1","-1","-1","-1","1"
-"Stephen Morgan","Labour","Portsmouth South","1","1","1","-1","1","-1","-1","-1"
-"Anne Marie Morris","Conservative","Newton Abbot","-1","-1","-1","-1","-1","1","-1","-1"
-"David Morris","Conservative","Morecambe and Lunesdale","-1","-1","-1","-1","-1","-1","-1","-1"
-"Grahame Morris","Labour","Easington","-1","-1","1","-1","-1","-1","-1","-1"
-"James Morris","Conservative","Halesowen and Rowley Regis","-1","-1","-1","-1","-1","1","-1","-1"
-"Wendy Morton","Conservative","Aldridge-Brownhills","-1","-1","-1","-1","-1","1","-1","-1"
-"Ian Murray","Labour","Edinburgh South","1","1","0","1","1","-1","-1","-1"
-"Sheryll Murray","Conservative","South East Cornwall","-1","-1","-1","-1","-1","1","1","-1"
-"Andrew Murrison","Conservative","South West Wiltshire","-1","-1","-1","-1","-1","1","0","0"
-"Lisa Nandy","Labour","Wigan","1","0","1","1","1","-1","0","0"
-"Robert Neill","Conservative","Bromley and Chislehurst","1","-1","-1","1","-1","-1","-1","1"
-"Gavin Newlands","Scottish National Party","Paisley and Renfrewshire North","0","1","0","0","1","-1","-1","-1"
-"Sarah Newton","Conservative","Truro and Falmouth","1","0","-1","0","0","-1","-1","1"
-"Jesse Norman","Conservative","Hereford and South Herefordshire","-1","-1","-1","-1","-1","-1","-1","-1"
-"Alex Norris","Labour","Nottingham North","1","1","1","1","0","-1","-1","0"
-"Neil O'Brien","Conservative","Harborough","-1","-1","-1","-1","-1","1","0","-1"
-"Matthew Offord","Conservative","Hendon","-1","-1","-1","-1","-1","1","1","-1"
-"Brendan O'Hara","Scottish National Party","Argyll and Bute","0","1","0","0","1","-1","-1","-1"
-"Fiona Onasanya","Other","Peterborough","-1","1","0","1","0","-1","-1","-1"
-"Melanie Onn","Labour","Great Grimsby","1","-1","1","1","0","-1","0","0"
-"Chi Onwurah","Labour","Newcastle upon Tyne Central","1","1","1","1","1","-1","-1","-1"
-"Guy Opperman","Conservative","Hexham","-1","-1","-1","-1","-1","-1","-1","-1"
-"Kate Osamor","Labour","Edmonton","1","1","1","-1","1","-1","-1","-1"
-"Albert Owen","Labour","Ynys M?n","1","1","1","1","1","-1","-1","0"
-"Ian Paisley","Other","North Antrim","-1","-1","-1","0","-1","0","1","0"
-"Neil Parish","Conservative","Tiverton and Honiton","-1","-1","-1","0","-1","1","1","1"
-"Priti Patel","Conservative","Witham","-1","-1","-1","-1","-1","1","1","-1"
-"Owen Paterson","Conservative","North Shropshire","-1","-1","-1","-1","-1","1","1","-1"
-"Mark Pawsey","Conservative","Rugby","1","-1","-1","1","-1","-1","-1","1"
-"Stephanie Peacock","Labour","Barnsley East","1","-1","1","1","0","-1","-1","0"
-"Teresa Pearce","Labour","Erith and Thamesmead","1","1","1","0","0","-1","-1","0"
-"Mike Penning","Conservative","Hemel Hempstead","-1","-1","-1","-1","-1","1","-1","-1"
-"Matthew Pennycook","Labour","Greenwich and Woolwich","1","1","1","1","1","-1","-1","-1"
-"John Penrose","Conservative","Weston-super-Mare","-1","-1","-1","1","-1","1","1","1"
-"Andrew Percy","Conservative","Brigg and Goole","-1","-1","-1","1","-1","1","1","1"
-"Toby Perkins","Labour","Chesterfield","1","1","1","1","-1","-1","-1","-1"
-"Jess Phillips","Labour","Birmingham, Yardley","1","1","1","1","1","-1","-1","-1"
-"Bridget Phillipson","Labour","Houghton and Sunderland South","1","1","1","0","0","-1","-1","-1"
-"Chris Philp","Conservative","Croydon South","-1","-1","-1","-1","-1","0","1","-1"
-"Laura Pidcock","Labour","North West Durham","1","1","1","1","0","-1","-1","0"
-"Christopher Pincher","Conservative","Tamworth","-1","-1","-1","-1","-1","1","1","-1"
-"Jo Platt","Labour","Leigh","1","0","1","1","0","-1","-1","0"
-"Luke Pollard","Labour","Plymouth, Sutton and Devonport","1","1","1","1","1","-1","-1","-1"
-"Dan Poulter","Conservative","Central Suffolk and North Ipswich","-1","-1","-1","-1","-1","1","-1","1"
-"Stephen Pound","Labour","Ealing North","1","1","1","1","0","-1","-1","0"
-"Rebecca Pow","Conservative","Taunton Deane","-1","-1","-1","1","-1","-1","-1","1"
-"Lucy Powell","Labour","Manchester Central","1","1","1","1","0","-1","-1","0"
-"Victoria Prentis","Conservative","Banbury","1","-1","-1","0","-1","-1","-1","0"
-"Mark Prisk","Conservative","Hertford and Stortford","-1","-1","-1","-1","-1","-1","-1","1"
-"Mark Pritchard","Conservative","The Wrekin","-1","-1","-1","-1","-1","1","-1","-1"
-"Tom Pursglove","Conservative","Corby","-1","-1","-1","-1","-1","1","1","-1"
-"Jeremy Quin","Conservative","Horsham","-1","-1","-1","-1","-1","-1","-1","-1"
-"Will Quince","Conservative","Colchester","-1","-1","-1","-1","-1","1","1","-1"
-"Yasmin Qureshi","Labour","Bolton South East","1","1","1","1","0","-1","-1","0"
-"Dominic Raab","Conservative","Esher and Walton","-1","-1","-1","-1","-1","1","1","-1"
-"Faisal Rashid","Labour","Warrington South","1","1","1","1","1","-1","-1","0"
-"Angela Rayner","Labour","Ashton-under-Lyne","1","1","1","1","0","-1","-1","0"
-"John Redwood","Conservative","Wokingham","-1","-1","-1","-1","-1","1","-1","-1"
-"Steve Reed","Labour","Croydon North","1","1","1","1","1","-1","-1","0"
-"Christina Rees","Labour","Neath","1","1","1","1","0","-1","-1","0"
-"Jacob Rees-Mogg","Conservative","North East Somerset","-1","-1","-1","-1","-1","1","1","-1"
-"Ellie Reeves","Labour","Lewisham West and Penge","1","1","1","0","1","-1","-1","-1"
-"Rachel Reeves","Labour","Leeds West","1","1","1","1","1","-1","-1","-1"
-"Emma Reynolds","Labour","Wolverhampton North East","1","1","1","1","0","-1","-1","-1"
-"Jonathan Reynolds","Labour","Stalybridge and Hyde","1","1","1","1","0","-1","-1","0"
-"Marie Rimmer","Labour","St Helens South and Whiston","1","1","1","1","1","-1","-1","-1"
-"Laurence Robertson","Conservative","Tewkesbury","-1","-1","-1","-1","-1","1","1","-1"
-"Gavin Robinson","Other","Belfast East","-1","-1","-1","0","-1","0","1","0"
-"Mary Robinson","Conservative","Cheadle","-1","-1","-1","-1","-1","-1","-1","-1"
-"Geoffrey Robinson","Labour","Coventry North West","1","1","1","1","-1","-1","-1","0"
-"Matt Rodda","Labour","Reading East","1","1","1","1","1","-1","-1","0"
-"Andrew Rosindell","Conservative","Romford","-1","-1","-1","-1","-1","1","1","-1"
-"Douglas Ross","Conservative","Moray","-1","-1","-1","-1","-1","0","0","-1"
-"Danielle Rowley","Labour","Midlothian","1","1","1","1","1","-1","-1","0"
-"Lee Rowley","Conservative","North East Derbyshire","-1","-1","-1","-1","-1","1","1","-1"
-"Chris Ruane","Labour","Vale of Clwyd","1","1","1","1","0","-1","-1","-1"
-"Lloyd Russell-Moyle","Labour","Brighton, Kemptown","1","1","1","-1","1","-1","-1","-1"
-"Joan Ryan","Other","Enfield North","0","1","-1","-1","1","-1","-1","-1"
-"Antoinette Sandbach","Conservative","Eddisbury","1","1","-1","1","0","-1","-1","1"
-"Liz Saville Roberts","Other","Dwyfor Meirionnydd","0","1","0","1","1","-1","-1","0"
-"Paul Scully","Conservative","Sutton and Cheam","-1","-1","-1","-1","-1","1","1","-1"
-"Bob Seely","Conservative","Isle of Wight","-1","-1","-1","-1","-1","1","-1","-1"
-"Andrew Selous","Conservative","South West Bedfordshire","-1","-1","-1","-1","-1","0","0","-1"
-"Naz Shah","Labour","Bradford West","1","1","1","1","0","-1","-1","0"
-"Jim Shannon","Other","Strangford","-1","-1","-1","0","-1","-1","1","0"
-"Grant Shapps","Conservative","Welwyn Hatfield","-1","-1","-1","-1","-1","1","1","-1"
-"Alok Sharma","Conservative","Reading West","-1","-1","-1","-1","-1","-1","-1","-1"
-"Virendra Sharma","Labour","Ealing, Southall","1","1","1","1","1","-1","-1","-1"
-"Barry Sheerman","Labour","Huddersfield","1","1","1","0","1","-1","-1","-1"
-"Tommy Sheppard","Scottish National Party","Edinburgh East","0","1","0","0","1","-1","-1","-1"
-"Paula Sherriff","Labour","Dewsbury","1","0","1","1","0","-1","-1","0"
-"Gavin Shuker","Other","Luton South","-1","1","-1","-1","1","-1","-1","-1"
-"Tulip Siddiq","Labour","Hampstead and Kilburn","1","1","1","-1","1","-1","-1","-1"
-"David Simpson","Other","Upper Bann","-1","-1","-1","0","-1","0","1","0"
-"Keith Simpson","Conservative","Broadland","-1","-1","-1","-1","-1","-1","-1","-1"
-"Chris Skidmore","Conservative","Kingswood","-1","-1","-1","-1","-1","-1","-1","-1"
-"Dennis Skinner","Labour","Bolsover","-1","-1","1","-1","-1","1","-1","1"
-"Andy Slaughter","Labour","Hammersmith","1","1","1","0","1","-1","-1","-1"
-"Ruth Smeeth","Labour","Stoke-on-Trent North","1","-1","1","-1","-1","-1","-1","-1"
-"Angela Smith","Other","Penistone and Stocksbridge","-1","1","-1","-1","1","-1","-1","-1"
-"Cat Smith","Labour","Lancaster and Fleetwood","1","1","1","1","0","-1","-1","0"
-"Chloe Smith","Conservative","Norwich North","-1","-1","-1","-1","-1","0","0","-1"
-"Eleanor Smith","Labour","Wolverhampton South West","1","1","1","1","0","-1","-1","0"
-"Henry Smith","Conservative","Crawley","-1","-1","-1","-1","-1","1","1","-1"
-"Jeff Smith","Labour","Manchester, Withington","1","1","1","1","1","-1","-1","-1"
-"Laura Smith","Labour","Crewe and Nantwich","1","-1","1","-1","0","-1","-1","-1"
-"Nick Smith","Labour","Blaenau Gwent","1","1","1","0","0","-1","-1","0"
-"Owen Smith","Labour","Pontypridd","0","1","0","-1","1","-1","-1","-1"
-"Royston Smith","Conservative","Southampton, Itchen","-1","-1","-1","-1","-1","1","1","-1"
-"Karin Smyth","Labour","Bristol South","1","1","1","1","1","-1","-1","-1"
-"Gareth Snell","Labour","Stoke-on-Trent Central","1","-1","1","-1","-1","-1","-1","-1"
-"Nicholas Soames","Conservative","Mid Sussex","1","-1","-1","1","-1","-1","-1","-1"
-"Alex Sobel","Labour","Leeds North West","1","1","1","1","1","-1","-1","-1"
-"Anna Soubry","Other","Broxtowe","-1","1","-1","-1","1","-1","-1","-1"
-"John Spellar","Labour","Warley","1","-1","1","-1","-1","-1","-1","-1"
-"Caroline Spelman","Conservative","Meriden","1","-1","-1","1","-1","-1","-1","1"
-"Mark Spencer","Conservative","Sherwood","-1","-1","-1","-1","-1","1","0","-1"
-"Keir Starmer","Labour","Holborn and St Pancras","1","1","1","1","0","-1","-1","0"
-"Chris Stephens","Scottish National Party","Glasgow South West","0","1","0","0","1","-1","-1","-1"
-"Andrew Stephenson","Conservative","Pendle","-1","-1","-1","-1","-1","1","1","-1"
-"Jo Stevens","Labour","Cardiff Central","0","1","0","-1","1","-1","-1","-1"
-"John Stevenson","Conservative","Carlisle","-1","-1","-1","1","-1","0","-1","1"
-"Bob Stewart","Conservative","Beckenham","-1","-1","-1","-1","-1","1","1","-1"
-"Iain Stewart","Conservative","Milton Keynes South","-1","-1","-1","-1","-1","1","1","-1"
-"Rory Stewart","Conservative","Penrith and The Border","1","-1","-1","0","-1","-1","-1","0"
-"Jamie Stone","Other","Caithness, Sutherland and Easter Ross","0","1","0","0","1","-1","-1","0"
-"Gary Streeter","Conservative","South West Devon","-1","-1","-1","-1","-1","-1","-1","1"
-"Wes Streeting","Labour","Ilford North","1","1","1","0","1","-1","-1","-1"
-"Mel Stride","Conservative","Central Devon","-1","-1","-1","-1","-1","-1","-1","-1"
-"Graham Stringer","Labour","Blackley and Broughton","-1","-1","0","-1","-1","0","1","-1"
-"Graham Stuart","Conservative","Beverley and Holderness","-1","-1","-1","-1","-1","1","1","-1"
-"Julian Sturdy","Conservative","York Outer","-1","-1","-1","-1","-1","0","1","1"
-"Rishi Sunak","Conservative","Richmond (Yorks)","-1","-1","-1","-1","-1","1","1","-1"
-"Desmond Swayne","Conservative","New Forest West","-1","-1","-1","-1","-1","1","1","-1"
-"Paul Sweeney","Labour","Glasgow North East","1","1","1","1","1","-1","-1","0"
-"Jo Swinson","Other","East Dunbartonshire","0","1","0","0","1","-1","-1","0"
-"Hugo Swire","Conservative","East Devon","-1","-1","-1","-1","-1","-1","0","-1"
-"Robert Syms","Conservative","Poole","-1","-1","-1","-1","-1","1","-1","-1"
-"Mark Tami","Labour","Alyn and Deeside","1","1","1","0","0","-1","-1","0"
-"Alison Thewliss","Scottish National Party","Glasgow Central","0","1","0","0","1","-1","-1","-1"
-"Derek Thomas","Conservative","St Ives","-1","-1","-1","-1","-1","1","1","1"
-"Gareth Thomas","Labour","Harrow West","1","1","1","1","1","-1","-1","-1"
-"Nick Thomas-Symonds","Labour","Torfaen","1","1","1","0","0","-1","-1","0"
-"Ross Thomson","Conservative","Aberdeen South","-1","-1","-1","-1","-1","1","1","-1"
-"Emily Thornberry","Labour","Islington South and Finsbury","1","1","1","1","0","-1","-1","0"
-"Maggie Throup","Conservative","Erewash","-1","-1","-1","-1","-1","1","-1","-1"
-"Stephen Timms","Labour","East Ham","1","1","1","1","1","-1","-1","0"
-"Kelly Tolhurst","Conservative","Rochester and Strood","-1","-1","-1","-1","-1","1","-1","-1"
-"Justin Tomlinson","Conservative","North Swindon","-1","-1","-1","-1","-1","1","1","-1"
-"Michael Tomlinson","Conservative","Mid Dorset and North Poole","-1","-1","-1","-1","-1","1","1","-1"
-"Craig Tracey","Conservative","North Warwickshire","-1","-1","-1","-1","-1","1","-1","-1"
-"David Tredinnick","Conservative","Bosworth","-1","-1","-1","1","-1","-1","-1","1"
-"Anne-Marie Trevelyan","Conservative","Berwick-upon-Tweed","-1","-1","-1","-1","-1","1","1","-1"
-"Jon Trickett","Labour","Hemsworth","1","0","1","1","0","-1","-1","0"
-"Tom Tugendhat","Conservative","Tonbridge and Malling","0","-1","0","0","-1","0","0","0"
-"Anna Turley","Labour","Redcar","1","1","1","0","1","-1","-1","-1"
-"Karl Turner","Labour","Kingston upon Hull East","1","1","1","1","0","0","0","0"
-"Derek Twigg","Labour","Halton","1","-1","1","-1","-1","-1","-1","-1"
-"Stephen Twigg","Labour","Liverpool, West Derby","1","1","1","1","1","-1","-1","0"
-"Liz Twist","Labour","Blaydon","1","1","1","1","0","-1","-1","0"
-"Chuka Umunna","Other","Streatham","-1","1","-1","-1","1","-1","-1","-1"
-"Edward Vaizey","Conservative","Wantage","1","0","-1","1","0","-1","-1","1"
-"Shailesh Vara","Conservative","North West Cambridgeshire","-1","-1","-1","-1","-1","1","1","-1"
-"Keith Vaz","Labour","Leicester East","1","1","1","1","1","-1","-1","0"
-"Valerie Vaz","Labour","Walsall South","1","1","1","1","0","-1","-1","0"
-"Martin Vickers","Conservative","Cleethorpes","-1","-1","-1","-1","-1","1","-1","-1"
-"Theresa Villiers","Conservative","Chipping Barnet","-1","-1","-1","-1","-1","0","1","-1"
-"Charles Walker","Conservative","Broxbourne","-1","-1","-1","-1","-1","-1","-1","-1"
-"Robin Walker","Conservative","Worcester","0","-1","-1","-1","-1","-1","-1","-1"
-"Thelma Walker","Labour","Colne Valley","1","1","1","-1","1","-1","-1","-1"
-"Ben Wallace","Conservative","Wyre and Preston North","-1","-1","-1","-1","-1","1","-1","1"
-"David Warburton","Conservative","Somerton and Frome","-1","-1","-1","-1","-1","1","1","1"
-"Matt Warman","Conservative","Boston and Skegness","-1","-1","-1","-1","-1","1","-1","-1"
-"Giles Watling","Conservative","Clacton","-1","-1","-1","-1","-1","1","1","-1"
-"Tom Watson","Labour","West Bromwich East","1","1","1","1","0","-1","-1","0"
-"Catherine West","Labour","Hornsey and Wood Green","1","1","1","0","1","-1","-1","-1"
-"Matt Western","Labour","Warwick and Leamington","1","1","1","1","1","-1","-1","-1"
-"Helen Whately","Conservative","Faversham and Mid Kent","-1","-1","-1","-1","-1","1","1","-1"
-"Heather Wheeler","Conservative","South Derbyshire","-1","-1","-1","-1","-1","1","1","-1"
-"Alan Whitehead","Labour","Southampton, Test","1","1","1","1","1","-1","-1","-1"
-"Martin Whitfield","Labour","East Lothian","1","1","1","0","1","-1","-1","0"
-"Philippa Whitford","Scottish National Party","Central Ayrshire","0","1","0","0","1","-1","-1","-1"
-"Craig Whittaker","Conservative","Calder Valley","-1","-1","-1","-1","-1","1","-1","-1"
-"John Whittingdale","Conservative","Maldon","-1","-1","-1","-1","-1","1","1","-1"
-"Bill Wiggin","Conservative","North Herefordshire","-1","-1","-1","-1","-1","1","1","-1"
-"Paul Williams","Labour","Stockton South","-1","1","1","-1","1","-1","-1","-1"
-"Hywel Williams","Other","Arfon","0","1","0","1","1","-1","-1","0"
-"Chris Williamson","Other","Derby North","1","-1","1","-1","-1","0","-1","0"
-"Phil Wilson","Labour","Sedgefield","1","1","1","1","0","-1","-1","0"
-"Sammy Wilson","Other","East Antrim","-1","-1","-1","0","-1","0","1","0"
-"Pete Wishart","Scottish National Party","Perth and North Perthshire","0","0","0","0","1","-1","-1","-1"
-"Sarah Wollaston","Other","Totnes","-1","1","-1","-1","1","-1","-1","-1"
-"Mike Wood","Conservative","Dudley South","-1","-1","-1","-1","-1","1","0","-1"
-"John Woodcock","Other","Barrow and Furness","0","1","-1","0","1","-1","-1","-1"
-"William Wragg","Conservative","Hazel Grove","-1","-1","-1","-1","-1","1","1","-1"
-"Mohammad Yasin","Labour","Bedford","1","1","1","1","1","-1","-1","-1"
-"Nadhim Zahawi","Conservative","Stratford-on-Avon","-1","-1","-1","0","-1","0","0","0"
-"Daniel Zeichner","Labour","Cambridge","0","1","0","-1","1","-1","-1","-1"
+"Party","Name","Constituency","Voting.1","Voting.2","Voting.3","Voting.4","Voting.5","Voting.6","Voting.7","Voting.8"
+"LAB","Graham P Jones
+","34","1","1","1","0","0","-1","-1","-1"
+"LAB","Diane Abbott
+","80","1","1","1","1","0","-1","-1","0"
+"CON","Nigel Adams
+","42","-1","-1","-1","-1","-1","0","1","-1"
+"CON","Bim Afolami
+","60","0","-1","-1","1","-1","-1","0","1"
+"CON","Adam Afriyie
+","53","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Peter Aldous
+","37","-1","-1","-1","-1","-1","-1","-1","1"
+"LAB","Rushanara Ali
+","69","1","1","1","1","1","-1","-1","-1"
+"OTH","Heidi Allen
+","62","-1","1","-1","-1","1","-1","0","-1"
+"LAB","Rosena Allin-Khan
+","74","1","1","1","-1","1","-1","-1","-1"
+"LAB","Mike Amesbury
+","49","1","1","1","1","0","-1","-1","0"
+"CON","Sir David Amess
+","45","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Stuart Andrew
+","51","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Tonia Antoniazzi
+","51","1","1","1","-1","1","-1","-1","-1"
+"CON","Edward Argar
+","42","-1","-1","-1","-1","-1","0","-1","-1"
+"LAB","Jonathan Ashworth
+","58","1","1","1","1","0","-1","-1","0"
+"CON","Victoria Atkins
+","31","-1","-1","-1","-1","-1","-1","-1","-1"
+"OTH","Ian Austin
+","29","1","-1","1","1","0","-1","-1","0"
+"CON","Richard Bacon
+","49","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Kemi Badenoch
+","49","-1","-1","-1","-1","-1","0","1","-1"
+"LAB","Adrian Bailey
+","31","1","1","1","1","0","-1","-1","0"
+"CON","Steve Baker
+","52","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Harriett Baldwin
+","47","-1","-1","-1","-1","-1","0","0","0"
+"SNP","Hannah Bardell
+","57","0","1","0","0","1","-1","-1","-1"
+"CON","John Baron
+","33","-1","-1","-1","-1","-1","1","0","-1"
+"LAB","Sir Kevin Barron
+","33","1","-1","0","-1","-1","-1","-1","-1"
+"CON","Guto Bebb
+","48","1","1","-1","-1","1","-1","-1","1"
+"LAB","Margaret Beckett
+","39","1","1","1","0","0","-1","-1","0"
+"CON","Sir Henry Bellingham
+","34","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Hilary Benn
+","54","1","1","1","1","0","-1","-1","0"
+"CON","Richard Benyon
+","52","1","-1","-1","1","-1","-1","-1","-1"
+"CON","Sir Paul Beresford
+","53","-1","-1","-1","-1","-1","-1","-1","-1"
+"OTH","Luciana Berger
+","65","-1","1","-1","-1","1","-1","-1","-1"
+"CON","Jake Berry
+","41","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Clive Betts
+","34","1","1","1","1","1","-1","-1","-1"
+"SNP","Mhairi Black
+","65","0","1","0","0","1","-1","-1","-1"
+"SNP","Ian Blackford
+","56","0","1","0","0","1","-1","-1","-1"
+"CON","Bob Blackman
+","53","-1","-1","-1","-1","-1","1","1","1"
+"SNP","Kirsty Blackman
+","57","0","1","0","0","1","-1","-1","-1"
+"LAB","Roberta Blackman-Woods
+","57","1","1","1","1","1","-1","-1","0"
+"LAB","Paul Blomfield
+","68","1","1","1","1","1","-1","-1","-1"
+"CON","Crispin Blunt
+","52","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Nick Boles
+","39","1","0","-1","1","-1","-1","-1","1"
+"CON","Peter Bone
+","37","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Sir Peter Bottomley
+","44","-1","-1","-1","-1","-1","-1","0","-1"
+"CON","Andrew Bowie
+","61","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Tracy Brabin
+","40","1","0","1","1","0","-1","-1","0"
+"CON","Ben Bradley
+","29","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Ben Bradshaw
+","55","1","1","1","0","1","-1","-1","-1"
+"CON","Sir Graham Brady
+","61","-1","-1","-1","-1","-1","-1","-1","-1"
+"OTH","Tom Brake
+","44","0","1","0","0","1","-1","-1","0"
+"CON","Suella Braverman
+","44","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Kevin Brennan
+","56","1","1","1","1","1","-1","-1","0"
+"CON","Jack Brereton
+","29","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Andrew Bridgen
+","39","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Steve Brine
+","60","1","0","-1","1","0","-1","-1","1"
+"SNP","Deidre Brock
+","78","0","1","0","0","1","-1","-1","-1"
+"SNP","Alan Brown
+","61","0","1","0","0","1","-1","-1","-1"
+"LAB","Lyn Brown
+","52","1","1","1","0","1","-1","-1","-1"
+"LAB","Nicholas Brown
+","59","1","1","1","1","0","-1","-1","0"
+"CON","Fiona Bruce
+","47","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Chris Bryant
+","40","1","1","1","1","0","-1","-1","-1"
+"LAB","Karen Buck
+","66","1","1","1","0","1","-1","-1","-1"
+"CON","Robert Buckland
+","48","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Richard Burden
+","38","1","1","1","1","0","-1","-1","-1"
+"CON","Alex Burghart
+","39","-1","-1","-1","-1","-1","0","0","-1"
+"LAB","Richard Burgon
+","39","1","1","1","1","0","-1","-1","0"
+"CON","Conor Burns
+","42","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Alistair Burt
+","47","1","0","-1","1","0","-1","-1","1"
+"LAB","Dawn Butler
+","57","1","1","1","0","0","-1","-1","-1"
+"LAB","Liam Byrne
+","48","1","1","1","1","0","-1","-1","0"
+"OTH","Sir Vince Cable
+","67","0","1","-1","0","1","-1","-1","-1"
+"LAB","Ruth Cadbury
+","57","1","1","1","-1","1","-1","-1","-1"
+"SNP","Lisa Cameron
+","63","0","1","0","0","1","-1","-1","-1"
+"LAB","Sir Alan Campbell
+","52","1","1","1","0","0","-1","-1","0"
+"OTH","Gregory Campbell
+","52","-1","-1","-1","0","-1","0","1","0"
+"LAB","Ronnie Campbell
+","39","-1","-1","-1","-1","-1","1","-1","1"
+"LAB","Dan Carden
+","48","1","1","1","1","0","-1","-1","0"
+"OTH","Alistair Carmichael
+","60","0","1","0","0","1","-1","-1","0"
+"CON","James Cartlidge
+","46","-1","-1","-1","1","-1","-1","-1","1"
+"CON","Sir William Cash
+","43","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Maria Caulfield
+","53","-1","-1","-1","-1","-1","1","1","1"
+"CON","Alex Chalk
+","57","1","0","-1","-1","0","-1","-1","-1"
+"LAB","Sarah Champion
+","32","1","-1","1","-1","-1","-1","-1","-1"
+"SNP","Douglas Chapman
+","61","0","1","0","0","1","-1","-1","-1"
+"LAB","Jenny Chapman
+","42","1","1","1","1","0","-1","-1","0"
+"LAB","Bambos Charalambous
+","62","1","1","1","1","1","-1","-1","0"
+"SNP","Joanna Cherry
+","72","0","1","0","0","1","-1","-1","-1"
+"CON","Rehman Chishti
+","36","-1","-1","-1","-1","-1","1","0","-1"
+"CON","Sir Christopher Chope
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Jo Churchill
+","46","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Colin Clark
+","56","0","-1","-1","-1","-1","-1","0","0"
+"CON","Kenneth Clarke
+","59","1","0","1","1","1","-1","-1","-1"
+"CON","Simon Clarke
+","35","-1","-1","-1","-1","-1","1","1","-1"
+"CON","James Cleverly
+","38","-1","-1","-1","-1","-1","0","-1","-1"
+"CON","Sir Geoffrey Clifton-Brown
+","52","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Ann Clwyd
+","43","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Vernon Coaker
+","44","1","1","1","1","0","-1","-1","-1"
+"OTH","Ann Coffey
+","53","-1","1","-1","-1","1","-1","-1","-1"
+"CON","Thérèse Coffey
+","45","-1","-1","-1","-1","-1","0","0","-1"
+"CON","Damian Collins
+","38","-1","-1","-1","1","-1","-1","-1","1"
+"LAB","Julie Cooper
+","33","1","0","1","1","0","-1","-1","0"
+"LAB","Rosie Cooper
+","45","1","-1","1","-1","-1","-1","-1","-1"
+"LAB","Yvette Cooper
+","31","1","1","1","1","0","-1","-1","0"
+"LAB","Jeremy Corbyn
+","78","1","1","1","1","0","-1","-1","0"
+"CON","Alberto Costa
+","42","-1","-1","-1","1","-1","-1","-1","1"
+"CON","Robert Courts
+","54","-1","-1","-1","-1","-1","1","1","1"
+"SNP","Ronnie Cowan
+","64","0","1","0","0","1","-1","-1","-1"
+"LAB","Neil Coyle
+","74","1","1","1","-1","1","-1","-1","-1"
+"CON","Stephen Crabb
+","45","1","-1","-1","1","-1","-1","-1","1"
+"LAB","Sir David Crausby
+","42","1","1","1","1","1","-1","-1","-1"
+"SNP","Angela Crawley
+","64","0","1","0","0","1","-1","-1","-1"
+"LAB","Mary Creagh
+","37","1","1","1","0","1","-1","-1","-1"
+"LAB","Stella Creasy
+","67","1","1","1","0","1","-1","-1","-1"
+"CON","Tracey Crouch
+","36","-1","-1","-1","-1","-1","1","0","-1"
+"LAB","Jon Cruddas
+","30","1","-1","1","1","-1","-1","-1","0"
+"LAB","John Cryer
+","65","1","1","1","1","0","-1","-1","0"
+"LAB","Judith Cummins
+","36","1","0","1","0","0","-1","-1","0"
+"LAB","Alex Cunningham
+","34","1","1","1","1","1","-1","-1","-1"
+"LAB","Jim Cunningham
+","50","-1","1","1","1","-1","-1","-1","-1"
+"LAB","Janet Daby
+","65","1","1","1","0","1","-1","-1","-1"
+"LAB","Nic Dakin
+","31","1","1","1","0","0","-1","-1","0"
+"OTH","Sir Edward Davey
+","59","0","1","0","0","1","-1","-1","0"
+"LAB","Wayne David
+","45","1","1","1","1","0","-1","-1","0"
+"CON","Chris Davies
+","48","-1","-1","-1","-1","-1","1","1","1"
+"CON","David T. C. Davies
+","52","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Geraint Davies
+","57","1","1","1","0","1","-1","-1","-1"
+"CON","Glyn Davies
+","44","-1","-1","-1","-1","-1","1","1","1"
+"CON","Mims Davies
+","46","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Philip Davies
+","48","-1","-1","-1","-1","-1","1","1","-1"
+"CON","David Davis
+","45","-1","-1","-1","-1","-1","1","-1","-1"
+"SNP","Martyn Day
+","58","0","1","0","0","1","-1","-1","-1"
+"LAB","Marsha De Cordova
+","78","1","1","1","0","1","-1","-1","-1"
+"LAB","Gloria De Piero
+","29","1","0","1","1","0","-1","-1","0"
+"LAB","Thangam Debbonaire
+","79","1","1","1","1","1","-1","-1","0"
+"LAB","Emma Dent Coad
+","69","1","1","1","-1","1","-1","-1","-1"
+"LAB","Tanmanjeet Singh Dhesi
+","46","1","1","1","1","0","-1","-1","0"
+"CON","Caroline Dinenage
+","38","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Jonathan Djanogly
+","46","1","0","-1","1","-1","-1","-1","1"
+"SNP","Martin Docherty-Hughes
+","62","0","1","0","0","1","-1","-1","-1"
+"LAB","Anneliese Dodds
+","68","1","1","1","1","1","-1","-1","0"
+"OTH","Nigel Dodds
+","50","-1","-1","-1","0","-1","0","1","0"
+"OTH","Sir Jeffrey M. Donaldson
+","47","-1","-1","-1","0","-1","0","1","0"
+"CON","Michelle Donelan
+","48","-1","-1","-1","-1","-1","0","1","-1"
+"CON","Nadine Dorries
+","47","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Steve Double
+","36","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Stephen Doughty
+","57","1","1","1","0","1","-1","-1","-1"
+"LAB","Peter Dowd
+","45","1","1","1","1","0","-1","-1","0"
+"CON","Oliver Dowden
+","49","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Jackie Doyle-Price
+","30","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Richard Drax
+","41","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","David Drew
+","54","1","1","1","1","1","-1","-1","0"
+"LAB","Jack Dromey
+","37","1","1","1","1","0","-1","-1","-1"
+"CON","James Duddridge
+","39","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Rosie Duffield
+","55","1","1","1","0","1","-1","-1","-1"
+"CON","David Duguid
+","46","-1","-1","-1","-1","-1","-1","-1","1"
+"CON","Sir Alan Duncan
+","46","0","-1","-1","0","1","-1","-1","0"
+"CON","Iain Duncan Smith
+","50","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Philip Dunne
+","42","-1","-1","-1","-1","-1","-1","1","-1"
+"LAB","Angela Eagle
+","50","1","1","1","0","1","-1","-1","0"
+"LAB","Maria Eagle
+","52","1","1","1","0","1","-1","-1","-1"
+"OTH","Jonathan Edwards
+","47","0","1","0","1","1","-1","-1","0"
+"LAB","Clive Efford
+","48","1","1","1","1","1","-1","-1","-1"
+"LAB","Julie Elliott
+","40","1","1","1","0","0","-1","-1","0"
+"CON","Michael Ellis
+","40","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Dame Louise Ellman
+","73","1","1","1","-1","1","-1","-1","-1"
+"LAB","Chris Elmore
+","41","1","1","1","0","1","-1","-1","-1"
+"CON","Charlie Elphicke
+","37","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Bill Esterson
+","56","1","1","1","1","1","-1","-1","-1"
+"CON","George Eustice
+","42","-1","-1","-1","1","-1","1","1","1"
+"LAB","Chris Evans
+","41","1","0","1","1","0","-1","-1","0"
+"CON","Nigel Evans
+","41","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Sir David Evennett
+","35","-1","-1","-1","-1","-1","0","-1","-1"
+"CON","Michael Fabricant
+","43","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Sir Michael Fallon
+","46","-1","-1","-1","0","-1","-1","1","1"
+"LAB","Paul Farrelly
+","38","1","1","1","1","1","-1","-1","-1"
+"OTH","Tim Farron
+","53","0","1","0","0","1","-1","-1","0"
+"SNP","Marion Fellows
+","62","0","1","0","0","1","-1","-1","-1"
+"OTH","Frank Field
+","48","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Mark Field
+","72","1","0","-1","-1","1","-1","1","-1"
+"LAB","Jim Fitzpatrick
+","66","1","-1","1","-1","0","-1","-1","-1"
+"LAB","Colleen Fletcher
+","42","1","1","1","1","0","-1","-1","0"
+"LAB","Caroline Flint
+","31","0","-1","1","-1","-1","-1","-1","-1"
+"CON","Vicky Ford
+","49","1","-1","-1","1","-1","-1","-1","0"
+"CON","Kevin Foster
+","37","-1","-1","-1","-1","-1","1","-1","1"
+"LAB","Yvonne Fovargue
+","35","1","-1","1","0","0","-1","0","0"
+"LAB","Vicky Foxcroft
+","76","1","1","1","1","1","-1","-1","0"
+"CON","Mark Francois
+","32","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Lucy Frazer
+","55","0","-1","-1","-1","-1","-1","0","-1"
+"CON","George Freeman
+","39","1","0","-1","1","-1","0","-1","1"
+"CON","Mike Freer
+","69","-1","-1","-1","-1","1","-1","-1","-1"
+"LAB","James Frith
+","46","1","1","1","1","1","-1","-1","0"
+"LAB","Gill Furniss
+","40","1","1","1","1","0","-1","-1","0"
+"CON","Marcus Fysh
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Hugh Gaffney
+","61","1","1","1","1","1","-1","-1","0"
+"CON","Sir Roger Gale
+","35","-1","-1","-1","-1","-1","-1","-1","-1"
+"OTH","Mike Gapes
+","57","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Barry Gardiner
+","57","1","1","1","0","0","-1","-1","0"
+"CON","Mark Garnier
+","37","-1","0","-1","-1","-1","0","1","1"
+"LAB","Ruth George
+","49","1","1","1","0","1","-1","-1","-1"
+"SNP","Stephen Gethins
+","64","0","1","0","0","1","-1","-1","-1"
+"CON","Nusrat Ghani
+","47","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Nick Gibb
+","35","-1","-1","-1","0","-1","0","-1","0"
+"SNP","Patricia Gibson
+","58","0","1","0","0","1","-1","-1","-1"
+"LAB","Preet Kaur Gill
+","53","1","1","1","0","1","-1","-1","0"
+"CON","Dame Cheryl Gillan
+","55","-1","-1","-1","-1","-1","-1","-1","-1"
+"OTH","Paul Girvan
+","59","-1","-1","-1","0","-1","0","1","0"
+"CON","John Glen
+","50","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Mary Glindon
+","40","1","0","1","1","0","-1","-1","0"
+"LAB","Roger Godsiff
+","66","1","1","1","1","1","-1","-1","-1"
+"CON","Zac Goldsmith
+","71","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Helen Goodman
+","39","1","1","1","1","0","-1","-1","-1"
+"CON","Robert Goodwill
+","39","-1","-1","-1","-1","-1","1","-1","-1"
+"SNP","Patrick Grady
+","78","0","1","0","0","1","-1","0","-1"
+"CON","Luke Graham
+","61","-1","-1","-1","-1","-1","-1","0","1"
+"CON","Richard Graham
+","41","0","-1","-1","0","-1","-1","-1","0"
+"CON","Bill Grant
+","56","-1","-1","-1","-1","-1","-1","-1","1"
+"CON","Helen Grant
+","44","-1","-1","-1","-1","-1","-1","-1","-1"
+"SNP","Peter Grant
+","52","0","1","0","0","1","-1","-1","-1"
+"CON","James Gray
+","50","-1","-1","-1","-1","-1","1","1","-1"
+"SNP","Neil Gray
+","60","0","1","0","0","1","-1","-1","-1"
+"CON","Chris Green
+","44","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Damian Green
+","40","1","-1","-1","-1","-1","-1","0","1"
+"LAB","Kate Green
+","51","1","1","1","0","1","-1","-1","-1"
+"CON","Justine Greening
+","72","0","1","0","0","1","-1","0","0"
+"LAB","Lilian Greenwood
+","53","1","1","1","0","1","-1","-1","-1"
+"LAB","Margaret Greenwood
+","55","1","1","1","0","0","-1","-1","0"
+"CON","Dominic Grieve
+","51","0","1","-1","0","1","-1","-1","-1"
+"LAB","Nia Griffith
+","43","1","1","1","1","0","-1","-1","0"
+"CON","Andrew Griffiths
+","35","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","John Grogan
+","47","1","1","1","1","1","-1","-1","0"
+"LAB","Andrew Gwynne
+","39","1","0","1","1","0","-1","-1","0"
+"CON","Sam Gyimah
+","46","0","1","-1","0","0","-1","-1","0"
+"LAB","Louise Haigh
+","43","1","1","1","1","1","-1","-1","-1"
+"CON","Kirstene Hair
+","52","-1","-1","-1","-1","-1","0","0","-1"
+"CON","Robert Halfon
+","32","-1","-1","-1","1","-1","-1","0","1"
+"CON","Luke Hall
+","48","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Fabian Hamilton
+","63","1","1","1","0","1","-1","-1","-1"
+"CON","Stephen Hammond
+","71","1","0","-1","1","1","-1","-1","1"
+"CON","Greg Hands
+","71","-1","-1","-1","-1","-1","-1","0","-1"
+"LAB","David Hanson
+","46","1","1","1","1","0","-1","-1","-1"
+"LAB","Emma Hardy
+","32","1","1","1","1","0","-1","-1","0"
+"LAB","Harriet Harman
+","69","1","1","1","1","1","-1","-1","-1"
+"CON","Mark Harper
+","42","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Richard Harrington
+","49","1","0","-1","1","1","-1","-1","0"
+"LAB","Carolyn Harris
+","38","1","0","1","1","0","-1","-1","0"
+"CON","Rebecca Harris
+","27","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Trudy Harrison
+","41","-1","-1","-1","-1","-1","1","-1","1"
+"CON","Simon Hart
+","45","-1","-1","-1","1","-1","0","0","1"
+"LAB","Helen Hayes
+","77","1","1","1","0","1","-1","-1","-1"
+"CON","Sir John Hayes
+","29","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Sue Hayman
+","39","1","1","1","1","0","-1","-1","0"
+"CON","Sir Oliver Heald
+","49","1","-1","-1","0","-1","-1","-1","0"
+"LAB","John Healey
+","30","1","1","1","0","0","-1","0","0"
+"CON","James Heappey
+","46","-1","-1","-1","-1","-1","0","0","-1"
+"CON","Chris Heaton-Harris
+","41","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Peter Heaton-Jones
+","43","-1","-1","-1","-1","-1","0","-1","-1"
+"CON","Gordon Henderson
+","35","-1","-1","-1","-1","-1","1","1","1"
+"LAB","Sir Mark Hendrick
+","44","1","1","1","1","1","-1","-1","1"
+"SNP","Drew Hendry
+","60","0","1","0","0","1","-1","-1","-1"
+"LAB","Stephen Hepburn
+","38","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Nick Herbert
+","50","1","-1","-1","1","-1","-1","-1","1"
+"OTH","Lady Hermon
+","52","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Mike Hill
+","30","1","-1","1","0","0","-1","-1","0"
+"LAB","Meg Hillier
+","77","1","1","1","0","1","-1","-1","-1"
+"CON","Simon Hoare
+","43","1","-1","-1","1","-1","-1","-1","1"
+"OTH","Wera Hobhouse
+","68","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Dame Margaret Hodge
+","40","1","1","1","0","1","-1","-1","-1"
+"LAB","Sharon Hodgson
+","38","1","1","1","1","0","-1","-1","-1"
+"LAB","Kate Hoey
+","78","-1","-1","0","-1","-1","1","1","0"
+"LAB","Kate Hollern
+","46","1","1","1","1","0","0","0","0"
+"CON","George Hollingbery
+","48","-1","-1","-1","-1","-1","-1","1","-1"
+"CON","Kevin Hollinrake
+","44","-1","-1","-1","1","-1","-1","-1","1"
+"CON","Philip Hollobone
+","39","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Adam Holloway
+","35","-1","-1","-1","-1","-1","1","1","-1"
+"SNP","Stewart Hosie
+","62","0","1","0","0","1","-1","-1","-1"
+"LAB","George Howarth
+","48","1","1","1","1","1","-1","-1","-1"
+"CON","John Howell
+","57","-1","0","-1","-1","-1","-1","-1","-1"
+"CON","Nigel Huddleston
+","41","0","-1","-1","0","-1","0","0","0"
+"CON","Eddie Hughes
+","26","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Rupa Huq
+","71","1","1","1","0","1","-1","-1","-1"
+"CON","Nick Hurd
+","51","0","0","-1","0","-1","-1","-1","0"
+"LAB","Imran Hussain
+","45","1","1","1","1","0","-1","-1","0"
+"CON","Alister Jack
+","55","-1","-1","-1","-1","-1","-1","1","-1"
+"CON","Margot James
+","36","1","0","-1","1","0","-1","-1","0"
+"OTH","Christine Jardine
+","71","0","1","0","0","1","-1","-1","0"
+"LAB","Dan Jarvis
+","32","1","-1","1","1","0","-1","-1","0"
+"CON","Ranil Jayawardena
+","54","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Sir Bernard Jenkin
+","41","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Andrea Jenkyns
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Robert Jenrick
+","44","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Boris Johnson
+","43","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Caroline Johnson
+","38","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Diana Johnson
+","40","1","1","1","1","0","-1","-1","-1"
+"CON","Gareth Johnson
+","36","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Joseph Johnson
+","43","-1","1","-1","-1","-1","-1","-1","-1"
+"CON","Andrew Jones
+","53","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Darren Jones
+","58","1","1","1","0","1","-1","-1","-1"
+"CON","David Jones
+","47","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Gerald Jones
+","42","1","1","1","1","0","-1","-1","0"
+"LAB","Debbie Abrahams
+","40","1","1","1","0","0","-1","-1","-1"
+"LAB","Helen Jones
+","42","1","-1","1","1","-1","-1","-1","-1"
+"LAB","Kevan Jones
+","40","1","-1","1","-1","0","-1","-1","-1"
+"CON","Marcus Jones
+","35","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Sarah Jones
+","50","1","1","1","1","1","-1","-1","0"
+"LAB","Susan Elan Jones
+","40","1","1","1","0","1","-1","-1","-1"
+"LAB","Mike Kane
+","50","1","0","1","1","0","-1","-1","0"
+"CON","Daniel Kawczynski
+","47","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Gillian Keegan
+","49","-1","-1","-1","-1","-1","-1","-1","0"
+"LAB","Barbara Keeley
+","40","1","1","1","0","0","-1","-1","0"
+"LAB","Liz Kendall
+","49","1","1","1","0","1","-1","-1","-1"
+"CON","Seema Kennedy
+","43","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Stephen Kerr
+","68","-1","-1","-1","-1","-1","-1","-1","1"
+"LAB","Afzal Khan
+","62","1","1","1","1","0","-1","-1","0"
+"LAB","Ged Killen
+","62","1","1","1","0","1","-1","-1","-1"
+"LAB","Stephen Kinnock
+","40","1","0","1","1","0","-1","-1","1"
+"CON","Sir Greg Knight
+","36","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Julian Knight
+","47","-1","-1","-1","-1","-1","0","1","1"
+"CON","Kwasi Kwarteng
+","40","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Peter Kyle
+","67","1","1","1","1","1","-1","-1","-1"
+"LAB","Lesley Laird
+","57","1","1","1","1","1","-1","-1","0"
+"OTH","Ben Lake
+","55","0","1","0","1","1","-1","-1","0"
+"OTH","Norman Lamb
+","42","1","1","0","1","0","-1","-1","0"
+"LAB","David Lammy
+","76","0","1","1","0","1","-1","-1","-1"
+"CON","John Lamont
+","57","-1","-1","-1","-1","-1","0","0","-1"
+"CON","Mark Lancaster
+","50","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Pauline Latham
+","47","-1","-1","-1","-1","-1","0","1","-1"
+"LAB","Ian Lavery
+","44","1","0","1","1","0","-1","1","0"
+"SNP","Chris Law
+","59","0","1","0","0","1","-1","-1","-1"
+"LAB","Karen Lee
+","43","1","1","1","-1","0","-1","-1","0"
+"CON","Phillip Lee
+","47","-1","1","-1","-1","1","-1","-1","-1"
+"CON","Jeremy Lefroy
+","43","1","0","0","1","0","-1","0","1"
+"CON","Sir Edward Leigh
+","38","-1","-1","-1","-1","-1","1","1","-1"
+"OTH","Chris Leslie
+","57","-1","1","-1","-1","1","-1","-1","-1"
+"CON","Sir Oliver Letwin
+","49","1","-1","-1","1","-1","-1","-1","1"
+"LAB","Emma Lewell-Buck
+","38","1","-1","1","0","0","-1","-1","0"
+"CON","Andrew Lewer
+","41","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Clive Lewis
+","60","1","1","1","-1","1","-1","-1","-1"
+"OTH","Ivan Lewis
+","45","1","-1","1","1","0","-1","-1","-1"
+"CON","Julian Lewis
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Ian Liddell-Grainger
+","38","-1","-1","-1","-1","-1","1","-1","-1"
+"SNP","David Linden
+","56","0","1","0","0","1","-1","-1","-1"
+"OTH","Emma Little Pengelly
+","70","-1","-1","-1","0","-1","0","1","0"
+"OTH","Stephen Lloyd
+","43","1","0","1","1","1","-1","-1","1"
+"LAB","Tony Lloyd
+","43","1","1","1","1","0","-1","-1","-1"
+"LAB","Rebecca Long Bailey
+","46","1","1","1","1","0","-1","-1","0"
+"CON","Julia Lopez
+","30","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Jack Lopresti
+","51","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Jonathan Lord
+","56","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Tim Loughton
+","46","-1","-1","-1","-1","-1","1","1","-1"
+"OTH","Caroline Lucas
+","74","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Ian C. Lucas
+","42","1","1","1","1","-1","-1","-1","-1"
+"LAB","Holly Lynch
+","41","1","1","1","1","0","-1","-1","0"
+"LAB","Steve McCabe
+","53","1","1","1","1","0","-1","-1","0"
+"LAB","Kerry McCarthy
+","53","1","1","1","-1","1","-1","-1","-1"
+"LAB","Siobhain McDonagh
+","55","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Andy McDonald
+","34","1","1","1","1","0","-1","0","0"
+"SNP","Stewart Malcolm McDonald
+","72","0","1","0","0","1","-1","-1","-1"
+"SNP","Stuart C. McDonald
+","63","0","1","0","0","1","-1","-1","-1"
+"LAB","John McDonnell
+","42","1","1","1","1","0","-1","-1","0"
+"LAB","Pat McFadden
+","32","1","1","1","0","0","-1","-1","-1"
+"LAB","Conor McGinn
+","42","1","1","1","1","0","-1","-1","0"
+"LAB","Alison McGovern
+","53","1","1","1","0","0","-1","-1","-1"
+"LAB","Liz McInnes
+","38","1","0","1","1","0","-1","-1","0"
+"CON","Craig Mackinlay
+","38","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Catherine McKinnell
+","43","1","1","1","0","1","-1","-1","-1"
+"CON","Rachel Maclean
+","39","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Sir Patrick McLoughlin
+","49","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Jim McMahon
+","39","1","0","1","1","0","-1","-1","0"
+"LAB","Anna McMorrin
+","61","-1","1","1","-1","1","-1","-1","-1"
+"SNP","Angus Brendan MacNeil
+","55","0","0","0","0","1","-1","-1","-1"
+"CON","Stephen McPartland
+","43","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Esther McVey
+","54","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Justin Madders
+","42","1","-1","1","1","0","-1","-1","-1"
+"LAB","Khalid Mahmood
+","49","1","1","1","1","0","-1","-1","0"
+"LAB","Shabana Mahmood
+","64","1","1","1","1","1","-1","-1","-1"
+"CON","Anne Main
+","62","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Alan Mak
+","37","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Seema Malhotra
+","44","1","1","1","1","0","-1","-1","-1"
+"CON","Kit Malthouse
+","45","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","John Mann
+","32","-1","-1","1","-1","-1","-1","-1","-1"
+"CON","Scott Mann
+","40","-1","-1","-1","-1","-1","1","1","1"
+"LAB","Gordon Marsden
+","32","1","1","1","1","-1","-1","-1","-1"
+"LAB","Sandy Martin
+","44","1","1","1","1","1","-1","-1","-1"
+"LAB","Rachael Maskell
+","61","1","1","1","-1","1","-1","-1","-1"
+"CON","Paul Masterton
+","74","1","-1","-1","1","0","-1","-1","1"
+"LAB","Christian Matheson
+","58","1","1","1","-1","1","-1","-1","-1"
+"CON","Paul Maynard
+","33","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Ian Mearns
+","44","1","0","1","1","0","-1","-1","0"
+"CON","Mark Menzies
+","43","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Johnny Mercer
+","34","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Huw Merriman
+","42","-1","1","-1","-1","-1","1","-1","-1"
+"CON","Stephen Metcalfe
+","27","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Edward Miliband
+","28","1","1","1","1","0","-1","-1","0"
+"CON","Maria Miller
+","46","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Amanda Milling
+","31","-1","-1","-1","-1","-1","1","0","-1"
+"CON","Nigel Mills
+","35","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Anne Milton
+","59","1","0","-1","0","0","-1","-1","0"
+"CON","Andrew Mitchell
+","48","1","-1","-1","0","-1","1","1","0"
+"SNP","Carol Monaghan
+","69","0","1","0","0","1","-1","-1","-1"
+"LAB","Madeleine Moon
+","50","1","1","1","-1","1","-1","-1","-1"
+"CON","Damien Moore
+","54","-1","-1","-1","-1","-1","-1","-1","-1"
+"OTH","Layla Moran
+","62","0","1","0","0","1","-1","-1","0"
+"LAB","Jessica Morden
+","41","1","1","1","0","0","-1","-1","0"
+"CON","Nicky Morgan
+","50","1","-1","-1","1","-1","-1","-1","1"
+"LAB","Stephen Morgan
+","48","1","1","1","-1","1","-1","-1","-1"
+"CON","Anne Marie Morris
+","44","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","David Morris
+","42","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Grahame Morris
+","34","-1","-1","1","-1","-1","-1","-1","-1"
+"CON","James Morris
+","33","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Wendy Morton
+","32","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Ian Murray
+","78","1","1","0","1","1","-1","-1","-1"
+"CON","Sheryll Murray
+","45","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Andrew Murrison
+","43","-1","-1","-1","-1","-1","1","0","0"
+"LAB","Lisa Nandy
+","37","1","0","1","1","1","-1","0","0"
+"CON","Robert Neill
+","50","1","-1","-1","1","-1","-1","-1","1"
+"SNP","Gavin Newlands
+","65","0","1","0","0","1","-1","-1","-1"
+"CON","Sarah Newton
+","54","1","0","-1","0","0","-1","-1","1"
+"CON","Jesse Norman
+","40","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Alex Norris
+","36","1","1","1","1","0","-1","-1","0"
+"CON","Neil O'Brien
+","48","-1","-1","-1","-1","-1","1","0","-1"
+"CON","Matthew Offord
+","58","-1","-1","-1","-1","-1","1","1","-1"
+"SNP","Brendan O'Hara
+","61","0","1","0","0","1","-1","-1","-1"
+"OTH","Fiona Onasanya
+","37","-1","1","0","1","0","-1","-1","-1"
+"LAB","Melanie Onn
+","29","1","-1","1","1","0","-1","0","0"
+"LAB","Chi Onwurah
+","52","1","1","1","1","1","-1","-1","-1"
+"CON","Guy Opperman
+","55","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Kate Osamor
+","54","1","1","1","-1","1","-1","-1","-1"
+"LAB","Albert Owen
+","--
+","1","1","1","1","1","-1","-1","0"
+"OTH","Ian Paisley
+","38","-1","-1","-1","0","-1","0","1","0"
+"CON","Neil Parish
+","42","-1","-1","-1","0","-1","1","1","1"
+"CON","Priti Patel
+","39","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Owen Paterson
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Mark Pawsey
+","41","1","-1","-1","1","-1","-1","-1","1"
+"LAB","Stephanie Peacock
+","29","1","-1","1","1","0","-1","-1","0"
+"LAB","Teresa Pearce
+","45","1","1","1","0","0","-1","-1","0"
+"CON","Sir Mike Penning
+","44","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Matthew Pennycook
+","64","1","1","1","1","1","-1","-1","-1"
+"CON","John Penrose
+","--
+","-1","-1","-1","1","-1","1","1","1"
+"CON","Andrew Percy
+","34","-1","-1","-1","1","-1","1","1","1"
+"LAB","Toby Perkins
+","41","1","1","1","1","-1","-1","-1","-1"
+"LAB","Jess Phillips
+","40","1","1","1","1","1","-1","-1","-1"
+"LAB","Bridget Phillipson
+","38","1","1","1","0","0","-1","-1","-1"
+"CON","Chris Philp
+","54","-1","-1","-1","-1","-1","0","1","-1"
+"LAB","Laura Pidcock
+","45","1","1","1","1","0","-1","-1","0"
+"CON","Christopher Pincher
+","34","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Jo Platt
+","37","1","0","1","1","0","-1","-1","0"
+"LAB","Luke Pollard
+","46","1","1","1","1","1","-1","-1","-1"
+"CON","Dan Poulter
+","45","-1","-1","-1","-1","-1","1","-1","1"
+"LAB","Stephen Pound
+","54","1","1","1","1","0","-1","-1","0"
+"CON","Rebecca Pow
+","47","-1","-1","-1","1","-1","-1","-1","1"
+"LAB","Lucy Powell
+","64","1","1","1","1","0","-1","-1","0"
+"CON","Victoria Prentis
+","50","1","-1","-1","0","-1","-1","-1","0"
+"CON","Mark Prisk
+","51","-1","-1","-1","-1","-1","-1","-1","1"
+"CON","Mark Pritchard
+","41","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Tom Pursglove
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Jeremy Quin
+","51","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Will Quince
+","48","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Yasmin Qureshi
+","37","1","1","1","1","0","-1","-1","0"
+"CON","Dominic Raab
+","58","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Faisal Rashid
+","49","1","1","1","1","1","-1","-1","0"
+"LAB","Angela Rayner
+","38","1","1","1","1","0","-1","-1","0"
+"CON","John Redwood
+","57","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Steve Reed
+","59","1","1","1","1","1","-1","-1","0"
+"LAB","Christina Rees
+","46","1","1","1","1","0","-1","-1","0"
+"CON","Jacob Rees-Mogg
+","48","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Ellie Reeves
+","65","1","1","1","0","1","-1","-1","-1"
+"LAB","Rachel Reeves
+","47","1","1","1","1","1","-1","-1","-1"
+"LAB","Emma Reynolds
+","32","1","1","1","1","0","-1","-1","-1"
+"LAB","Jonathan Reynolds
+","41","1","1","1","1","0","-1","-1","0"
+"LAB","Marie Rimmer
+","44","1","1","1","1","1","-1","-1","-1"
+"CON","Laurence Robertson
+","46","-1","-1","-1","-1","-1","1","1","-1"
+"OTH","Gavin Robinson
+","48","-1","-1","-1","0","-1","0","1","0"
+"LAB","Geoffrey Robinson
+","42","1","1","1","1","-1","-1","-1","0"
+"CON","Mary Robinson
+","57","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Matt Rodda
+","62","1","1","1","1","1","-1","-1","0"
+"CON","Andrew Rosindell
+","31","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Douglas Ross
+","50","-1","-1","-1","-1","-1","0","0","-1"
+"LAB","Danielle Rowley
+","62","1","1","1","1","1","-1","-1","0"
+"CON","Lee Rowley
+","38","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Chris Ruane
+","43","1","1","1","1","0","-1","-1","-1"
+"LAB","Lloyd Russell-Moyle
+","56","1","1","1","-1","1","-1","-1","-1"
+"OTH","Joan Ryan
+","51","0","1","-1","-1","1","-1","-1","-1"
+"CON","Antoinette Sandbach
+","48","1","1","-1","1","0","-1","-1","1"
+"OTH","Liz Saville Roberts
+","53","0","1","0","1","1","-1","-1","0"
+"CON","Paul Scully
+","49","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Bob Seely
+","38","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Andrew Selous
+","42","-1","-1","-1","-1","-1","0","0","-1"
+"LAB","Naz Shah
+","53","1","1","1","1","0","-1","-1","0"
+"OTH","Jim Shannon
+","44","-1","-1","-1","0","-1","-1","1","0"
+"CON","Grant Shapps
+","47","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Alok Sharma
+","48","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Virendra Sharma
+","58","1","1","1","1","1","-1","-1","-1"
+"LAB","Barry Sheerman
+","48","1","1","1","0","1","-1","-1","-1"
+"SNP","Tommy Sheppard
+","72","0","1","0","0","1","-1","-1","-1"
+"LAB","Paula Sherriff
+","43","1","0","1","1","0","-1","-1","0"
+"OTH","Gavin Shuker
+","45","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Tulip Siddiq
+","76","1","1","1","-1","1","-1","-1","-1"
+"OTH","David Simpson
+","47","-1","-1","-1","0","-1","0","1","0"
+"CON","Keith Simpson
+","46","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Chris Skidmore
+","43","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Dennis Skinner
+","30","-1","-1","1","-1","-1","1","-1","1"
+"LAB","Andy Slaughter
+","69","1","1","1","0","1","-1","-1","-1"
+"LAB","Ruth Smeeth
+","28","1","-1","1","-1","-1","-1","-1","-1"
+"OTH","Angela Smith
+","39","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","Cat Smith
+","48","1","1","1","1","0","-1","-1","0"
+"CON","Chloe Smith
+","43","-1","-1","-1","-1","-1","0","0","-1"
+"LAB","Eleanor Smith
+","46","1","1","1","1","0","-1","-1","0"
+"CON","Henry Smith
+","42","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Jeff Smith
+","75","1","1","1","1","1","-1","-1","-1"
+"LAB","Laura Smith
+","40","1","-1","1","-1","0","-1","-1","-1"
+"LAB","Nick Smith
+","38","1","1","1","0","0","-1","-1","0"
+"LAB","Owen Smith
+","53","0","1","0","-1","1","-1","-1","-1"
+"CON","Royston Smith
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Karin Smyth
+","53","1","1","1","1","1","-1","-1","-1"
+"LAB","Gareth Snell
+","35","1","-1","1","-1","-1","-1","-1","-1"
+"CON","Sir Nicholas Soames
+","54","1","-1","-1","1","-1","-1","-1","-1"
+"LAB","Alex Sobel
+","65","1","1","1","1","1","-1","-1","-1"
+"OTH","Anna Soubry
+","47","-1","1","-1","-1","1","-1","-1","-1"
+"LAB","John Spellar
+","38","1","-1","1","-1","-1","-1","-1","-1"
+"CON","Dame Caroline Spelman
+","41","1","-1","-1","1","-1","-1","-1","1"
+"CON","Mark Spencer
+","36","-1","-1","-1","-1","-1","1","0","-1"
+"LAB","Keir Starmer
+","73","1","1","1","1","0","-1","-1","0"
+"SNP","Chris Stephens
+","59","0","1","0","0","1","-1","-1","-1"
+"CON","Andrew Stephenson
+","37","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Jo Stevens
+","68","0","1","0","-1","1","-1","-1","-1"
+"CON","John Stevenson
+","39","-1","-1","-1","1","-1","0","-1","1"
+"CON","Bob Stewart
+","53","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Iain Stewart
+","47","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Rory Stewart
+","45","1","-1","-1","0","-1","-1","-1","0"
+"OTH","Jamie Stone
+","49","0","1","0","0","1","-1","-1","0"
+"CON","Sir Gary Streeter
+","45","-1","-1","-1","-1","-1","-1","-1","1"
+"LAB","Wes Streeting
+","47","1","1","1","0","1","-1","-1","-1"
+"CON","Mel Stride
+","49","-1","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Graham Stringer
+","--
+","-1","-1","0","-1","-1","0","1","-1"
+"CON","Graham Stuart
+","41","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Julian Sturdy
+","55","-1","-1","-1","-1","-1","0","1","1"
+"CON","Rishi Sunak
+","45","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Sir Desmond Swayne
+","45","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Paul Sweeney
+","59","1","1","1","1","1","-1","-1","0"
+"OTH","Jo Swinson
+","73","0","1","0","0","1","-1","-1","0"
+"CON","Sir Hugo Swire
+","50","-1","-1","-1","-1","-1","-1","0","-1"
+"CON","Sir Robert Syms
+","43","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Mark Tami
+","42","1","1","1","0","0","-1","-1","0"
+"SNP","Alison Thewliss
+","71","0","1","0","0","1","-1","-1","-1"
+"CON","Derek Thomas
+","45","-1","-1","-1","-1","-1","1","1","1"
+"LAB","Gareth Thomas
+","55","1","1","1","1","1","-1","-1","-1"
+"LAB","Nick Thomas-Symonds
+","39","1","1","1","0","0","-1","-1","0"
+"CON","Ross Thomson
+","68","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Emily Thornberry
+","72","1","1","1","1","0","-1","-1","0"
+"CON","Maggie Throup
+","37","-1","-1","-1","-1","-1","1","-1","-1"
+"LAB","Stephen Timms
+","54","1","1","1","1","1","-1","-1","0"
+"CON","Kelly Tolhurst
+","36","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Justin Tomlinson
+","43","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Michael Tomlinson
+","43","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Craig Tracey
+","32","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","David Tredinnick
+","39","-1","-1","-1","1","-1","-1","-1","1"
+"CON","Anne-Marie Trevelyan
+","45","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Jon Trickett
+","32","1","0","1","1","0","-1","-1","0"
+"CON","Tom Tugendhat
+","47","0","-1","0","0","-1","0","0","0"
+"LAB","Anna Turley
+","32","1","1","1","0","1","-1","-1","-1"
+"LAB","Karl Turner
+","27","1","1","1","1","0","0","0","0"
+"LAB","Derek Twigg
+","42","1","-1","1","-1","-1","-1","-1","-1"
+"LAB","Stephen Twigg
+","50","1","1","1","1","1","-1","-1","0"
+"LAB","Liz Twist
+","44","1","1","1","1","0","-1","-1","0"
+"OTH","Chuka Umunna
+","80","-1","1","-1","-1","1","-1","-1","-1"
+"CON","Edward Vaizey
+","53","1","0","-1","1","0","-1","-1","1"
+"CON","Shailesh Vara
+","43","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Keith Vaz
+","46","1","1","1","1","1","-1","-1","0"
+"LAB","Valerie Vaz
+","38","1","1","1","1","0","-1","-1","0"
+"CON","Martin Vickers
+","30","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Theresa Villiers
+","59","-1","-1","-1","-1","-1","0","1","-1"
+"CON","Charles Walker
+","34","-1","-1","-1","-1","-1","-1","-1","-1"
+"CON","Robin Walker
+","46","0","-1","-1","-1","-1","-1","-1","-1"
+"LAB","Thelma Walker
+","50","1","1","1","-1","1","-1","-1","-1"
+"CON","Ben Wallace
+","46","-1","-1","-1","-1","-1","1","-1","1"
+"CON","David Warburton
+","50","-1","-1","-1","-1","-1","1","1","1"
+"CON","Matt Warman
+","24","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","Giles Watling
+","27","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Tom Watson
+","32","1","1","1","1","0","-1","-1","0"
+"LAB","Catherine West
+","75","1","1","1","0","1","-1","-1","-1"
+"LAB","Matt Western
+","58","1","1","1","1","1","-1","-1","-1"
+"CON","Helen Whately
+","41","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Heather Wheeler
+","40","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Alan Whitehead
+","51","1","1","1","1","1","-1","-1","-1"
+"LAB","Martin Whitfield
+","65","1","1","1","0","1","-1","-1","0"
+"SNP","Philippa Whitford
+","58","0","1","0","0","1","-1","-1","-1"
+"CON","Craig Whittaker
+","47","-1","-1","-1","-1","-1","1","-1","-1"
+"CON","John Whittingdale
+","39","-1","-1","-1","-1","-1","1","1","-1"
+"CON","Bill Wiggin
+","42","-1","-1","-1","-1","-1","1","1","-1"
+"OTH","Hywel Williams
+","64","0","1","0","1","1","-1","-1","0"
+"LAB","Paul Williams
+","42","-1","1","1","-1","1","-1","-1","-1"
+"OTH","Chris Williamson
+","46","1","-1","1","-1","-1","0","-1","0"
+"LAB","Phil Wilson
+","41","1","1","1","1","0","-1","-1","0"
+"OTH","Sammy Wilson
+","45","-1","-1","-1","0","-1","0","1","0"
+"SNP","Pete Wishart
+","60","0","0","0","0","1","-1","-1","-1"
+"OTH","Sarah Wollaston
+","46","-1","1","-1","-1","1","-1","-1","-1"
+"CON","Mike Wood
+","30","-1","-1","-1","-1","-1","1","0","-1"
+"OTH","John Woodcock
+","43","0","1","-1","0","1","-1","-1","-1"
+"CON","William Wragg
+","48","-1","-1","-1","-1","-1","1","1","-1"
+"LAB","Mohammad Yasin
+","48","1","1","1","1","1","-1","-1","-1"
+"CON","Nadhim Zahawi
+","49","-1","-1","-1","0","-1","0","0","0"
+"LAB","Daniel Zeichner
+","74","0","1","0","-1","1","-1","-1","-1"
