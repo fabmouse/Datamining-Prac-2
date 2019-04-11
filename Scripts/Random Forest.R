@@ -7,7 +7,7 @@ table(voteData$Party)
 # Load libraries
 library(plyr)
 library(randomForest)
-source("RFFunction.R")
+source("Scripts/RFFunction.R")
 
 
 ## Create the forest
