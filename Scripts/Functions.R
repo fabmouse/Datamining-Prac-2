@@ -18,7 +18,7 @@ library(caret)        #For the confusion matrix
 #Outputs: summary of the accuracy, specificity and sensitivity
 #Implimentation notes: no error checking
 
-myboot <- function(seed, B, model, svm_cost = 1, ROC = FALSE){
+myboot <- function(seed, B, model, nn_hidden = 1, svm_cost = 1, ROC = FALSE){
   set.seed(seed)
   accuracy <- vector() #vector to store the accuracy
   sens_matrix <- matrix(NA, ncol = 4, nrow = B) #matrix to store sensitivity
@@ -92,7 +92,7 @@ myboot <- function(seed, B, model, svm_cost = 1, ROC = FALSE){
       #Fit the neural net
       fitmodel <- neuralnet(as.factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
                               Vote.5 + Vote.6 + Vote.7 + Vote.8, data = vote.train,
-                            linear.output = FALSE, hidden = 1, lifesign = "full")
+                            linear.output = FALSE, hidden = nn_hidden, lifesign = "full")
       
       #Calculate predictions
       predclass <- vector() #vector to store predictions
