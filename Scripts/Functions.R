@@ -18,7 +18,7 @@ library(caret)        #For the confusion matrix
 #Outputs: summary of the accuracy, specificity and sensitivity
 #Implimentation notes: no error checking
 
-myboot <- function(seed, B, model, ROC = FALSE){
+myboot <- function(seed, B, model, svm_cost = 1, ROC = FALSE){
   set.seed(seed)
   accuracy <- vector() #vector to store the accuracy
   sens_matrix <- matrix(NA, ncol = 4, nrow = B) #matrix to store sensitivity
@@ -51,13 +51,39 @@ myboot <- function(seed, B, model, ROC = FALSE){
       
       sens_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Sensitivity"]
       spec_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Specificity"]
-      
     }
-  } else if(model == "SVM") {
+  }else if(model == "SVM") {
+    for(j in 1:B){
+      bs <- sample(1:nrow(data.vote), nrow(data.vote), replace = T) ## bootstrap
+      vote.train <- data.vote[bs, -c(1,3)] # training dataset
+      vote.test <- data.vote[-bs, -c(1,3)] # test dataset
+      
+      #Fit the svm
+      fitmodel <- svm(factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
+                        Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.train,
+                      type = "C", kernel = "radial", cost = svm_cost, gamma = 1)
+      
+      #Calculate predictions
+      predclass <- vector() #vector to store predictions
+      predclass <- predict(fitmodel, vote.test[, -1])
+      
+      #Confusion Matrix and calculate accuracy
+      conf_mat <- table(observed = vote.test$Party, predicted = predclass)
+      accuracy[j] <- sum(diag(conf_mat))/(sum(conf_mat))
+      
+      fit_metrics <- vector("list", length(levels(vote.test$Party)))
+      for (i in seq_along(fit_metrics)) {
+        positive.class <- levels(vote.test$Party)[i]
+        # in the i-th iteration, use the i-th class as the positive class
+        fit_metrics[[i]] <- confusionMatrix(predclass, vote.test$Party, 
+                                            positive = positive.class)
+      }
+      
+      sens_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Sensitivity"]
+      spec_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Specificity"]
+    }
     
-    print("Do nothing for now")
-    
-  } else if (model == "Neural Net")
+  } else if (model == "Neural Net") {
     for(j in 1:B){
       bs <- sample(1:nrow(data.vote), nrow(data.vote), replace = T) ## bootstrap
       vote.train <- data.vote[bs, -c(1,3)] # training dataset
@@ -96,6 +122,7 @@ myboot <- function(seed, B, model, ROC = FALSE){
       sens_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Sensitivity"]
       spec_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Specificity"]
     }
+  }
   
   #Boostrap Metrics
   bs_Accuracy <- mean(accuracy) 
