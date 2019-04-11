@@ -25,28 +25,26 @@ myboot <- function(seed, B, model, rf_mtry = 1, rf_ntree = 1, svm_cost = 1, nn_h
   spec_matrix <- matrix(NA, ncol = 4, nrow = B)  #matrix to store 1-specificity
   
   if(model == "Random Forest"){
+    cat("Carrying out ", B, " bootstraps on a Random Forest with mtry = ", rf_mtry,
+        " and ntree = ", rf_ntree)
     
-    print("do the random forest")
     for(j in 1:B){
       bs <- sample(1:nrow(data.vote), nrow(data.vote), replace = T) ## bootstrap
       vote.train <- data.vote[bs, -c(2, 3)] # training dataset
       vote.test <- data.vote[-bs, -c(2, 3)] # test dataset
-
-      #Fit a Random Forest
-      fitmodel <- naiveBayes(factor(Party) ~ ., data = vote.train)
       
-      fitmodel <-  randomForest(factor(Party) ~ ., 
-                                data = vote.train, 
+      #Fit a Random Forest
+      fitmodel <-  randomForest(factor(Party) ~ ., data = vote.train, 
                                 mtry = rf_mtry, ntree = rf_ntree)
-
+      
       #Calculate predictions
       predclass <- vector()
       predclass <- predict(fitmodel, newdata = vote.test[,-1]) 
-
+      
       #Confusion Matrix and calculate accuracy
       conf_mat <- table(vote.test$Party, predclass)
       accuracy[j] <- sum(diag(conf_mat))/(sum(conf_mat))
-
+      
       fit_metrics <- vector("list", length(levels(vote.test$Party)))
       for (i in seq_along(fit_metrics)) {
         positive.class <- levels(vote.test$Party)[i]
@@ -54,11 +52,13 @@ myboot <- function(seed, B, model, rf_mtry = 1, rf_ntree = 1, svm_cost = 1, nn_h
         fit_metrics[[i]] <- confusionMatrix(predclass, vote.test$Party,
                                             positive = positive.class)
       }
-
+      
       sens_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Sensitivity"]
       spec_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Specificity"]
     }
   } else if(model == "Naive Bayes"){
+    cat("Carrying out ", B, " bootstraps on a Naive Bayes")
+    
     for(j in 1:B){
       bs <- sample(1:nrow(data.vote), nrow(data.vote), replace = T) ## bootstrap
       vote.train <- data.vote[bs, -c(2, 3)] # training dataset
@@ -80,13 +80,16 @@ myboot <- function(seed, B, model, rf_mtry = 1, rf_ntree = 1, svm_cost = 1, nn_h
         positive.class <- levels(vote.test$Party)[i]
         # in the i-th iteration, use the i-th class as the positive class
         fit_metrics[[i]] <- confusionMatrix(predclass, vote.test$Party, 
-                                   positive = positive.class)
+                                            positive = positive.class)
       }
       
       sens_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Sensitivity"]
       spec_matrix[j, ] <- fit_metrics[[1]]$byClass[, "Specificity"]
     }
   }else if(model == "SVM") {
+    cat("Carrying out ", B, " bootstraps on a Support Vector Machine with a 
+        cost parameter of = ", svm_cost)
+    
     for(j in 1:B){
       bs <- sample(1:nrow(data.vote), nrow(data.vote), replace = T) ## bootstrap
       vote.train <- data.vote[bs, -c(2,3)] # training dataset
@@ -117,6 +120,9 @@ myboot <- function(seed, B, model, rf_mtry = 1, rf_ntree = 1, svm_cost = 1, nn_h
     }
     
   } else if (model == "Neural Net") {
+    cat("Carrying out ", B, " bootstraps on a Neural Network with ", nn_hidden,
+        " layers")
+    
     for(j in 1:B){
       bs <- sample(1:nrow(data.vote), nrow(data.vote), replace = T) ## bootstrap
       vote.train <- data.vote[bs, -c(2, 3)] # training dataset
