@@ -75,8 +75,9 @@ findgoodntree <- function(X,Y,start,end,by,mtrynumber,DATASET){
     prediction <- predict(model, newdata = DATASET)
     err <- mean(model$err.rate)
     
-    actuals <- Y
-    T<-table(actuals,prediction)
+    actuals <- Y 
+
+    T <- table(actuals, prediction)
     accuracy <- sum(diag(T))/(sum(T))
     #misclass.holdout <- (T[1,2]+T[1,3]+T[1,4]+T[2,1]+T[2,3]+T[2,4]+T[3,1]+T[3,2]+T[3,4]+T[4,1]+T[4,2]+T[4,3])
     misclass.rate <- 1 - accuracy
