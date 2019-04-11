@@ -5,17 +5,20 @@ Analysis of 27 March 2019 UK Parliamentary Votes
 To do:
 
 Aim (i)
-Logistic Regression
-Support Vector Machine
+Decision Trees - José
+Logistic Regression - Not sure yet
+Support Vector Machine - Brooke
 
 Aim (ii)
-Decision Trees
-Random Forest
-Logistic Regression
-Naive Bayes
-Support Vector Machine
-Random Forest 
+Decision Trees - Carlotta
+Random Forest - Lei
+Logistic Regression - Not Sure Yet 
+Naive Bayes - Abtin
+Support Vector Machine - José
 
 General:
-Accuracy
+Generalisation Error and Bootstrap - Brooke
 Sensitivity and specificity for each class
+
+Report:
+Intro - Abtin
