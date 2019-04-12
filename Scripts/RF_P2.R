@@ -13,7 +13,7 @@ head(beData)
 library(plyr)
 library(randomForest)
 library(dplyr)
-source("RFFunction.R")
+source("Scripts/RFFunction.R")
 
 ## Create the forest
 set.seed(100)

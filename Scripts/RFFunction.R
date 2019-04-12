@@ -5,9 +5,9 @@ randomForestTest <-
     y.pos <- which(names(HOLDOUT)==y.name)
 
     #Random forest
-    L <- levels(HOLDOUT[,2])
+    L <- levels(HOLDOUT[,1])
     predicteds <- predict(MODEL,newdata=HOLDOUT)
-    actuals <- HOLDOUT[,2]
+    actuals <- HOLDOUT[,1]
     T<-table(actuals,predicteds,dnn=c())
     accuracy <- sum(diag(T))/(sum(T))
     total <- sum(T)
