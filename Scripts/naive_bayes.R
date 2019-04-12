@@ -8,8 +8,51 @@ data.vote <- read.csv("data/Clean Vote Data.csv", header=T)
 head(data.vote)
 table(data.vote$Party)
 
+myboot(B = 3, model = "Naive Bayes")
+
+
+
+# SENSITIVITY -------------------------------------------------------------
+fitmodel <- naiveBayes(factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
+                         Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.vote)
+predclass <- predict(fitmodel, newdata=data.vote)
+
+# create a confusion matrix
+
+conf_matrix <- table(data.vote$Party, predclass)
+
+values <- function(inputmatrix){
+  sens <- c()
+  spec <- c()
+  
+  for(i in 1:nrow(inputmatrix)){
+    TP <- inputmatrix[i,i]
+    TN <- sum(diag(inputmatrix[i,i])) - TP
+    FP <- sum(inputmatrix[,i]) - TP
+    FN <- sum(inputmatrix[i,]) - TP
+    
+    sens[i] <- TP / (TP + FN)
+    spec[i] <- TN / (TN + FP)
+    }
+  
+  return(list(Sensitivity = sens, Specificity = spec))
+}
+
+library(caret) # for confusionMatrix function
+cm <- vector("list", length(levels(data.vote$Party)))
+for (i in seq_along(cm)) {
+  positive.class <- levels(data.vote$Party)[i]
+  # in the i-th iteration, use the i-th class as the positive class
+  cm[[i]] <- confusionMatrix(predclass, data.vote$Party, 
+                             positive = positive.class)
+}
+
+metrics <- c("Precision", "Recall")
+print(cm[[1]]$byClass[, metrics])
+
+
+
 # Trying without validation ----------------------------------------------------
-#ON ALL DATA
 #Fit the Naive Bayes
 fitmodel <- naiveBayes(factor(Party) ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 + 
                          Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.vote)
@@ -46,9 +89,6 @@ mod.glm <- glm(Party ~ Vote.1 + Vote.2 + Vote.3 + Vote.4 +
                  Vote.5 + Vote.6 + Vote.7 + Vote.8, data = data.factor)
 
 
-## bootstrap
-#B: # of boostrap
-#Vote.1 + Vote.2 + Vote.3 + Vote.4 + Vote.5 + Vote.6 + Vote.7 + Vote.8
 
 # With Caret Package -----------------------------------------------------------
 
@@ -104,5 +144,5 @@ myboot <- function(B){
   return(bootstrap_acc)
 }
 
-myboot(B = 1)
+
 

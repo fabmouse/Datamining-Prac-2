@@ -9,7 +9,7 @@ source("Scripts/Functions.R")
 data.vote <- read.csv("data/Clean Vote Data.csv", header = TRUE)
 head(data.vote)
 
-nn_boot <- myboot(B = 2, model = "Neural Net")
+nn_boot <- myboot(B = 3, model = "Neural Net")
 
 plot <- ggplot(nn_boot$Acc_All, aes())
 
