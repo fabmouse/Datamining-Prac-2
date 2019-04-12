@@ -1,5 +1,8 @@
-randomForestTest <-
-  function(MODEL,HOLDOUT) {
+###############################
+# FUNCTIONS FOR RANDOM FORESTS#
+###############################
+
+randomForestTest <-function(MODEL,HOLDOUT) {
     ## find the number of each rows and columns
     y.name <- unlist(strsplit(as.character(MODEL$call),split=" ")[[2]])[1]
     y.pos <- which(names(HOLDOUT)==y.name)
