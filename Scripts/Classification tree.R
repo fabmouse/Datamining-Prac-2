@@ -2,17 +2,22 @@
 
 data.vote <- read.csv("data/remainORleave.csv", header = T)
 head(data.vote)
+attach(data.vote)
 
 
 # Set up the datasets -----------------------------------------------------
 #Split dataset into trainging and testing
+
 set.seed(123)
 ind <- sample(1:nrow(data.vote), 0.75 * nrow(data.vote), replace = FALSE) 
 data.train <- data.vote[ind, -c(2:5)] # training dataset to choose best model
 data.validation <- data.vote[-ind, -c(2:5)]
 
+
 library(tree)
 library(ISLR)
+library(rpart)
+library(rpart.plot)
 
 
 #decision tree fit
@@ -64,3 +69,9 @@ table(tree.pred2, Party.test)
 tree.pred2
 with(data.vote[train,], table(tree.pred2, Party.test))
 
+
+#plots with rpart.plot#nice plots
+tree.voting <- rpart(Party ~ ., data = data.vote, subset = train)
+prune.voting <- prune(tree.voting, best = 3)
+prune.voting
+prp(prune.voting, faclen = 0, cex = 0.8, extra = 1)
