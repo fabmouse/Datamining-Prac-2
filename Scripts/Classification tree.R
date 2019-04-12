@@ -1,15 +1,22 @@
 #CLASSIFICATION TREE
 
+data.vote <- read.csv("data/remainORleave.csv", header = T)
+head(data.vote)
+
+
+# Set up the datasets -----------------------------------------------------
+#Split dataset into trainging and testing
+set.seed(123)
+ind <- sample(1:nrow(data.vote), 0.75 * nrow(data.vote), replace = FALSE) 
+data.train <- data.vote[ind, -c(2:5)] # training dataset to choose best model
+data.validation <- data.vote[-ind, -c(2:5)]
+
 library(tree)
 library(ISLR)
 
-#import data, might change data set
-voteData <- read.csv("data/Clean Vote Data.csv", header=T)
-attach(voteData)
 
 #decision tree fit
-tree.voting <- tree(Party ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
-                      Voting.5 + Voting.6 + Voting.7 + Voting.8, data = voteData)
+tree.voting <- tree(Party ~ ., data = data.vote)
 
 #plot of decision tree
 plot(tree.voting)
@@ -17,24 +24,22 @@ text(tree.voting, pretty = 0)
 
 #training the decision tree, using 500 rows of the data set, might change the training size
 set.seed(22)
-train <- sample(1:nrow(voteData), 500)
-voteData.test <- voteData[train,]
+train <- sample(1:nrow(data.vote), 500)
+data.vote.test <- data.vote[train,]
 Party.test <- Party[train]
-tree.voting <- tree(Party ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
-                      Voting.5 + Voting.6 + Voting.7 + Voting.8, data = voteData, subset = train)
-tree.pred <- predict(tree.voting, voteData.test, type = "class")
+tree.voting <- tree(Party ~ ., data = data.vote, subset = train)
+tree.pred <- predict(tree.voting, data.vote.test, type = "class")
 
 #classification tree. unsure about the results
 table(tree.pred, Party.test)
 (40+43+5+8)
   
 set.seed(23)
-train <- sample(1:nrow(voteData), 100)
-voteData.test <- voteData[-train,]
+train <- sample(1:nrow(data.vote), 100)
+data.vote.test <- data.vote[-train,]
 Party.test <- Party[-train]
-tree.voting <- tree(Party ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
-                      Voting.5 + Voting.6 + Voting.7 + Voting.8, data = voteData, subset = train)
-tree.pred <- predict(tree.voting, voteData.test, type = "class")
+tree.voting <- tree(Party ~ ., data = data.vote, subset = train)
+tree.pred <- predict(tree.voting, data.vote.test, type = "class")
 
 #classification tree. unsure about the results
 table(tree.pred, Party.test)
@@ -52,10 +57,10 @@ prune.voting
 plot(prune.voting)
 text(prune.voting, pretty = 0)
 
-tree.pred2 <- predict(prune.voting, voteData.test, type = "class")
+tree.pred2 <- predict(prune.voting, data.vote.test, type = "class")
 table(tree.pred2, Party.test)
 
 
 tree.pred2
-with(voteData[train,], table(tree.pred2, Party.test))
+with(data.vote[train,], table(tree.pred2, Party.test))
 
