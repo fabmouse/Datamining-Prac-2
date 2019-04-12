@@ -81,7 +81,7 @@ library(rpart.plot)
 set.seed(123)
 tree <- rpart(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = dat, method = "class"
-              , control = rpart.control(cp = 0.00000001))#split: 0, 1, 4
+              , control = rpart.control(cp = 0.0001))#split: 0, 1, 4
 printcp(tree)
 plotcp(tree)
 
@@ -119,3 +119,17 @@ dat$Constituency <- as.numeric(dat$Constituency)
 diff <- pred_reg - dat$Constituency
 
 MSE <- sum(diff^2)
+
+#transform the percentage with Leave or Remain 
+#1-49 is Remain 
+#50 - 100 is Leave
+
+leave_remain_pred <- c()
+for (i in 1:nrow(dat)){
+  if (pred_reg[i] < 50) leave_remain_pred[i] = "Remain"
+  
+  if (pred_reg[i] > 49) leave_remain_pred[i] = "Leave"
+}
+
+table(leave_remain_pred)
+table(remainORleave$LeaveRemain)
