@@ -24,6 +24,12 @@ fitControl <- trainControl(method = "cv", number = 5)
 
 
 # RANDOM FOREST -----------------------------------------------------------
+#Caret Package found mtry = 5 is best?
+rf_params <- train(factor(Party) ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
+                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train, 
+               method = 'rf',
+               trControl = fitControl)
+
 #Lei found that a random forest with mtry = 4 and ntree = 470 works best.
 
 #Running 1000 bootstraps for the random forest classifier 
@@ -36,6 +42,11 @@ fitControl <- trainControl(method = "cv", number = 5)
 rf_results <- myboot(seed = 123, B = 1000, rf_mtry = 4, rf_ntree = 470,
                      model = "Random Forest")
 
+
+# LOGISTIC REGRESSION -----------------------------------------------------
+
+
+
 # NAIVE BAYES -------------------------------------------------------------
 #Running 1000 bootstraps for the naive bayes classifier 
 #Time Taken: ±80 seconds
@@ -44,12 +55,12 @@ rf_results <- myboot(seed = 123, B = 1000, rf_mtry = 4, rf_ntree = 470,
 #Sensitivity    0.9145480     0.6604991     0.03145755               1.0000000
 #Specificity    0.9572252     0.9848712     0.95232648               0.8169477
 
-nbfit <- train(factor(Party) ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
-                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.vote, 
+nb_params <- train(factor(Party) ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
+                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train, 
                method = "nb",
                trControl = fitControl)
 
-nb_results <- myboot(seed = 123, B = 1000, model = "Naive Bayes")
+nb_results <- myboot(seed = 123, B = 10, model = "Naive Bayes")
 
 # SUPPORT VECTOR MACHINE --------------------------------------------------
 #Running 1000 bootstraps for the naive bayes classifier 
@@ -62,15 +73,19 @@ nb_results <- myboot(seed = 123, B = 1000, model = "Naive Bayes")
 #Select the best cost parameter using cross validation 
 #Using the caret package for carrying out 5 fold CV and Cost selection
 
-svm_cost <- train(factor(Party) ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
+svm_params <- train(factor(Party) ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
                     Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train, 
                   method = "svmRadialCost",
                   trControl = fitControl)
-best_cost <- svm_cost$bestTune$C
+best_cost <- svm_params$bestTune$C
 
 svm_results <- myboot(seed = 123, B = 1000, model = "SVM", svm_cost = best_cost)
 
 # NEURAL NET --------------------------------------------------------------
+nn_params <- train(factor(Party) ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
+                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train, 
+               method = "nnet",
+               trControl = fitControl)
 #Running 3 bootstraps for the neural net classifier with 1 hidden layer
 #Time Taken: ±6 seconds
 #Acccuracy: 0.9044133
@@ -78,5 +93,32 @@ svm_results <- myboot(seed = 123, B = 1000, model = "SVM", svm_cost = best_cost)
 #Sensitivity    0.9763518     0.9438172     0.2781279               0.9722222
 #Specificity    0.9231289     0.9820316     0.9885594               0.9667827
 
-nn_results <- myboot(seed = 123, B = 3, nn_hidden = 1, model = "Neural Net")
+nn_results <- myboot(seed = 123, B = 1, nn_hidden = 3, model = "Neural Net")
 #Stops at fourth bootstrap - not sure why
+
+
+# Plot of Kappa Comparisons -----------------------------------------------
+resamps <- resamples(list(RF = rf_params, 
+                          NB = nb_params, 
+                          SVM = svm_params, 
+                          NN = nn_params))
+summary(resamps)
+# Look for plots
+trellis.par.set(caretTheme())
+dotplot(resamps, metric = "Accuracy")
+dotplot(resamps, metric = "Kappa")
+
+# PLOT COMPARING PARTY SENSITIVITY ----------------------------------------
+rf_Sens <- rf_results$BS_FIT[1, ]
+nb_Sens <- nb_results$BS_FIT[1, ]
+svm_Sens <- svm_results$BS_FIT[1, ]
+nn_Sens <- nn_results$BS_FIT[1, ]
+
+plot(x = 1:4, y = svm_Sens, ylim = c(0, 1), xlab = "Party", ylab = "Sensitivity",
+     type = "b", col = "red", xaxt = "n")
+axis(1, at = seq(1, 4, by = 1), labels = c("CON", "LAB", "OTH", "SNP"))
+points(x = 1:4, y = nb_Sens, type = "b", col = "blue")
+points(x = 1:4, y = rf_Sens, type = "b", col = "green")
+legend("bottomleft", legend = c("SVM", "NB", "RF"), col = c("red", "blue", "green"), lwd = 1, cex = 0.75)
+
+
