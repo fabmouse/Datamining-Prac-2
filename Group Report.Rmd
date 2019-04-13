@@ -20,11 +20,23 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Executive Summary
 
+\pagebreak
+
 ## Introduction
 
 ## Methods
 
+- Maybe disucss method for carrying out best model in each aim
+- Discuss estimation of accuracy
+
 ## Analysis and Results
+
+All analyses in the following report were carried out using R 3.5.1 software (R, 2019).
+
+
+### Predicting Party Represenation
+
+### Predicting Leave/Remain Percentage 
 
 ## Conclusions
 
