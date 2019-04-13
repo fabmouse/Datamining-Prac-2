@@ -237,6 +237,7 @@ nn_hidden <- nn_params$bestTune$size #Suggests 5 hidden layers
 
 nn_model <- neuralnet(as.factor(Party) ~ ., data = data.train,
                       linear.output = FALSE, hidden = nn_hidden, lifesign = "full")
+plot(nn_model)
 
 predclass <- vector() 
 
