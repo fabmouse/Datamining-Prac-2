@@ -20,6 +20,8 @@ voteData.test <- voteData[train,]
 Party.test <- Party[train]
 tree.voting <- tree(Party ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
                       Voting.5 + Voting.6 + Voting.7 + Voting.8, data = voteData, subset = train)
+plot(tree.voting)
+text(tree.voting, pretty = 0)
 tree.pred <- predict(tree.voting, voteData.test, type = "class")
 
 #classification tree. unsure about the results
