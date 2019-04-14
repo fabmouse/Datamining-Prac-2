@@ -147,7 +147,8 @@ print(aimtwo.lr)
 
 ###########################################################################################
 
-
+reg.lr <- multinom(Constituency~ Party + LeaveRemain + Voting.1 + Voting.2 + Voting.3 + Voting.4 + Voting.5 + Voting.6 + Voting.7 + Voting.8, data = trainlr)
+print(reg.lr)
 
 
 
