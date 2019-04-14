@@ -94,17 +94,25 @@ findgoodntree(trainrf[,4:13], trainrf[,1],450,550,10,2,trainrf)
 # when ntree = 480 mtry = 2, the OOB error is better than others 
 
 # create a new model by the ntree = 480 mtry = 2
-modelthree.rf = randomForest(factor(LeaveRemain)~ Party+Constituency+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,mtry = 2,data = remainorleavedata, ntree = 480)
+modelthree.rf = randomForest(factor(LeaveRemain)~ X...Party+Constituency+Voting.1+
+                               Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+
+                               Voting.7+Voting.8,mtry = 2,data = 
+                               breixtdata, ntree = 480)
 print(modelthree.rf)
 ## the OOB = 2.84%, the accuracy = 97.16%, the misclass rate = 2.84%
 
 
 ########################################################################
 ### create model for percentage prediction, regression random forest ###
-modelfour.rf = randomForest(Constituency~ Party+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,mtry = 2,data = breixtdata, ntree = 480)
+modelfour.rf = randomForest(Constituency~ X...Party+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,
+                            mtry = 3,data = breixtdata, ntree = 1000)
 print(modelfour.rf)
 plot(modelfour.rf)
 
+prediction.rf <- predict(modelfour.rf, breixtdata)
+actuals.lr <- breixtdata[,5]
+result.lr <- list( 'actual' = actuals.lr, 'prediction' = prediction.rf)
+tablevalue.lr <- data.frame(do.call(cbind,result.lr))
 
 #library(quantregForest)
 
