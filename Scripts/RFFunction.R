@@ -109,6 +109,54 @@ findgoodntree <- function(X,Y,start,end,by,mtrynumber,DATASET){
     return(tablevalue)
 }
 
+findgoodmtryreg <- function(X,Y,N,SEED,DATASET){
+  mtrylist <- list()
+  errlist <- list()
+  set.seed(SEED)
+  for (i in 1:N) {
+    mtry_fit <- randomForest(X,Y,data = DATASET,mtry = i)
+    err <- mean(mtry_fit$mse)
+    #    print(err)
+    mtrylist[i] <- i
+    errlist[i] <- err
+  }
+  result <- list('MTRY Number' = mtrylist, 'OOB Error' = errlist)
+  tablevalue <- data.frame(do.call(cbind,result))
+  
+  mtry <- sort(as.numeric(names(errlist)))
+  res <- unlist(errlist[as.character(mtrylist)])
+  res <- cbind(mtry=mtrylist, OOBError=errlist)
+  
+  plot(res, xlab=expression(MTRY), ylab="OOB Error", type="o", log="x",xaxt="n")
+  axis(1, at=res[,"mtry"])
+  
+  return(tablevalue)
+}
 
+findgoodntreereg <- function(X,Y,start,end,by,mtrynumber,DATASET){
+  k = (end-start)/by
+  
+  treeNumber <- list()
+  accuracyValue <- list()
+  misclassValue <- list()
+  errlist <- list()
+  
+  for (i in 1:(k+1)) {
+    numtree = (start-by + i*by)
+    model = randomForest(X,Y,data = DATASET,mtry = mtrynumber,ntree = numtree)
+    prediction <- predict(model, newdata = DATASET)
+    err <- mean(model$mse)
+    
+    actuals <- Y 
+    treeNumber[i] <- numtree
+    errlist[i] <- err
+  }
+  result <- list('Tree Number' = treeNumber, 'OOB Error' = errlist)
+
+  do.call(cbind,result)
+  
+  tablevalue <- data.frame(do.call(cbind,result))
+  return(tablevalue)
+}
 
 

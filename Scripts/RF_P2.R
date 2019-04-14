@@ -94,7 +94,7 @@ findgoodntree(trainrf[,4:13], trainrf[,1],450,550,10,2,trainrf)
 # when ntree = 480 mtry = 2, the OOB error is better than others 
 
 # create a new model by the ntree = 480 mtry = 2
-modelthree.rf = randomForest(factor(LeaveRemain)~ X...Party+Constituency+Voting.1+
+modelthree.rf = randomForest(factor(LeaveRemain)~ Party+Constituency+Voting.1+
                                Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+
                                Voting.7+Voting.8,mtry = 2,data = 
                                breixtdata, ntree = 480)
@@ -115,12 +115,34 @@ print(misclass.lr) # Misclass rate = 2.66%
 
 ########################################################################
 ### create model for percentage prediction, regression random forest ###
-modelfour.rf = randomForest(Constituency~ X...Party+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,
-                            mtry = 3,data = breixtdata, ntree = 1000)
-print(modelfour.rf)
-plot(modelfour.rf)
+originalreg.rf = randomForest(Constituency~ Party+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,
+                            mtry = 2,data = breixtdata, ntree = 1000)
+print(originalreg.rf)
+plot(originalreg.rf)
 
-prediction.rf <- predict(modelfour.rf, breixtdata)
+tuneRF(trainrf[,c(1, 6:13)], trainrf[,5])
+### Try to find out the best mtry value
+findgoodmtryreg(trainrf[,c(1, 6:13)], trainrf[,5],7,123,testrf)
+### when mtry = 3, the MSE is minimum
+
+## creat the new model, mtry = 3 and try to find the best ntree
+modelreg.lr <- randomForest(Constituency~ Party+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,
+                            mtry = 3,data = breixtdata, ntree = 1100)
+print(modelreg.lr)
+plot(modelreg.lr)
+## from the plot, we could know when ntree around 800 - 1000 is stable.
+findgoodntreereg(trainrf[,c(1, 6:13)], trainrf[,5],800,1200,50,3,testrf)
+## when ntree = 950, mtry = 3, the MSE is minimum
+
+## creat the best model of random forest for regression
+modeltworeg.lr <- randomForest(Constituency~ Party+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,
+                            mtry = 3,data = breixtdata, ntree = 950)
+print(modeltworeg.lr)
+plot(modeltworeg.lr)
+
+
+
+prediction.rf <- predict(modeltworeg.lr, breixtdata)
 actuals.lr <- breixtdata[,5]
 result.lr <- list( 'actual' = actuals.lr, 'prediction' = prediction.rf)
 tablevalue.lr <- data.frame(do.call(cbind,result.lr))
