@@ -101,6 +101,17 @@ modelthree.rf = randomForest(factor(LeaveRemain)~ X...Party+Constituency+Voting.
 print(modelthree.rf)
 ## the OOB = 2.84%, the accuracy = 97.16%, the misclass rate = 2.84%
 
+## Build the confusion matrix for modelthree.lr by test dataset
+prediction3 <- predict(modelthree.rf, test)
+actuals3 <- test$LeaveRemain
+CMtable3 <- table(actuals3, prediction3)
+print(CMtable3)
+# Accuracy and Misclass rate
+accuracy.lr <- sum(diag(CMtable3))/sum(CMtable3)
+misclass.lr <- 1-sum(diag(CMtable3))/sum(CMtable3)
+print(accuracy.lr) # Accuracy = 97.34%
+print(misclass.lr) # Misclass rate = 2.66%
+
 
 ########################################################################
 ### create model for percentage prediction, regression random forest ###
