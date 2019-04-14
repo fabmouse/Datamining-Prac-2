@@ -147,13 +147,3 @@ actuals.lr <- breixtdata[,5]
 result.lr <- list( 'actual' = actuals.lr, 'prediction' = prediction.rf)
 tablevalue.lr <- data.frame(do.call(cbind,result.lr))
 
-#library(quantregForest)
-
-#xzone <- breixtdata[c(1,6:13)]
-#yzone <- breixtdata$Constituency
-#reg.rf <- quantregForest(xzone, yzone, nthreads = 1, keep.inbag = TRUE)
-#print(reg.rf)
-
-#predict(reg.rf, quantile = 0.5)
-#predict(reg.rf, all = TRUE)
-#plot(reg.rf, all = TRUE)
