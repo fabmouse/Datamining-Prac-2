@@ -98,3 +98,21 @@ modelthree.rf = randomForest(factor(LeaveRemain)~ Party+Constituency+Voting.1+Vo
 print(modelthree.rf)
 ## the OOB = 2.84%, the accuracy = 97.16%, the misclass rate = 2.84%
 
+
+########################################################################
+### create model for percentage prediction, regression random forest ###
+modelfour.rf = randomForest(Constituency~ Party+Voting.1+Voting.2+Voting.3+Voting.4+Voting.5+Voting.6+Voting.7+Voting.8,mtry = 2,data = breixtdata, ntree = 480)
+print(modelfour.rf)
+plot(modelfour.rf)
+
+
+#library(quantregForest)
+
+#xzone <- breixtdata[c(1,6:13)]
+#yzone <- breixtdata$Constituency
+#reg.rf <- quantregForest(xzone, yzone, nthreads = 1, keep.inbag = TRUE)
+#print(reg.rf)
+
+#predict(reg.rf, quantile = 0.5)
+#predict(reg.rf, all = TRUE)
+#plot(reg.rf, all = TRUE)
