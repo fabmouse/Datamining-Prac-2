@@ -32,7 +32,17 @@ tune.test <- data.train[-tuneind, ]
 set.seed(123)
 fitControl <- trainControl(method = "cv", number = 5)
 
-# CLASSIFICATION TREE -----------------------------------------------------
+# CLASSIFICATION TREE (José) ---------------------------------------------------
+# Change levels into Yes, No, No Vote for nicer plots
+data.vote.dt <- data.vote
+data.vote.dt[, 6:13] <- data.vote.dt[, 6:13] %>% mutate_if(is.numeric, as.factor)
+for(i in 6:13){ data.vote.dt[, i]  <- recode(data.vote.dt[, i], 
+                                             "1" = "Yes", "0" = "No Vote", "-1" = "No")
+}
+
+data.train.dt <- data.vote.dt[ind, -c(2, 4)]
+data.validation.dt <- data.vote.dt[-ind,  -c(2, 4)] 
+
 #Fit an initial decision tree to all of the training data
 tree.voting <- tree(Party ~ ., data = data.train)
 #The tree splits on <0.5
@@ -100,7 +110,7 @@ prp(prune.voting, faclen = 0, cex = 0.8, extra = 1)
 
 
 
-# RANDOM FOREST -----------------------------------------------------------
+# RANDOM FOREST (Lei) ----------------------------------------------------------
 #Lei found that a random forest with mtry = 4 and ntree = 470 works best.
 library(randomForest)
 source("Scripts/RFFunction.R")
@@ -158,7 +168,7 @@ for (i in seq_along(rf_fit_metrics)) {
                                       positive = positive.class)
 }
 
-# LOGISTIC REGRESSION -----------------------------------------------------
+# LOGISTIC REGRESSION (Lei) ----------------------------------------------------
 #Divide training dataset into two parts
 library(nnet)
 
@@ -195,7 +205,7 @@ for (i in seq_along(lr_fit_metrics)) {
                                          positive = positive.class)
 }
 
-# NAIVE BAYES -------------------------------------------------------------
+# NAIVE BAYES (Brooke and Carlotta) --------------------------------------------
 nb_params <- train(factor(Party) ~ ., data = data.train, 
                    method = "nb",
                    trControl = fitControl)
@@ -212,7 +222,7 @@ for (i in seq_along(nb_fit_metrics)) {
                                       positive = positive.class)
 }
 
-# SUPPORT VECTOR MACHINE --------------------------------------------------
+# SUPPORT VECTOR MACHINE (Brooke and Carlotta) ---------------------------------
 svm_params <- train(factor(Party) ~ ., data = data.train, 
                     method = "svmRadialCost",
                     trControl = fitControl)
@@ -229,7 +239,7 @@ for (i in seq_along(svm_fit_metrics)) {
                                       positive = positive.class)
 }
 
-# NEURAL NET --------------------------------------------------------------
+# NEURAL NET (Brooke) ----------------------------------------------------------
 nn_params <- train(factor(Party) ~ ., data = data.train, 
                    method = "nnet",
                    trControl = fitControl)
@@ -260,17 +270,6 @@ for (i in seq_along(nn_fit_metrics)) {
                                       positive = positive.class)
 }
 
-# Plot of Kappa Comparisons -----------------------------------------------
-# resamps <- resamples(list(RF = rf_params, 
-#                           NB = nb_params, 
-#                           SVM = svm_params, 
-#                           NN = nn_params))
-# summary(resamps)
-# # Look for plots
-# trellis.par.set(caretTheme())
-# dotplot(resamps, metric = "Accuracy")
-# dotplot(resamps, metric = "Kappa")
-
 # PLOT COMPARING PARTY SENSITIVITY ----------------------------------------
 #Obtain Kappas
 ct_kappa <- ct_fit_metrics[[1]]$overall["Kappa"]
@@ -287,7 +286,6 @@ nb_acc <- nb_fit_metrics[[1]]$overall["Accuracy"]
 svm_acc <- svm_fit_metrics[[1]]$overall["Accuracy"]
 nn_acc <- nn_fit_metrics[[1]]$overall["Accuracy"]
 
-
 #Plot Sensitivities
 ct_Sens <- ct_fit_metrics[[1]]$byClass[, "Sensitivity"]
 rf_Sens <- rf_fit_metrics[[1]]$byClass[, "Sensitivity"]
@@ -296,16 +294,19 @@ nb_Sens <- nb_fit_metrics[[1]]$byClass[, "Sensitivity"]
 svm_Sens <- svm_fit_metrics[[1]]$byClass[, "Sensitivity"]
 nn_Sens <- nn_fit_metrics[[1]]$byClass[, "Sensitivity"]
 
+c(ct_Sens, rf_Sens, lr_Sens, nb_Sens, svm_Sens, nn_Sens)
+c(rf_Sens, nn_Sens)
+
 plot(x = 1:4, y = ct_Sens, ylim = c(0, 1), xlab = "Party", ylab = "Sensitivity",
      main = "Sensitivity Comparison Based on Validation Set",
      type = "b", col = "red", xaxt = "n")
 axis(1, at = seq(1, 4, by = 1), labels = c("Conservative", "Labour", 
                                            "Other", "Scottish\nNational Party"))
-points(x = 1:4, y = rf_Sens, type = "b", col = "purple")
+points(x = 1:4, y = rf_Sens, type = "b", col = "purple", lty = 2)
 points(x = 1:4, y = lr_Sens, type = "b", col = "yellow")
 points(x = 1:4, y = nb_Sens, type = "b", col = "green")
 points(x = 1:4, y = svm_Sens, type = "b", col = "blue")
-points(x = 1:4, y = nn_Sens, type = "b", col = "pink")
+points(x = 1:4, y = nn_Sens, type = "b", col = "pink", lty = 2)
 legend("bottomleft", legend = c("Classification Tree",                                
                                 "Random Forest",                                 
                                 "Logistic Regression",
@@ -313,26 +314,26 @@ legend("bottomleft", legend = c("Classification Tree",
                                 "Support Vector Machine",  
                                 "Neural Net"), 
        col = c("red", "purple", "yellow", "green", "blue", "pink"), 
-       lwd = 1, cex = 0.75)
+       lwd = 2, cex = 0.75)
 
 #Plot Specificity
-ct_Sens <- ct_fit_metrics[[1]]$byClass[, "Specificity"]
-rf_Sens <- rf_fit_metrics[[1]]$byClass[, "Specificity"]
-lr_Sens <- lr_fit_metrics[[1]]$byClass[, "Specificity"]
-nb_Sens <- nb_fit_metrics[[1]]$byClass[, "Specificity"]
-svm_Sens <- svm_fit_metrics[[1]]$byClass[, "Specificity"]
-nn_Sens <- nn_fit_metrics[[1]]$byClass[, "Specificity"]
+ct_Spec <- ct_fit_metrics[[1]]$byClass[, "Specificity"]
+rf_Spec <- rf_fit_metrics[[1]]$byClass[, "Specificity"]
+lr_Spec <- lr_fit_metrics[[1]]$byClass[, "Specificity"]
+nb_Spec <- nb_fit_metrics[[1]]$byClass[, "Specificity"]
+svm_Spec <- svm_fit_metrics[[1]]$byClass[, "Specificity"]
+nn_Spec <- nn_fit_metrics[[1]]$byClass[, "Specificity"]
 
-plot(x = 1:4, y = ct_Sens, ylim = c(0, 1), xlab = "Party", ylab = "Specificity",
-     main = "Specificity Comparison Based on Validation Set",
+plot(x = 1:4, y = ct_Spec, ylim = c(0, 1), xlab = "Party", ylab = "Specificity",
+     main = "Specificity Comparison Based on Validation Set", lty = 2, 
      type = "b", col = "red", xaxt = "n")
 axis(1, at = seq(1, 4, by = 1), labels = c("Conservative", "Labour", 
                                            "Other", "Scottish\nNational Party"))
-points(x = 1:4, y = rf_Sens, type = "b", col = "purple")
-points(x = 1:4, y = lr_Sens, type = "b", col = "yellow")
-points(x = 1:4, y = nb_Sens, type = "b", col = "green")
-points(x = 1:4, y = svm_Sens, type = "b", col = "blue")
-points(x = 1:4, y = nn_Sens, type = "b", col = "pink")
+points(x = 1:4, y = rf_Spec, type = "b", col = "purple", lty = 2)
+points(x = 1:4, y = lr_Spec, type = "b", col = "yellow", lty = 2)
+points(x = 1:4, y = nb_Spec, type = "b", col = "green", lty = 2)
+points(x = 1:4, y = svm_Spec, type = "b", col = "blue", lty = 2)
+points(x = 1:4, y = nn_Spec, type = "b", col = "pink", lty = 2)
 legend("bottomleft", legend = c("Classification Tree",                                
                                 "Random Forest",                                 
                                 "Logistic Regression",
@@ -340,5 +341,5 @@ legend("bottomleft", legend = c("Classification Tree",
                                 "Support Vector Machine",  
                                 "Neural Net"), 
        col = c("red", "purple", "yellow", "green", "blue", "pink"), 
-       lwd = 1, cex = 0.75)
+       lwd = 2, cex = 0.75)
 
