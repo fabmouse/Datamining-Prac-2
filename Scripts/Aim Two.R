@@ -12,7 +12,8 @@ library(rpart.plot)   #For the classification tree
 library(randomForest) #For the random forest
 library(e1071)        #For the support vector machine
 library(neuralnet)    #For the neural net
-library(pROC)         #For ROC curves 
+library(pROC)         #For ROC curves
+library(dplyr)
 
 # Set up the datasets -----------------------------------------------------
 data.vote <- read.csv("data/Final Vote Data.csv", header = TRUE)
@@ -80,7 +81,7 @@ dt.pred <- predict(tree.pruned, data.validation.dt[, 4:11])
 
 
 #Calculate the MSE and Accuracy/Kappa
-MSE <- mean((dt.pred - data.validation.dt$Constituency)^2)
+dt.MSE<- mean((dt.pred - data.validation.dt$Constituency)^2)
 
 dt.leave_remain_pred <- c()
 for (i in 1:nrow(data.validation.dt)){
@@ -136,7 +137,7 @@ plot(modeltworeg.lr)
 rf.pred <- predict(modeltworeg.lr, data.validation)
 
 #Calculate the MSE and Accuracy/Kappa
-MSE <- mean((rf.pred - data.validation$Constituency)^2)
+rf.MSE <- mean((rf.pred - data.validation$Constituency)^2)
 
 leave_remain_pred <- c()
 for (i in 1:nrow(data.validation)){
@@ -172,7 +173,7 @@ svmfit <- svm(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
 svm.pred <- predict(svmfit, data.validation[, 4:11])
 
 #Calculate the MSE and accuracy
-MSE <- mean((svm.pred - data.validation$Constituency)^2)
+svm.MSE <- mean((svm.pred - data.validation$Constituency)^2)
 
 leave_remain_pred <- c()
 for (i in 1:nrow(data.validation)){
@@ -188,7 +189,7 @@ for (i in seq_along(svm_fit_metrics)) {
                                           positive = positive.class)
 }
 
-# NEURAL NET -------------------------------------------------------------------
+# NEURAL NET (Brooke) ----------------------------------------------------------
 nn_params <- train(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
                      Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
                      Voting.8, data = data.train, 
@@ -208,7 +209,7 @@ plot(nn_model)
 
 #Make predictions
 nn.pred  <- predict(nn_model, data.validation[, 4:11])
-nn_mse <- mean((nn.pred  - data.validation$Constituency)^2)
+nn.MSE <- mean((nn.pred  - data.validation$Constituency)^2)
 
 #Change probabilities into classes
 predclass <- c()
@@ -233,7 +234,11 @@ rf_kappa <- rf_fit_metrics[[1]]$overall["Kappa"]
 svm_kappa <- svm_fit_metrics[[1]]$overall["Kappa"] #Appears to be the best kappa?
 nn_kappa <- nn_fit_metrics[[1]]$overall["Kappa"]
 
-list(DT = dt_kappa, RF = rf_kappa, SVM = svm_kappa, NN = nn_kappa)
+kappas <- c(DT = dt_kappa, RF = rf_kappa, SVM = svm_kappa, NN = nn_kappa)
+mse <- c(DT = dt.MSE, RF = rf.MSE, SVM = svm.MSE, NN = nn.MSE)
+
+camparison <- cbind(MSE = mse, KAPPA = kappas)
+
 #ROC Curve
 
 dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.pred/100)),
