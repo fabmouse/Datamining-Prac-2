@@ -105,10 +105,9 @@ originalreg.rf = randomForest(Constituency ~ Voting.1 + Voting.2 + Voting.3 +
                               mtry = 2, ntree = 1000)
 print(originalreg.rf)
 plot(originalreg.rf)
-tuneRF(x = tune.train[, 4:11], y = tune.train[, 1])
 
 ### Try to find out the best mtry value
-findgoodmtryreg(tune.train[, 4:11], tune.train[, 1], 7, 123, tune.test)
+findgoodmtryreg(tune.train[, 4:11], tune.train[, 3], 10, 123, tune.test)
 ### when mtry = 3, the MSE is minimum
 
 ## creat the new model, mtry = 3 and try to find the best ntree
@@ -119,14 +118,17 @@ print(modelreg.lr)
 plot(modelreg.lr)
 
 ## from the plot, we could know when ntree around 800 - 1000 is stable.
-findgoodntreereg(tune.train[, 4:11], tune.train[, 5], 800, 1200, 50, 3, tune.test)
-## when ntree = 950, mtry = 3, the MSE is minimum
+findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 800, 1200, 50, 3, tune.test)
+findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 900, 1100, 30, 3, tune.test)
+findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 900, 1100, 20, 3, tune.test)
+findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 900, 1100, 10, 3, tune.test)
+## when ntree = 1000, mtry = 3, the MSE is minimum
 
 ## creat the best model of random forest for regression
 modeltworeg.lr <- randomForest(Constituency ~ Voting.1 + Voting.2 + Voting.3 +
                                  Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
                                  Voting.8, data = data.train, 
-                               mtry = 3, ntree = 950)
+                               mtry = 3, ntree = 1000)
 print(modeltworeg.lr)
 plot(modeltworeg.lr)
 
