@@ -9,10 +9,10 @@ library(tree)         #For the classification tree
 library(ISLR)         #For the classification tree
 library(rpart)        #For the classification tree
 library(rpart.plot)   #For the classification tree
-library(e1071)        #For the naive bayes
+library(randomForest) #For the random forest
+library(e1071)        #For the support vector machine
 library(neuralnet)    #For the neural net
 library(pROC)         #For ROC curves 
-library(plotrix)      ## graphics
 
 # Set up the datasets -----------------------------------------------------
 data.vote <- read.csv("data/Final Vote Data.csv", header = TRUE)
@@ -186,24 +186,27 @@ for (i in seq_along(svm_fit_metrics)) {
                                           positive = positive.class)
 }
 
-# NEURAL NET --------------------------------------------------------------
-nn_params <- train(Constituency ~ . - LeaveRemain, data = data.train, 
+# NEURAL NET -------------------------------------------------------------------
+nn_params <- train(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
+                     Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
+                     Voting.8, data = data.train, 
                    method = "nnet", linear.output = TRUE,
                    trControl = fitControl)
 nn_hidden <- nn_params$bestTune$size #Suggests 1 hidden layer
 nn_decay <- nn_params$bestTune$decay
 
-nn_model <- neuralnet(Constituency ~ . - LeaveRemain, data = data.train,
-                      stepmax = 1e+09, 
+nn_model <- neuralnet(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
+                        Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
+                        Voting.8, data = data.train,
+                      stepmax = 1e+05, 
                       linear.output = TRUE, hidden = nn_hidden,
                       lifesign = "full")
 
 plot(nn_model)
 
 #Make predictions
-predict_testNN <- predict(nn_model, data.validation[, -c(1, 2)])
-nn_percent_preds <- predict_testNN
-nn_mse <- mean((nn_percent_preds - data.validation[, 2])^2)
+nn_percent_preds  <- predict(nn_model, data.validation[, 4:11])
+nn_mse <- mean((nn_percent_preds - data.validation$Constituency)^2)
 
 #Change probabilities into classes
 predclass <- c()
@@ -228,6 +231,7 @@ rf_kappa <- rf_fit_metrics[[1]]$overall["Kappa"]
 svm_kappa <- svm_fit_metrics[[1]]$overall["Kappa"] #Appears to be the best kappa?
 nn_kappa <- nn_fit_metrics[[1]]$overall["Kappa"]
 
+list(DT = dt_kappa, RF = rf_kappa, SVM = svm_kappa, NN = nn_kappa)
 #ROC Curve
 
 dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.pred/100)),
@@ -246,7 +250,7 @@ svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.pred/100)),
 #                print.auc = TRUE, lwd = 2,
 #                col = "green", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.6)
 legend("bottomright", 
-       legend = c("Decision Tree", "Random Forest", "GLM", 
+       legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
                   "Support Vector Machine", "Neural Net"), cex = 0.75,
        col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
 # 
