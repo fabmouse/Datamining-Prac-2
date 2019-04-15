@@ -36,6 +36,18 @@ All analyses in the following report were carried out using R 3.5.1 software (R,
 
 ### Predicting Party Represenation
 
+We found that predicting the Party of each MP based on how they voted on the alternative Brexit options. The model Random Forest makes prediction that are closer to the original data than any other model we fit. Random Forests are classification models that output probabilities of outcomes, in order to support decision making. This Random Forest model can be expected to predict the correct Party of each MP 97.35% of the time. Table... shows that the Random Forest outperforms the prediction of other models we built. We are confident that this Random Forest model provides the best predictions possible for these data.  
+
+|           Model          |    Accuracy    |
+|--------------------------|----------------|
+| Classification Tree      |     94.70%     |
+| Random Forest            |     97.35%     |    
+| Logistic Regression      |     94.04%     | 
+| Naive Bayes              |     78.15%     |     
+| Support Vector Machines  |     94.04%     |   
+| Neural Net               |     93.38%     |    
+[Table, Accuracy of each model]
+
 ### Predicting Leave/Remain Percentage 
 
 ## Conclusions
