@@ -70,9 +70,9 @@ print(accuracy.lr) # Accuracy = 93.92%
 print(misclass.lr) # Misclass rate = 6.07%
 
 ### Conlcusion for the aim(i) ###
-# when the X only includes the voting data, the performance and general error of model is better.
+# when the X includes the voting data and percentage of remain/leave , the performance and general error of model is better.
 # the best model of logistic regression for aim(i) is:
-aimOne.lr <- multinom(Party~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + Voting.5 + Voting.6 + Voting.7 + Voting.8, data = train)
+aimOne.lr <- multinom(Party~ Constituency + Voting.1 + Voting.2 + Voting.3 + Voting.4 + Voting.5 + Voting.6 + Voting.7 + Voting.8, data = train)
 print(aimOne.lr)
 
 ###########################################################################################
@@ -147,9 +147,14 @@ print(aimtwo.lr)
 
 ###########################################################################################
 
+######### predict the percentage of constituency ########
 reg.lr <- multinom(Constituency~ Party + LeaveRemain + Voting.1 + Voting.2 + Voting.3 + Voting.4 + Voting.5 + Voting.6 + Voting.7 + Voting.8, data = trainlr)
 print(reg.lr)
 
+prediction.lr <- predict(reg.lr, testlr)
+actuals.lr <- breixtdata[,5]
+result.lr <- list( 'actual' = actuals.lr, 'prediction' = prediction.lr)
+tablevalue.lr <- data.frame(do.call(cbind,result.lr))
 
 
 
