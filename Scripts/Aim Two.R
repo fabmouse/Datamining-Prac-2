@@ -207,14 +207,14 @@ nn_model <- neuralnet(Constituency ~ Voting.1 + Voting.2 + Voting.3 +
 plot(nn_model)
 
 #Make predictions
-nn_percent_preds  <- predict(nn_model, data.validation[, 4:11])
-nn_mse <- mean((nn_percent_preds - data.validation$Constituency)^2)
+nn.pred  <- predict(nn_model, data.validation[, 4:11])
+nn_mse <- mean((nn.pred  - data.validation$Constituency)^2)
 
 #Change probabilities into classes
 predclass <- c()
 for (i in 1:nrow(data.validation)){
-  if (nn_percent_preds[i] >= 50) predclass[i] = "Remain"
-  if (nn_percent_preds[i] < 50) predclass[i] = "Leave"
+  if (nn.pred[i] >= 50) predclass[i] = "Remain"
+  if (nn.pred[i] < 50) predclass[i] = "Leave"
 }
 predclass <- as.factor(predclass)
 
@@ -248,9 +248,9 @@ rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.pred/100)),
 svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.pred/100)), 
                 print.auc = TRUE, lwd = 2,
                 col = "blue", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.7)
-# nn.roc <- plot(roc(data.validation$LeaveRemain, order(nn.pred/100)), 
-#                print.auc = TRUE, lwd = 2,
-#                col = "green", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.6)
+nn.roc <- plot(roc(data.validation$LeaveRemain, order(nn.pred/100)),
+               print.auc = TRUE, lwd = 2,
+               col = "green", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.6)
 legend("bottomright", 
        legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
                   "Support Vector Machine", "Neural Net"), cex = 0.75,
