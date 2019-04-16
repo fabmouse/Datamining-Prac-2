@@ -33,6 +33,7 @@ set.seed(123)
 fitControl <- trainControl(method = "cv", number = 5)
 
 # CLASSIFICATION TREE (José) ---------------------------------------------------
+set.seed(123)
 # Change levels into Yes, No, No Vote for nicer plots
 data.vote.dt <- data.vote
 data.vote.dt[, 6:13] <- data.vote.dt[, 6:13] %>% mutate_if(is.numeric, as.factor)
@@ -168,7 +169,7 @@ for (i in seq_along(rf_fit_metrics)) {
                                       positive = positive.class)
 }
 
-# LOGISTIC REGRESSION (Lei) ----------------------------------------------------
+# MULTIPLE LOGISTIC REGRESSION (Lei) -------------------------------------------
 #Divide training dataset into two parts
 library(nnet)
 
@@ -206,10 +207,13 @@ for (i in seq_along(lr_fit_metrics)) {
 }
 
 # NAIVE BAYES (Brooke and Carlotta) --------------------------------------------
+set.seed(123)
 nb_params <- train(factor(Party) ~ ., data = data.train, 
-                   method = "nb",
+                   method = "naive_bayes",
                    trControl = fitControl)
-#Gives a lot of warnings - but this is due to the highly imbalanced dataset 
+#Kernel = true
+#Laplace = 0
+#Adjust = 1
 
 nb_model <- naiveBayes(factor(Party) ~ ., data = data.train)
 
@@ -252,9 +256,9 @@ plot(nn_model)
 predclass <- vector() 
 
 #Change probabilities into classes
-predict_testNN <- compute(nn_model, data.validation[, -1])
-for(i in 1:nrow(predict_testNN$net.result)){
-  result_row <- predict_testNN$net.result[i, ]
+predict_testNN <- predict(nn_model, data.validation[, -1])
+for(i in 1:nrow(predict_testNN)){
+  result_row <- predict_testNN[i, ]
   max_ind <- which.max(result_row)
   if(max_ind == 1) predclass[i] = "Conservative"
   if(max_ind == 2) predclass[i] = "Labour"
