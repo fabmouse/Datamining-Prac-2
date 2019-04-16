@@ -209,12 +209,16 @@ for (i in seq_along(lr_fit_metrics)) {
 set.seed(123)
 nb_params <- train(factor(Party) ~ ., data = data.train, 
                    method = "naive_bayes",
+                   tuneGrid = expand.grid(laplace = 0:2, 
+                                          usekernel = c(TRUE, FALSE), 
+                                          adjust = 0:5),
                    trControl = fitControl)
-#Kernel = true
-#Laplace = 0
-#Adjust = 1
+# Accuracy was used to select the optimal model using the largest value.
+# The final values used for the model were: 
+# laplace = 0, usekernel = TRUE and adjust = 0.
 
-nb_model <- naiveBayes(factor(Party) ~ ., data = data.train)
+nb_model <- naiveBayes(factor(Party) ~ ., data = data.train,
+                      laplace = 0, usekernel = TRUE, adjust = 0)
 
 predclass <- predict(nb_model, newdata = data.validation[, -1]) 
 
@@ -228,9 +232,15 @@ for (i in seq_along(nb_fit_metrics)) {
 # SUPPORT VECTOR MACHINE (Brooke and Carlotta) ---------------------------------
 set.seed(123)
 svm_params <- train(factor(Party) ~ ., data = data.train, 
-                    method = "svmRadialCost",
+                    method = "svmRadial", 
+                    tuneGrid = expand.grid(C = seq(0.1, 1, 0.1), 
+                                           sigma = seq(1, 5, 1)),
                     trControl = fitControl)
-svm_cost <- svm_params$bestTune$C #Suggests cost factor of 1
+#Accuracy was used to select the optimal model using the largest value.
+#The final values used for the model were sigma = 5 and C = 0.5.
+
+svm_cost <- svm_params$bestTune$C
+svm_gamma <- svm_params$bestTune$sigma
 svm_model <- svm(factor(Party) ~ ., data = data.train,
                 type = "C", kernel = "radial", cost = svm_cost, gamma = 1)
 
