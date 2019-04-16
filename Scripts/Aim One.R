@@ -74,8 +74,8 @@ plot(cv.voting$size, cv.voting$dev, main = "Size Results of 5 Fold CV",
 plot(cv.voting$k, cv.voting$dev, main = "Cost Complexity Results of 5 Fold CV",
      xlab = "K: Cost Complexity", ylab = "Deviance", type = "b")
 
-#Decided that a tree with 7 terminal nodes is best
-prune.voting <- prune.misclass(tree.voting, best = 7)
+#Decided that a tree with 5 terminal nodes is best
+prune.voting <- prune.misclass(tree.voting, best = 5)
 prune.voting
 
 plot(prune.voting)
@@ -83,39 +83,36 @@ text(prune.voting, pretty = 0)
 
 #Predict based on pruned tree
 #Calculate accuracy
-prune.pred <- predict(prune.voting, tune.test, type = "class")
-CMtable <- table(Observed = tune.test$Party, Predicted = prune.pred)
-prune.accuracy.ct <- sum(diag(CMtable))/sum(CMtable)
+# prune.pred <- predict(prune.voting, tune.test, type = "class")
+# CMtable <- table(Observed = tune.test$Party, Predicted = prune.pred)
+# prune.accuracy.ct <- sum(diag(CMtable))/sum(CMtable)
 
 #Test on validation set
 #Set up the tree on training set
 #Prune to get seven temrinal nodes
 tree.voting <- tree(Party ~ ., data = data.train)
-prune.voting <- prune.misclass(tree.voting, best = 7)
+prune.voting <- prune.misclass(tree.voting, best = 5)
 prune.pred <- predict(prune.voting, data.validation, type = "class")
 
-ct_fit_metrics <- vector("list", length(levels(data.validation$Party)))
+ct_fit_metrics <- vector("list", length(levels(data.validation.dt$Party)))
 for (i in seq_along(ct_fit_metrics)) {
-  positive.class <- levels(data.validation$Party)[i]
-  ct_fit_metrics[[i]] <- confusionMatrix(prune.pred, data.validation$Party,
+  positive.class <- levels(data.validation.dt$Party)[i]
+  ct_fit_metrics[[i]] <- confusionMatrix(prune.pred, data.validation.dt$Party,
                                           positive = positive.class)
 }
 
 #plots with rpart.plot#nice plots
-tree.voting <- rpart(Party ~ ., data = data.train, subset = tuneind)
-prune.voting <- prune(tree.voting, cp = 1)
-prune.voting
-prp(prune.voting, faclen = 0, cex = 0.8, extra = 1)
-
-
-
+#Note: rpart uses 10 fold cross validation
+tree.voting <- rpart(Party ~ ., data = data.train.dt)
+rpart.plot(tree.voting)
 
 # RANDOM FOREST (Lei) ----------------------------------------------------------
-#Lei found that a random forest with mtry = 4 and ntree = 470 works best.
+#Lei found that a random forest with mtry = 4 and ntree = 460 works best.
 library(randomForest)
 source("Scripts/RFFunction.R")
 
 # Initial Look: Fit a RF on the training set
+set.seed(123)
 fit.rf <- randomForest(factor(Party) ~ ., data = data.train)
 print(fit.rf)
 
@@ -131,6 +128,7 @@ set.seed(123)
 fit.rf <- randomForest(factor(Party)~ ., data = data.train, mtry = 4, 
                        ntree = 1000)
 plot(fit.rf)
+#Watch the bottom four lines looking for stability.
 ## when number of trees is around 300 to 400, the model is stable
 
 ## Step 3: set ntree = 350  mtry = 4, to get the basic information about these 
@@ -155,7 +153,7 @@ rf_model <-  randomForest(factor(Party) ~ ., data = data.train,
 
 importance(rf_model) #Shows the importance of each vote
 varImpPlot(rf_model) #Shows the importance of each vote in a plot
-plot(rf_model) #Shows model performance?
+#plot(rf_model) #Shows model performance?
 
 #Now perform validation
 predclass <- predict(rf_model, newdata = data.validation[, -1]) 
@@ -176,20 +174,22 @@ library(nnet)
 ## X = Voting data Y = Party, dataset = train
 original.lr <- multinom(Party ~ ., data = tune.train)
 summary(original.lr)
+car::Anova(original.lr)
+#All variables are significant at th 5% level
 ## when the X only include the voting data, the residual deviance = 153.3819 , 
 #AIC = 207.3819 
 
 #Calculate accuracy for the original logistic regression 
 ## Build the confusion matrix for original.lr by test dataset
-prediction <- predict(original.lr, tune.test)
-actuals <- tune.test$Party
-CMtable <- table(Observed = actuals, Predicted = prediction)
-print(CMtable)
-# Accuracy and Misclass rate
-accuracy.lr <- sum(diag(CMtable))/sum(CMtable)
-misclass.lr <- 1 - sum(diag(CMtable))/sum(CMtable)
-print(accuracy.lr) # Accuracy = 95.58%
-print(misclass.lr) # Misclass rate = 4.42%
+# prediction <- predict(original.lr, tune.test)
+# actuals <- tune.test$Party
+# CMtable <- table(Observed = actuals, Predicted = prediction)
+# print(CMtable)
+# # Accuracy and Misclass rate
+# accuracy.lr <- sum(diag(CMtable))/sum(CMtable)
+# misclass.lr <- 1 - sum(diag(CMtable))/sum(CMtable)
+# print(accuracy.lr) # Accuracy = 95.58%
+# print(misclass.lr) # Misclass rate = 4.42%
 
 #Best model 
 lr_model <- multinom(Party ~ ., data = data.train)
@@ -226,6 +226,7 @@ for (i in seq_along(nb_fit_metrics)) {
 }
 
 # SUPPORT VECTOR MACHINE (Brooke and Carlotta) ---------------------------------
+set.seed(123)
 svm_params <- train(factor(Party) ~ ., data = data.train, 
                     method = "svmRadialCost",
                     trControl = fitControl)
@@ -243,6 +244,7 @@ for (i in seq_along(svm_fit_metrics)) {
 }
 
 # NEURAL NET (Brooke) ----------------------------------------------------------
+set.seed(123)
 nn_params <- train(factor(Party) ~ ., data = data.train, 
                    method = "nnet",
                    trControl = fitControl)
