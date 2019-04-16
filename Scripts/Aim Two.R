@@ -100,6 +100,7 @@ for (i in seq_along(dt_fit_metrics)) {
 
 # RANDOM FOREST (Lei) ----------------------------------------------------------
 source("Scripts/RFFunction.R")
+set.seed(123)
 ### create model for percentage prediction, regression random forest ###
 originalreg.rf = randomForest(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
                                 Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
@@ -140,41 +141,38 @@ rf.pred <- predict(modeltworeg.lr, data.validation)
 #Calculate the MSE and Accuracy/Kappa
 rf.MSE <- mean((rf.pred - data.validation$Constituency)^2)
 
-leave_remain_pred <- c()
+rf.leave_remain_pred <- c()
 for (i in 1:nrow(data.validation)){
-  if (rf.pred[i] >= 50) leave_remain_pred[i] = "Remain"
-  if (rf.pred[i] < 50) leave_remain_pred[i] = "Leave"
+  if (rf.pred[i] >= 50) rf.leave_remain_pred[i] = "Remain"
+  if (rf.pred[i] < 50) rf.leave_remain_pred[i] = "Leave"
 }
-leave_remain_pred <- as.factor(leave_remain_pred)
+rf.leave_remain_pred <- as.factor(rf.leave_remain_pred)
 
 rf_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
 for (i in seq_along(rf_fit_metrics)) {
   positive.class <- levels(data.validation$LeaveRemain)[i]
-  rf_fit_metrics[[i]] <- confusionMatrix(leave_remain_pred, data.validation$LeaveRemain,
+  rf_fit_metrics[[i]] <- confusionMatrix(rf.leave_remain_pred, data.validation$LeaveRemain,
                                          positive = positive.class)
 }
 
 # GLM (Abtin) ------------------------------------------------------------------
 #Building an initial glm model
-formula <- Constituency ~ .
-logit <- glm(formula, data = subset(tune.train, select=c(-Party, -LeaveRemain)))
+logit <- glm(formula <- Constituency ~ . -Party -LeaveRemain, data = data.train)
 summary(logit)
+#AIC: 3263.9
 
-predict <- predict(logit, tune.test, type = 'response')
-glm.MSE <- mean((predict - tune.test$Constituency)^2)   #93.12757
-
-#Looking at the Anova
 car::Anova(logit)
 #at the 5% level keep only Voting.3, Voting.5, Voting.6 and Voting.7
-#at the 10% level keep only Voting.2, Voting.3, Voting.5, Voting.6 and Voting.7
 
-logit <- glm(formula, data = subset(tune.train, select=c(-Voting.1, - Voting.2, 
-                                                         -Voting.4, - Voting.8,
-                                                         -Party, -LeaveRemain)))
+step(logit, direction = "both")
+
+logit <- glm(formula = Constituency ~ Voting.3 + Voting.4 + Voting.5 + 
+             Voting.6 + Voting.7, data = data.train)
+
 summary(logit)
 
-predict <- predict(logit, tune.test, type = 'response')
-glm.MSE <- mean((predict - tune.test$Constituency)^2)   #89.54375
+# predict <- predict(logit, tune.test, type = 'response')
+# glm.MSE <- mean((predict - tune.test$Constituency)^2)   #89.54375
 #Not sure if getting rid of the votes helped - fit actually gets worse.
 
 #Trying cross validation
@@ -194,15 +192,15 @@ for(j in 1:5){
   cvTrain <- data.train[-cv_indices, ]
   
   #Build the polynomial and store cv scores
-  glm_cv <- logit <- glm(formula, data = subset(cvTrain, select=c(-Party, -LeaveRemain)))
+  glm_cv <- glm(formula = Constituency ~ Voting.3 + Voting.4 + Voting.5 + 
+                  Voting.6 + Voting.7, data = cvTrain)
   
   #Estimate mse
   mse_scores[j] <- mean((cvTest$Constituency - predict(glm_cv, cvTest))^2) 
 }
 
 #Take the mean of the goodness of fit measures
-glm.cv.MSE <- mean(mse_scores)  #84.49816
-
+glm.cv.MSE <- mean(mse_scores)  #83.55
 #Now test on Validation set.
 glm.pred <- predict(logit, data.validation, type = 'response')
 
@@ -222,35 +220,6 @@ for (i in seq_along(glm_fit_metrics)) {
   glm_fit_metrics[[i]] <- confusionMatrix(glm.leave_remain_pred, data.validation$LeaveRemain,
                                           positive = positive.class)
 }
-# LOGISTIC REGRESSION -----------------------------------------------------
-reg.lr <- multinom(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
-                     Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train)
-
-prediction.lr <- predict(reg.lr, data.validation)
-actuals.lr <- breixtdata[,5]
-result.lr <- list( 'actual' = actuals.lr, 'prediction' = prediction.lr)
-tablevalue.lr <- data.frame(do.call(cbind,result.lr))
-
-#Calculate predictions based on validation set
-lr.pred <- predict(reg.lr, data.validation[, 4:11])
-
-#Calculate the MSE and accuracy
-lr.MSE <- mean((lr.pred - data.validation$Constituency)^2)
-
-leave_remain_pred <- c()
-for (i in 1:nrow(data.validation)){
-  if (lr.pred[i] >= 50) leave_remain_pred[i] = "Remain"
-  if (lr.pred[i] < 50) leave_remain_pred[i] = "Leave"
-}
-leave_remain_pred <- as.factor(leave_remain_pred)
-
-lr_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
-for (i in seq_along(lr_fit_metrics)) {
-  positive.class <- levels(data.validation$LeaveRemain)[i]
-  lr_fit_metrics[[i]] <- confusionMatrix(leave_remain_pred, data.validation$LeaveRemain,
-                                          positive = positive.class)
-}
-
 # SUPPORT VECTOR MACHINE (José) ------------------------------------------------
 svmfit <- svm(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train,
@@ -277,6 +246,7 @@ for (i in 1:nrow(data.validation)){
   if (svm.pred[i] >= 50) leave_remain_pred[i] = "Remain"
   if (svm.pred[i] < 50) leave_remain_pred[i] = "Leave"
 }
+
 leave_remain_pred <- as.factor(leave_remain_pred)
 
 svm_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
@@ -286,7 +256,10 @@ for (i in seq_along(svm_fit_metrics)) {
                                           positive = positive.class)
 }
 
+svm.leave_remain_pred <- leave_remain_pred
+
 # NEURAL NET (Brooke) ----------------------------------------------------------
+set.seed(123)
 nn_params <- train(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
                      Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
                      Voting.8, data = data.train, 
@@ -298,7 +271,7 @@ nn_decay <- nn_params$bestTune$decay
 nn_model <- neuralnet(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
                         Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
                         Voting.8, data = data.train,
-                      stepmax = 1e+05, 
+                      stepmax = 1e+06, 
                       linear.output = TRUE, hidden = nn_hidden,
                       lifesign = "full")
 
@@ -322,7 +295,7 @@ for (i in seq_along(nn_fit_metrics)) {
   nn_fit_metrics[[i]] <- confusionMatrix(predclass, data.validation$LeaveRemain,
                                          positive = positive.class)
 }
-
+nn.leave_remain_pred <- predclass
 # COMPARING MODEL ACCURACY (Brooke) --------------------------------------------
 #Obtain Kappas
 dt_kappa <- dt_fit_metrics[[1]]$overall["Kappa"]
@@ -345,9 +318,9 @@ camparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
 
 #ROC Curve
 
-dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.pred/100)),
+dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred)),
                col="red", lwd = 2,  print.auc = TRUE, 
-               print.auc.x = 1.1, print.auc.y = 1)
+               print.auc.x = 1.1, print.auc.y = 1, xlim=c(0,1))
 rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.pred/100)), 
                print.auc = TRUE, lwd = 2,
                col = "purple", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.9)
@@ -364,7 +337,24 @@ legend("bottomright",
        legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
                   "Support Vector Machine", "Neural Net"), cex = 0.75,
        col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
-# 
+
+
+plotwithggplot <- ggplot(data.frame(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred), 
+                                        aes(FPR, TPR)))) + geom_point() +
+                                      geom_abline(intercept = 0, slope = 1)
+
+install.packages("ROSE")
+library(ROSE)
+roc.curve(data.validation$LeaveRemain, dt.leave_remain_pred, plotit = TRUE, add.roc = FALSE, col = "red", auc = TRUE)
+roc.curve(data.validation$LeaveRemain, rf.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "purple")
+roc.curve(data.validation$LeaveRemain, glm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "yellow")
+roc.curve(data.validation$LeaveRemain, svm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "blue")
+roc.curve(data.validation$LeaveRemain, nn.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "green")
+legend("bottomright", 
+       legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
+                  "Support Vector Machine", "Neural Net"), cex = 0.75,
+       col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
+
 # par(mfrow = c(1, 2))
 # #Plot Sensitivities
 # dt_Sens <- c(dt_fit_metrics[[1]]$byClass["Sensitivity"], dt_fit_metrics[[2]]$byClass["Sensitivity"])
@@ -412,3 +402,12 @@ legend("bottomright",
 #                                 "Neural Net"),
 #        col = c("red", "purple", "yellow", "blue", "green"),
 #        lwd = 2, cex = 0.75)
+
+#Aim 1: Gradient boost (97% acc) and then random forest (96%)
+#Aim 2: Decision tree [Gradient boost (75% acc)]
+
+#nb
+# nn
+# rf
+# dt
+# xj boost (some sort of dt)
