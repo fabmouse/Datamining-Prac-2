@@ -331,10 +331,17 @@ glm_kappa <- glm_fit_metrics[[1]]$overall["Kappa"]
 svm_kappa <- svm_fit_metrics[[1]]$overall["Kappa"] #Appears to be the best kappa?
 nn_kappa <- nn_fit_metrics[[1]]$overall["Kappa"]
 
-kappas <- c(DT = dt_kappa, RF = rf_kappa, GLM = glm_kappa, SVM = svm_kappa, NN = nn_kappa)
-mse <- c(DT = dt.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm.MSE, NN = nn.MSE)
+dt_acc <- dt_fit_metrics[[1]]$overall["Accuracy"]
+rf_acc <- rf_fit_metrics[[1]]$overall["Accuracy"]
+glm_acc <- glm_fit_metrics[[1]]$overall["Accuracy"]
+svm_acc <- svm_fit_metrics[[1]]$overall["Accuracy"] #Appears to be the best kappa?
+nn_acc <- nn_fit_metrics[[1]]$overall["Accuracy"]
 
-camparison <- cbind(MSE = mse, KAPPA = kappas)
+kappas <- round(c(DT = dt_kappa, RF = rf_kappa, GLM = glm_kappa, SVM = svm_kappa, NN = nn_kappa), 4)
+accs <- round(c(DT = dt_acc, RF = rf_acc, GLM = glm_acc, SVM = svm_acc, NN = nn_acc), 4)
+mse <- round(c(DT = dt.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm.MSE, NN = nn.MSE), 4)
+
+camparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
 
 #ROC Curve
 
@@ -358,10 +365,11 @@ legend("bottomright",
                   "Support Vector Machine", "Neural Net"), cex = 0.75,
        col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
 # 
+# par(mfrow = c(1, 2))
 # #Plot Sensitivities
 # dt_Sens <- c(dt_fit_metrics[[1]]$byClass["Sensitivity"], dt_fit_metrics[[2]]$byClass["Sensitivity"])
 # rf_Sens <- c(rf_fit_metrics[[1]]$byClass["Sensitivity"], rf_fit_metrics[[2]]$byClass["Sensitivity"])
-# #glm_Sens <- c(glm_fit_metrics[[1]]$byClass["Sensitivity"], glm_fit_metrics[[2]]$byClass["Sensitivity"])
+# glm_Sens <- c(glm_fit_metrics[[1]]$byClass["Sensitivity"], glm_fit_metrics[[2]]$byClass["Sensitivity"])
 # svm_Sens <- c(svm_fit_metrics[[1]]$byClass["Sensitivity"], svm_fit_metrics[[2]]$byClass["Sensitivity"])
 # nn_Sens <- c(svm_fit_metrics[[1]]$byClass["Sensitivity"], svm_fit_metrics[[2]]$byClass["Sensitivity"])
 # 
@@ -370,39 +378,37 @@ legend("bottomright",
 #      type = "b", col = "red", xaxt = "n")
 # axis(1, at = c(1, 2), labels = c("Leave", "Remain"))
 # points(x = 1:2, y = rf_Sens, type = "b", col = "purple", lty = 2)
-# # points(x = 1:4, y = glm_Sens, type = "b", col = "yellow")
+# points(x = 1:2, y = glm_Sens, type = "b", col = "yellow")
 # points(x = 1:2, y = svm_Sens, type = "b", col = "blue")
 # points(x = 1:2, y = nn_Sens, type = "b", col = "green", lty = 2)
-# legend("bottomleft", legend = c("Classification Tree",                                
-#                                 "Random Forest",                                 
+# legend("bottomleft", legend = c("Classification Tree",
+#                                 "Random Forest",
 #                                 "Generalised Linear Model",
-#                                 "Support Vector Machine",  
-#                                 "Neural Net"), 
-#        col = c("red", "purple", "yellow", "blue", "green"), 
+#                                 "Support Vector Machine",
+#                                 "Neural Net"),
+#        col = c("red", "purple", "yellow", "blue", "green"),
 #        lwd = 2, cex = 0.75)
 # 
 # #Plot Specificity
 # dt_Spec <- c(dt_fit_metrics[[1]]$byClass["Specificity"], dt_fit_metrics[[2]]$byClass["Specificity"])
 # rf_Spec <- c(rf_fit_metrics[[1]]$byClass["Specificity"], rf_fit_metrics[[2]]$byClass["Specificity"])
-# #glm_Spec <- c(glm_fit_metrics[[1]]$byClass["Specificity"], glm_fit_metrics[[2]]$byClass["Specificity"])
+# glm_Spec <- c(glm_fit_metrics[[1]]$byClass["Specificity"], glm_fit_metrics[[2]]$byClass["Specificity"])
 # svm_Spec <- c(svm_fit_metrics[[1]]$byClass["Specificity"], svm_fit_metrics[[2]]$byClass["Specificity"])
 # nn_Spec <- c(svm_fit_metrics[[1]]$byClass["Specificity"], svm_fit_metrics[[2]]$byClass["Specificity"])
 # 
 # plot(x = 1:2, y = dt_Spec, ylim = c(0, 1), xlab = "Party", ylab = "Specificity",
-#      main = "Specificity Comparison Based on Validation Set", lty = 2, 
+#      main = "Specificity Comparison Based on Validation Set", lty = 2,
 #      type = "b", col = "red", xaxt = "n")
-# axis(1, at = seq(1, 4, by = 1), labels = c("Conservative", "Labour", 
+# axis(1, at = seq(1, 4, by = 1), labels = c("Conservative", "Labour",
 #                                            "Other", "Scottish\nNational Party"))
 # points(x = 1:2, y = rf_Spec, type = "b", col = "purple", lty = 2)
-# # points(x = 1:4, y = glm_Spec, type = "b", col = "yellow", lty = 2)
+# points(x = 1:2, y = glm_Spec, type = "b", col = "yellow", lty = 2)
 # points(x = 1:2, y = svm_Spec, type = "b", col = "blue", lty = 2)
 # points(x = 1:2, y = nn_Spec, type = "b", col = "green", lty = 2)
-# legend("bottomleft", legend = c("Classification Tree",                                
-#                                 "Random Forest",                                 
+# legend("bottomleft", legend = c("Classification Tree",
+#                                 "Random Forest",
 #                                 "Logistic Regression",
-#                                 "Support Vector Machine",  
-#                                 "Neural Net"), 
-#        col = c("red", "purple", "yellow", "blue", "green"), 
+#                                 "Support Vector Machine",
+#                                 "Neural Net"),
+#        col = c("red", "purple", "yellow", "blue", "green"),
 #        lwd = 2, cex = 0.75)
-# 
-# 
