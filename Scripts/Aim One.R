@@ -2,9 +2,6 @@
 #               FINAL AIM ONE SCRIPT              #
 ###################################################
 
-data.vote <- read.csv("data/Final Vote Data.csv", header = TRUE)
-head(data.vote)
-
 # LIBRARIES ---------------------------------------------------------------
 library(caret)        #For training with caret package
 library(caret)        #For the confusion matrix
@@ -14,8 +11,13 @@ library(rpart)        #For the classification tree
 library(rpart.plot)   #For the classification tree
 library(e1071)        #For the naive bayes
 library(neuralnet)    #For the neural net
+library(dplyr)
 
 # Set up the datasets -----------------------------------------------------
+data.vote <- read.csv("data/Final Vote Data.csv", header = TRUE)
+data.vote[, 6:13] <- data.vote[, 6:13] %>% mutate_if(is.numeric, as.factor)
+head(data.vote)
+
 #Split dataset into a training set (75%) and hold back (25%) for validation
 set.seed(123)
 ind <- sample(1:nrow(data.vote), 0.75 * nrow(data.vote), replace = FALSE) 
@@ -36,7 +38,6 @@ fitControl <- trainControl(method = "cv", number = 5)
 set.seed(123)
 # Change levels into Yes, No, No Vote for nicer plots
 data.vote.dt <- data.vote
-data.vote.dt[, 6:13] <- data.vote.dt[, 6:13] %>% mutate_if(is.numeric, as.factor)
 for(i in 6:13){ data.vote.dt[, i]  <- recode(data.vote.dt[, i], 
                                              "1" = "Yes", "0" = "No Vote", "-1" = "No")
 }
@@ -45,20 +46,18 @@ data.train.dt <- data.vote.dt[ind, -c(2, 4)]
 data.validation.dt <- data.vote.dt[-ind,  -c(2, 4)] 
 
 #Fit an initial decision tree to all of the training data
-tree.voting <- tree(Party ~ ., data = data.train)
-#The tree splits on <0.5
-#i.e. "Yes" and "Not Yes" for voting
+tree.voting <- tree(Party ~ ., data = data.train.dt)
 
 #plot of decision tree
 plot(tree.voting)
 text(tree.voting, pretty = 0)
 
 #Train the decision tree, using the trainging data set (338 obs)
-tree.voting <- tree(Party ~ ., data = data.train, subset = tuneind)
-tree.pred <- predict(tree.voting, tune.test, type = "class")
-
-CMtable <- table(Observed = tune.test$Party, Predicted = tree.pred)
-accuracy.ct <- sum(diag(CMtable))/sum(CMtable)
+# tree.voting <- tree(Party ~ ., data = data.train, subset = tuneind)
+# tree.pred <- predict(tree.voting, tune.test, type = "class")
+# 
+# CMtable <- table(Observed = tune.test$Party, Predicted = tree.pred)
+# accuracy.ct <- sum(diag(CMtable))/sum(CMtable)
 #Accuracy = 0.9381
 
 #Prune the tree with 5 fold cross validation
