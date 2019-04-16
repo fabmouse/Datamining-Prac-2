@@ -10,6 +10,7 @@ library(ISLR)         #For the classification tree
 library(rpart)        #For the classification tree
 library(rpart.plot)   #For the classification tree
 library(randomForest) #For the random forest
+library(nnet)         #For logistic regression
 library(e1071)        #For the support vector machine
 library(neuralnet)    #For the neural net
 library(pROC)         #For ROC curves
@@ -154,6 +155,102 @@ for (i in seq_along(rf_fit_metrics)) {
 }
 
 # GLM (Abtin) ------------------------------------------------------------------
+#Building an initial glm model
+formula <- Constituency ~ .
+logit <- glm(formula, data = subset(tune.train, select=c(-Party, -LeaveRemain)))
+summary(logit)
+
+predict <- predict(logit, tune.test, type = 'response')
+glm.MSE <- mean((predict - tune.test$Constituency)^2)   #93.12757
+
+#Looking at the Anova
+car::Anova(logit)
+#at the 5% level keep only Voting.3, Voting.5, Voting.6 and Voting.7
+#at the 10% level keep only Voting.2, Voting.3, Voting.5, Voting.6 and Voting.7
+
+logit <- glm(formula, data = subset(tune.train, select=c(-Voting.1, - Voting.2, 
+                                                         -Voting.4, - Voting.8,
+                                                         -Party, -LeaveRemain)))
+summary(logit)
+
+predict <- predict(logit, tune.test, type = 'response')
+glm.MSE <- mean((predict - tune.test$Constituency)^2)   #89.54375
+#Not sure if getting rid of the votes helped - fit actually gets worse.
+
+#Trying cross validation
+set.seed(123)
+shuffled_indices <- sample(1:nrow(data.train))
+shuffledData <- data.train[shuffled_indices, ]
+cv_folds <- cut(seq(1, nrow(shuffledData)), breaks = 5, labels = FALSE)
+
+#Create a store for cv_scores
+mse_scores <- rep(NA, 5)
+
+#Perform 5 fold cross validation
+for(j in 1:5){
+  #Segement your data by fold using the which() function 
+  cv_indices <- which(cv_folds == j, arr.ind = TRUE)
+  cvTest <- data.train[cv_indices, ]
+  cvTrain <- data.train[-cv_indices, ]
+  
+  #Build the polynomial and store cv scores
+  glm_cv <- logit <- glm(formula, data = subset(cvTrain, select=c(-Party, -LeaveRemain)))
+  
+  #Estimate mse
+  mse_scores[j] <- mean((cvTest$Constituency - predict(glm_cv, cvTest))^2) 
+}
+
+#Take the mean of the goodness of fit measures
+glm.cv.MSE <- mean(mse_scores)  #84.49816
+
+#Now test on Validation set.
+glm.pred <- predict(logit, data.validation, type = 'response')
+
+#Calculate the MSE and Accuracy/Kappa
+glm.MSE <- mean((glm.pred - data.validation$Constituency)^2)
+
+glm.leave_remain_pred <- c()
+for (i in 1:nrow(data.validation)){
+  if (glm.pred[i] >= 50) glm.leave_remain_pred[i] = "Remain"
+  if (glm.pred[i] < 50) glm.leave_remain_pred[i] = "Leave"
+}
+glm.leave_remain_pred <- as.factor(glm.leave_remain_pred)
+
+glm_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
+for (i in seq_along(glm_fit_metrics)) {
+  positive.class <- levels(data.validation$LeaveRemain)[i]
+  glm_fit_metrics[[i]] <- confusionMatrix(glm.leave_remain_pred, data.validation$LeaveRemain,
+                                          positive = positive.class)
+}
+# LOGISTIC REGRESSION -----------------------------------------------------
+reg.lr <- multinom(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
+                     Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train)
+
+prediction.lr <- predict(reg.lr, data.validation)
+actuals.lr <- breixtdata[,5]
+result.lr <- list( 'actual' = actuals.lr, 'prediction' = prediction.lr)
+tablevalue.lr <- data.frame(do.call(cbind,result.lr))
+
+#Calculate predictions based on validation set
+lr.pred <- predict(reg.lr, data.validation[, 4:11])
+
+#Calculate the MSE and accuracy
+lr.MSE <- mean((lr.pred - data.validation$Constituency)^2)
+
+leave_remain_pred <- c()
+for (i in 1:nrow(data.validation)){
+  if (lr.pred[i] >= 50) leave_remain_pred[i] = "Remain"
+  if (lr.pred[i] < 50) leave_remain_pred[i] = "Leave"
+}
+leave_remain_pred <- as.factor(leave_remain_pred)
+
+lr_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
+for (i in seq_along(lr_fit_metrics)) {
+  positive.class <- levels(data.validation$LeaveRemain)[i]
+  lr_fit_metrics[[i]] <- confusionMatrix(leave_remain_pred, data.validation$LeaveRemain,
+                                          positive = positive.class)
+}
+
 # SUPPORT VECTOR MACHINE (José) ------------------------------------------------
 svmfit <- svm(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train,
@@ -230,12 +327,12 @@ for (i in seq_along(nn_fit_metrics)) {
 #Obtain Kappas
 dt_kappa <- dt_fit_metrics[[1]]$overall["Kappa"]
 rf_kappa <- rf_fit_metrics[[1]]$overall["Kappa"]
-#glm_kappa <- glm_fit_metrics[[1]]$overall["Kappa"]
+glm_kappa <- glm_fit_metrics[[1]]$overall["Kappa"]
 svm_kappa <- svm_fit_metrics[[1]]$overall["Kappa"] #Appears to be the best kappa?
 nn_kappa <- nn_fit_metrics[[1]]$overall["Kappa"]
 
-kappas <- c(DT = dt_kappa, RF = rf_kappa, SVM = svm_kappa, NN = nn_kappa)
-mse <- c(DT = dt.MSE, RF = rf.MSE, SVM = svm.MSE, NN = nn.MSE)
+kappas <- c(DT = dt_kappa, RF = rf_kappa, GLM = glm_kappa, SVM = svm_kappa, NN = nn_kappa)
+mse <- c(DT = dt.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm.MSE, NN = nn.MSE)
 
 camparison <- cbind(MSE = mse, KAPPA = kappas)
 
@@ -247,9 +344,9 @@ dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.pred/100)),
 rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.pred/100)), 
                print.auc = TRUE, lwd = 2,
                col = "purple", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.9)
-# glm.roc <- plot(roc(data.validation$LeaveRemain, order(glm.pred/100)), 
-#                print.auc = TRUE, lwd = 2,
-#                col = "yellow", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.8)
+glm.roc <- plot(roc(data.validation$LeaveRemain, order(glm.pred/100)), 
+                print.auc = TRUE, lwd = 2,
+                col = "yellow", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.8)
 svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.pred/100)), 
                 print.auc = TRUE, lwd = 2,
                 col = "blue", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.7)
