@@ -9,7 +9,9 @@ library(tree)         #For the classification tree
 library(ISLR)         #For the classification tree
 library(rpart)        #For the classification tree
 library(rpart.plot)   #For the classification tree
+library(gbm)          #For gradient boosting
 library(randomForest) #For the random forest
+source("Scripts/RFFunction.R") #For the random forest
 library(nnet)         #For logistic regression
 library(e1071)        #For the support vector machine
 library(neuralnet)    #For the neural net
@@ -38,6 +40,7 @@ set.seed(123)
 fitControl <- trainControl(method = "cv", number = 5)
 
 # DECISION TREE (Carlotta) -----------------------------------------------------
+set.seed(123)
 # Change levels into Yes, No, No Vote for nicer plots
 data.vote.dt <- data.vote
 data.vote.dt[, 6:13] <- data.vote.dt[, 6:13] %>% mutate_if(is.numeric, as.factor)
@@ -98,18 +101,6 @@ for (i in seq_along(dt_fit_metrics)) {
 }
 
 # BOOSTED TREE (Brooke) ------------------------------------------------------------
-#Parameters: 
-#n.trees: Integer specifying the total number of trees to fit. Default is 100.
-#interaction.depth: Integer specifying the maximum depth of each tree (i.e., 
-##the highest level of variable interactions allowed). A value of 1 implies an 
-##additive model, a value of 2 implies a model with up to 2-way interactions, 
-##etc. Default is 1.
-#shrinkage: a shrinkage parameter applied to each tree in the expansion. 
-##Also known as the learning rate or step-size reduction; 0.001 to 0.1 usually 
-##work, but a smaller learning rate typically requires more trees. Default is 0.1.
-#n.minobsinnode: Integer specifying the minimum number of observations in the 
-##terminal nodes of the trees. Note that this is the actual number of observations, 
-##not the total weight.
 set.seed(123)
 boostT_params <- train(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
                          Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train, 
@@ -165,7 +156,6 @@ for (i in seq_along(gbm_fit_metrics)) {
                                          positive = positive.class)
 }
 
-
 # gbm_ntrees <- boostT_params$bestTune$n.trees
 # gbm_depth <- boostT_params$bestTune$interaction.depth
 # gbm_shrink <- boostT_params$bestTune$shrinkage
@@ -178,32 +168,31 @@ for (i in seq_along(gbm_fit_metrics)) {
 #                      n.minobsinnode = gbm_mtry, distribution = "multinomial")
 
 # RANDOM FOREST (Lei) ----------------------------------------------------------
-source("Scripts/RFFunction.R")
 set.seed(123)
 ### create model for percentage prediction, regression random forest ###
 originalreg.rf = randomForest(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
                                 Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
-                                Voting.8, data = tune.train,
+                                Voting.8, data = data.train,
                               mtry = 2, ntree = 1000)
 print(originalreg.rf)
 plot(originalreg.rf)
 
 ### Try to find out the best mtry value
-findgoodmtryreg(tune.train[, 4:11], tune.train[, 3], 10, 123, tune.test)
+findgoodmtryreg(data.train[, 4:11], data.train[, 3], 10, 123, data.train)
 ### when mtry = 3, the MSE is minimum
 
 ## creat the new model, mtry = 3 and try to find the best ntree
 modelreg.lr <- randomForest(Constituency ~ Voting.1 + Voting.2 + Voting.3 + 
                               Voting.4 + Voting.5 + Voting.6 + Voting.7 + 
-                              Voting.8, mtry = 3, data = tune.train, ntree = 1100)
+                              Voting.8, mtry = 3, data = data.train, ntree = 1100)
 print(modelreg.lr)
 plot(modelreg.lr)
 
 ## from the plot, we could know when ntree around 800 - 1000 is stable.
-findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 800, 1200, 50, 3, tune.test)
-findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 900, 1100, 30, 3, tune.test)
-findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 900, 1100, 20, 3, tune.test)
-findgoodntreereg(tune.train[, 4:11], tune.train[, 3], 900, 1100, 10, 3, tune.test)
+findgoodntreereg(data.train[, 4:11], data.train[, 3], 800, 1200, 50, 3, data.train)
+findgoodntreereg(data.train[, 4:11], data.train[, 3], 900, 1100, 30, 3, data.train)
+findgoodntreereg(data.train[, 4:11], data.train[, 3], 900, 1100, 20, 3, data.train)
+findgoodntreereg(data.train[, 4:11], data.train[, 3], 900, 1100, 10, 3, data.train)
 ## when ntree = 1000, mtry = 3, the MSE is minimum
 
 ## creat the best model of random forest for regression
@@ -235,6 +224,7 @@ for (i in seq_along(rf_fit_metrics)) {
 }
 
 # GLM (Abtin) ------------------------------------------------------------------
+set.seed(123)
 #Building an initial glm model
 logit <- glm(formula <- Constituency ~ . -Party -LeaveRemain, data = data.train)
 summary(logit)
@@ -246,7 +236,7 @@ car::Anova(logit)
 step(logit, direction = "both")
 
 logit <- glm(formula = Constituency ~ Voting.3 + Voting.4 + Voting.5 + 
-             Voting.6 + Voting.7, data = data.train)
+               Voting.6 + Voting.7, data = data.train)
 
 summary(logit)
 
@@ -262,6 +252,8 @@ cv_folds <- cut(seq(1, nrow(shuffledData)), breaks = 5, labels = FALSE)
 
 #Create a store for cv_scores
 mse_scores <- rep(NA, 5)
+acc_scores <- rep(NA, 5)
+kap_scores <- rep(NA, 5)
 
 #Perform 5 fold cross validation
 for(j in 1:5){
@@ -273,13 +265,34 @@ for(j in 1:5){
   #Build the polynomial and store cv scores
   glm_cv <- glm(formula = Constituency ~ Voting.3 + Voting.4 + Voting.5 + 
                   Voting.6 + Voting.7, data = cvTrain)
+  cv.pred <- predict(glm_cv, cvTest)
   
   #Estimate mse
-  mse_scores[j] <- mean((cvTest$Constituency - predict(glm_cv, cvTest))^2) 
+  mse_scores[j] <- mean((cvTest$Constituency - cv.pred)^2) 
+  
+  #Estimate acc and kap
+  cv_leave_remain_pred <- c()
+  for (i in 1:nrow(cvTest)){
+    if (cv.pred[i] >= 50) cv_leave_remain_pred[i] = "Remain"
+    if (cv.pred[i] < 50) cv_leave_remain_pred[i] = "Leave"
+  }
+  cv_leave_remain_pred <- as.factor(cv_leave_remain_pred)
+  
+  cv_fit_metrics <- vector("list", length(levels(cvTest$LeaveRemain)))
+  for (i in seq_along(cv_fit_metrics)) {
+    positive.class <- levels(cvTest$LeaveRemain)[i]
+    cv_fit_metrics[[i]] <- caret::confusionMatrix(cv_leave_remain_pred, cvTest$LeaveRemain,
+                                                  positive = positive.class)
+  }
+  
+  acc_scores <- cv_fit_metrics[[1]]$overall["Accuracy"]
+  kap_scores <- cv_fit_metrics[[1]]$overall["Kappa"]
 }
 
 #Take the mean of the goodness of fit measures
 glm.cv.MSE <- mean(mse_scores)  #83.55
+glm.cv.ACC <- mean(acc_scores)  #0.85
+glm.cv.KAP <- mean(kap_scores)  #0.69
 #Now test on Validation set.
 glm.pred <- predict(logit, data.validation, type = 'response')
 
@@ -297,9 +310,10 @@ glm_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
 for (i in seq_along(glm_fit_metrics)) {
   positive.class <- levels(data.validation$LeaveRemain)[i]
   glm_fit_metrics[[i]] <- caret::confusionMatrix(glm.leave_remain_pred, data.validation$LeaveRemain,
-                                          positive = positive.class)
+                                                 positive = positive.class)
 }
 # SUPPORT VECTOR MACHINE (José) ------------------------------------------------
+set.seed(123)
 svmfit <- svm(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 +
                 Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train,
               kernel = "linear", cost = 10, scale = FALSE)
