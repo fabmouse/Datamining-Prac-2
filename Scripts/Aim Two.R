@@ -13,8 +13,6 @@ library(randomForest) #For the random forest
 library(nnet)         #For logistic regression
 library(e1071)        #For the support vector machine
 library(neuralnet)    #For the neural net
-library(pROC)         #For ROC curves
-library(ROSE)         #For ROC curves
 library(dplyr)
 
 # Set up the datasets -----------------------------------------------------
