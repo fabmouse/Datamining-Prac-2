@@ -9,7 +9,11 @@ library(tree)         #For the classification tree
 library(ISLR)         #For the classification tree
 library(rpart)        #For the classification tree
 library(rpart.plot)   #For the classification tree
-library(e1071)        #For the naive bayes
+library(gbm)          #For the boosted tree
+library(randomForest) #For the random forest
+source("Scripts/RFFunction.R") #For the random forest
+library(nnet)         #For the logistic regression
+library(e1071)        #For the naive bayes and support vector machine
 library(neuralnet)    #For the neural net
 library(dplyr)
 
@@ -172,9 +176,6 @@ for (i in seq_along(gbm_fit_metrics)) {
 
 # RANDOM FOREST (Lei) ----------------------------------------------------------
 #Lei found that a random forest with mtry = 4 and ntree = 460 works best.
-library(randomForest)
-source("Scripts/RFFunction.R")
-
 # Initial Look: Fit a RF on the training set
 set.seed(123)
 fit.rf <- randomForest(factor(Party) ~ ., data = data.train)
@@ -232,7 +233,7 @@ for (i in seq_along(rf_fit_metrics)) {
 
 # MULTIPLE LOGISTIC REGRESSION (Lei) -------------------------------------------
 #Divide training dataset into two parts
-library(nnet)
+set.seed(123)
 
 # Create initial logistic regression
 ## X = Voting data Y = Party, dataset = train
