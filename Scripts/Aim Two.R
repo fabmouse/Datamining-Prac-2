@@ -401,21 +401,6 @@ comparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
 comparison
 
 #ROC CURVES
-par(mfrow = c(1,2))
-roc.curve(data.validation$LeaveRemain, dt.leave_remain_pred, plotit = TRUE, add.roc = FALSE, col = "red")
-roc.curve(data.validation$LeaveRemain, gbm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "black")
-roc.curve(data.validation$LeaveRemain, rf.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "purple")
-roc.curve(data.validation$LeaveRemain, glm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "yellow")
-roc.curve(data.validation$LeaveRemain, svm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "blue")
-roc.curve(data.validation$LeaveRemain, nn.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "green")
-legend("bottomright", 
-       legend = c("DT (AUC = 0.725)",
-                  "GBM (AUC = 0.734)", 
-                  "RF (AUC = 0.703)", 
-                  "GLM (AUC = 0.728)", 
-                  "SVM (AUC = 0.731)", 
-                  "NN (AUC = 0.731)"), cex = 0.75,
-       col = c("red", "black", "purple", "yellow", "blue", "green"), lwd = 2)
 
 #Using Tom's Function
 my.roc <- function(classes, preds){
@@ -443,12 +428,28 @@ points(svm.roc$FPR, svm.roc$TPR, type = "l", lwd = 1.5, col = "blue")
 points(nn.roc$FPR, nn.roc$TPR, type = "l", lwd = 1.5, col = "green")
 legend("bottomright", 
        legend = c("Decision Tree",
-                  "Gradient Boosted", 
+                  "Gradient Boosting", 
                   "Random Forest", 
                   "Generalized Linear Model", 
                   "Support Vector Machine", 
                   "Neural Net"), cex = 0.75,
        col = c("red", "black", "purple", "yellow", "blue", "green"), lwd = 2)
+
+# par(mfrow = c(1,2))
+# roc.curve(data.validation$LeaveRemain, dt.leave_remain_pred, plotit = TRUE, add.roc = FALSE, col = "red")
+# roc.curve(data.validation$LeaveRemain, gbm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "black")
+# roc.curve(data.validation$LeaveRemain, rf.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "purple")
+# roc.curve(data.validation$LeaveRemain, glm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "yellow")
+# roc.curve(data.validation$LeaveRemain, svm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "blue")
+# roc.curve(data.validation$LeaveRemain, nn.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "green")
+# legend("bottomright", 
+#        legend = c("DT (AUC = 0.725)",
+#                   "GBM (AUC = 0.734)", 
+#                   "RF (AUC = 0.703)", 
+#                   "GLM (AUC = 0.728)", 
+#                   "SVM (AUC = 0.731)", 
+#                   "NN (AUC = 0.731)"), cex = 0.75,
+#        col = c("red", "black", "purple", "yellow", "blue", "green"), lwd = 2)
 
 
 # par(mfrow = c(1, 2))
