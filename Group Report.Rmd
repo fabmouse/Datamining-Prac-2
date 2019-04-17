@@ -41,6 +41,8 @@ In the current era of political uncertainty presented by the United Kingdom's le
 
 The voting profiles of 649 UK parliamentary members were obtained from an online article published by The Guardian (The Guardian, 2019) using Python 3.7 software [@Pyt]. This analysis aims to identify the most reliable models that can use an MP's vote profile to predict both the party they represent as well as the leave/remain percentage for their constituency in the Brexit referendum. 
 
+
+
 ## Methods
 
 A series of different models were fitted, their performance elvaluated and the two most reliable models have been presented. 
@@ -103,4 +105,8 @@ There are two different tasks of this data mining work, we chose different model
 In order to evaluate performance of models and seek the best model for each task, we build a framework about how to evaluate and compare different models. In the unified framework, all models will be trained and tested by the same size dataset and evaluated by the same indicators. For the task one, a classification problem, we hope to find out the best model which could correctly select the right classification and correctly reject the misclassification. 
 
 For example, Conservative Party members are correctly predicted to be Conservative Party members rather than Labor Party members, and members who are not Conservative Party members should not be predicted to be Conservative Party members. For the task two, the logic is similar, we predict the percentage of each Constituency and translate these percentage to remain/leave for easier evaluation. When we translated the percentage prediction, we could use the same framework to evaluate and compare different models to find out the best model for the task two. The comparison of pure data is difficult to get the best model quickly. In order to better show the performance of different models, we visualize the results of model evaluation.
+
+Possible plot:
+
+![Caption](Rplot.png)
 
