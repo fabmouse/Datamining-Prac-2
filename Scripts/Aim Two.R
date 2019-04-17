@@ -400,36 +400,8 @@ mse <- round(c(DT = dt.MSE, GBM = gbm.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm
 comparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
 comparison
 
-# #ROC Curve
-# 
-# dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred)),
-#                col="red", lwd = 2)
-# gbm.roc <- plot(roc(data.validation$LeaveRemain, order(gbm.leave_remain_pred)),
-#                col="black", lwd = 2, add = TRUE)
-# rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.leave_remain_pred)),
-#                lwd = 2, col = "purple", add = TRUE)
-# glm.roc <- plot(roc(data.validation$LeaveRemain, order(glm.leave_remain_pred)),
-#                 lwd = 2, col = "yellow", add = TRUE)
-# svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.leave_remain_pred)),
-#                 lwd = 2, col = "blue", add = TRUE)
-# nn.roc <- plot(roc(data.validation$LeaveRemain, order(nn.leave_remain_pred)),
-#                lwd = 2, col = "green", add = TRUE)
-# legend("bottomright", 
-#        legend = c("Decision Tree (AUC = 0.725/0.635)",
-#                   "Gradient Boosted Tree (AUC = 0.734/0.624)", 
-#                   "Random Forest (AUC = 0.703/0.612)", 
-#                   "Generalized Linear Model (AUC = 0.728/0.639)", 
-#                   "Support Vector Machine (AUC = 0.731/0.653)", 
-#                   "Neural Net (AUC = 0.731/0.613)"), cex = 0.75,
-#        col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
-
-
-# plotwithggplot <- ggplot(data.frame(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred), 
-#                                         aes(FPR, TPR)))) + geom_point() +
-#                                       geom_abline(intercept = 0, slope = 1)
-
-
-par(mfrow = c(1,1))
+#ROC CURVES
+par(mfrow = c(1,2))
 roc.curve(data.validation$LeaveRemain, dt.leave_remain_pred, plotit = TRUE, add.roc = FALSE, col = "red")
 roc.curve(data.validation$LeaveRemain, gbm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "black")
 roc.curve(data.validation$LeaveRemain, rf.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "purple")
@@ -437,13 +409,47 @@ roc.curve(data.validation$LeaveRemain, glm.leave_remain_pred, plotit = TRUE, add
 roc.curve(data.validation$LeaveRemain, svm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "blue")
 roc.curve(data.validation$LeaveRemain, nn.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "green")
 legend("bottomright", 
-       legend = c("Decision Tree (AUC = 0.725)",
-                  "Gradient Boosted Tree (AUC = 0.734)", 
-                  "Random Forest (AUC = 0.703)", 
-                  "Generalized Linear Model (AUC = 0.728)", 
-                  "Support Vector Machine (AUC = 0.731)", 
-                  "Neural Net (AUC = 0.731)"), cex = 0.75,
-       col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
+       legend = c("DT (AUC = 0.725)",
+                  "GBM (AUC = 0.734)", 
+                  "RF (AUC = 0.703)", 
+                  "GLM (AUC = 0.728)", 
+                  "SVM (AUC = 0.731)", 
+                  "NN (AUC = 0.731)"), cex = 0.75,
+       col = c("red", "black", "purple", "yellow", "blue", "green"), lwd = 2)
+
+#Using Tom's Function
+my.roc <- function(classes, preds){
+  classes <- recode(classes, "Remain" = TRUE, "Leave" = FALSE)
+  classes <- classes[order(preds, decreasing=TRUE)]
+  data.frame(TPR = cumsum(classes)/sum(classes), 
+             FPR = cumsum(!classes)/sum(!classes), classes)
+}  
+
+dt.roc <- my.roc(data.validation$LeaveRemain, dt.leave_remain_pred)
+gbm.roc <- my.roc(data.validation$LeaveRemain, gbm.leave_remain_pred)
+rf.roc <- my.roc(data.validation$LeaveRemain, rf.leave_remain_pred)
+glm.roc <- my.roc(data.validation$LeaveRemain, glm.leave_remain_pred)
+svm.roc <- my.roc(data.validation$LeaveRemain, svm.leave_remain_pred)
+nn.roc <- my.roc(data.validation$LeaveRemain, nn.leave_remain_pred)
+
+plot(dt.roc$FPR, dt.roc$TPR, type = "l", lwd = 1.5, 
+     xlab = "False Positive Rate",
+     ylab = "True Positive Rate", col = "red")
+abline(0, 1)
+points(gbm.roc$FPR, gbm.roc$TPR, type = "l", lwd = 1.5, col = "black")
+points(rf.roc$FPR, rf.roc$TPR, type = "l", lwd = 1.5, col = "purple")
+points(glm.roc$FPR, glm.roc$TPR, type = "l", lwd = 1.5, col = "yellow")
+points(svm.roc$FPR, svm.roc$TPR, type = "l", lwd = 1.5, col = "blue")
+points(nn.roc$FPR, nn.roc$TPR, type = "l", lwd = 1.5, col = "green")
+legend("bottomright", 
+       legend = c("Decision Tree",
+                  "Gradient Boosted", 
+                  "Random Forest", 
+                  "Generalized Linear Model", 
+                  "Support Vector Machine", 
+                  "Neural Net"), cex = 0.75,
+       col = c("red", "black", "purple", "yellow", "blue", "green"), lwd = 2)
+
 
 # par(mfrow = c(1, 2))
 # #Plot Sensitivities
