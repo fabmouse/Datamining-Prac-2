@@ -14,6 +14,7 @@ library(nnet)         #For logistic regression
 library(e1071)        #For the support vector machine
 library(neuralnet)    #For the neural net
 library(pROC)         #For ROC curves
+library(ROSE)         #For ROC curves
 library(dplyr)
 
 # Set up the datasets -----------------------------------------------------
@@ -317,34 +318,34 @@ mse <- round(c(DT = dt.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm.MSE, NN = nn.M
 camparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
 
 #ROC Curve
+# 
+# dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred)),
+#                col="red", lwd = 2,  print.auc = TRUE, 
+#                print.auc.x = 1.1, print.auc.y = 1, xlim=c(0,1))
+# rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.pred/100)), 
+#                print.auc = TRUE, lwd = 2,
+#                col = "purple", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.9)
+# glm.roc <- plot(roc(data.validation$LeaveRemain, order(glm.pred/100)), 
+#                 print.auc = TRUE, lwd = 2,
+#                 col = "yellow", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.8)
+# svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.pred/100)), 
+#                 print.auc = TRUE, lwd = 2,
+#                 col = "blue", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.7)
+# nn.roc <- plot(roc(data.validation$LeaveRemain, order(nn.pred/100)),
+#                print.auc = TRUE, lwd = 2,
+#                col = "green", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.6)
+# legend("bottomright", 
+#        legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
+#                   "Support Vector Machine", "Neural Net"), cex = 0.75,
+#        col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
 
-dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred)),
-               col="red", lwd = 2,  print.auc = TRUE, 
-               print.auc.x = 1.1, print.auc.y = 1, xlim=c(0,1))
-rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.pred/100)), 
-               print.auc = TRUE, lwd = 2,
-               col = "purple", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.9)
-glm.roc <- plot(roc(data.validation$LeaveRemain, order(glm.pred/100)), 
-                print.auc = TRUE, lwd = 2,
-                col = "yellow", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.8)
-svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.pred/100)), 
-                print.auc = TRUE, lwd = 2,
-                col = "blue", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.7)
-nn.roc <- plot(roc(data.validation$LeaveRemain, order(nn.pred/100)),
-               print.auc = TRUE, lwd = 2,
-               col = "green", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.6)
-legend("bottomright", 
-       legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
-                  "Support Vector Machine", "Neural Net"), cex = 0.75,
-       col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
+
+# plotwithggplot <- ggplot(data.frame(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred), 
+#                                         aes(FPR, TPR)))) + geom_point() +
+#                                       geom_abline(intercept = 0, slope = 1)
 
 
-plotwithggplot <- ggplot(data.frame(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred), 
-                                        aes(FPR, TPR)))) + geom_point() +
-                                      geom_abline(intercept = 0, slope = 1)
 
-install.packages("ROSE")
-library(ROSE)
 roc.curve(data.validation$LeaveRemain, dt.leave_remain_pred, plotit = TRUE, add.roc = FALSE, col = "red", auc = TRUE)
 roc.curve(data.validation$LeaveRemain, rf.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "purple")
 roc.curve(data.validation$LeaveRemain, glm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "yellow")
