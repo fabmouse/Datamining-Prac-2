@@ -106,6 +106,70 @@ for (i in seq_along(ct_fit_metrics)) {
 tree.voting <- rpart(Party ~ ., data = data.train.dt)
 rpart.plot(tree.voting)
 
+# BOOSTED TREE (Brooke) ------------------------------------------------------------
+set.seed(123)
+#Parameters: 
+#n.trees: Integer specifying the total number of trees to fit. This is equivalent 
+##to the number of iterations and the number of basis functions in the additive 
+##expansion. Default is 100.
+#interaction.depth: Integer specifying the maximum depth of each tree (i.e., 
+##the highest level of variable interactions allowed). A value of 1 implies an 
+##additive model, a value of 2 implies a model with up to 2-way interactions, 
+##etc. Default is 1.
+#shrinkage: a shrinkage parameter applied to each tree in the expansion. 
+##Also known as the learning rate or step-size reduction; 0.001 to 0.1 usually 
+##work, but a smaller learning rate typically requires more trees. Default is 0.1.
+#n.minobsinnode: Integer specifying the minimum number of observations in the 
+##terminal nodes of the trees. Note that this is the actual number of observations, 
+##not the total weight.
+
+# boostT_params <- train(factor(Party) ~ ., data = data.train, 
+#                      method = "gbm",
+#                      tuneGrid = expand.grid(n.trees = seq(150, 250, by = 25), 
+#                                             interaction.depth = seq(1, 5, by = 1), 
+#                                             shrinkage = seq(0.01, 0.1,by = .02),
+#                                             n.minobsinnode = seq(2, 4, by = 1)),
+#                      trControl = fitControl)
+
+#n.trees = 100, interaction.depth = 1, shrinkage = 0.09 and n.minobsinnode = 4.
+#n.trees = 200, interaction.depth = 1, shrinkage = 0.05 and n.minobsinnode = 2, Acc = 0.96  Kap = 0.94
+#n.trees = 200, interaction.depth = 1, shrinkage = 0.05 and n.minobsinnode = 2.
+#n.trees = 200, interaction.depth = 5, shrinkage = 0.01 and n.minobsinnode = 2, Acc = 0.95  Kap = 0.92
+#n.trees = 200, interaction.depth = 4, shrinkage = 0.01 and n.minobsinnode = 2, Acc = 0.96  Kap = 0.93
+#Most complex search:
+#n.trees = 150, interaction.depth = 5, shrinkage = 0.01 and n.minobsinnode = 3, Acc = 0.96  Kap = 0.94
+
+
+# gbm_ntrees <- boostT_params$bestTune$n.trees
+# gbm_depth <- boostT_params$bestTune$interaction.depth
+# gbm_shrink <- boostT_params$bestTune$shrinkage
+# gbm_mtry <- boostT_params$bestTune$n.minobsinnode
+# 
+# gbm_model <- gbm(factor(Party) ~ ., data = data.train,
+#                      n.trees = gbm_ntrees,
+#                      interaction.depth = gbm_depth,
+#                      shrinkage = gbm_shrink,
+#                      n.minobsinnode = gbm_mtry, distribution = "multinomial")
+
+gbm_model <- gbm(factor(Party) ~ ., data = data.train,
+                 n.trees = 150, interaction.depth = 5,
+                 shrinkage = 0.01, n.minobsinnode = 3, 
+                 distribution = "multinomial")
+
+predict_GBM <- predict(gbm_model, n.trees = 150, newdata = data.validation[, -1], type = "response") 
+
+predclass <- as.factor(apply(predict_GBM, 1, which.max))
+predclass <- recode(predclass, "1" = "Conservative", "2" = "Labour",
+                    "3" = "Other", "4" = "Scottish National Party")
+
+
+gbm_fit_metrics <- vector("list", length(levels(data.validation$Party)))
+for (i in seq_along(gbm_fit_metrics)) {
+  positive.class <- levels(data.validation$Party)[i]
+  gbm_fit_metrics[[i]] <- confusionMatrix(predclass, data.validation$Party,
+                                          positive = positive.class)
+}
+
 # RANDOM FOREST (Lei) ----------------------------------------------------------
 #Lei found that a random forest with mtry = 4 and ntree = 460 works best.
 library(randomForest)
@@ -288,6 +352,7 @@ for (i in seq_along(nn_fit_metrics)) {
 # PLOT COMPARING PARTY SENSITIVITY ----------------------------------------
 #Obtain Kappas
 ct_kappa <- ct_fit_metrics[[1]]$overall["Kappa"]
+gbm_kappa <- gbm_fit_metrics[[1]]$overall["Kappa"]
 rf_kappa <- rf_fit_metrics[[1]]$overall["Kappa"]
 lr_kappa <- lr_fit_metrics[[1]]$overall["Kappa"]
 nb_kappa <- nb_fit_metrics[[1]]$overall["Kappa"]
@@ -295,6 +360,7 @@ svm_kappa <- svm_fit_metrics[[1]]$overall["Kappa"]
 nn_kappa <- nn_fit_metrics[[1]]$overall["Kappa"]
 
 ct_acc <- ct_fit_metrics[[1]]$overall["Accuracy"]
+gbm_acc <- gbm_fit_metrics[[1]]$overall["Accuracy"]
 rf_acc <- rf_fit_metrics[[1]]$overall["Accuracy"]
 lr_acc <- lr_fit_metrics[[1]]$overall["Accuracy"]
 nb_acc <- nb_fit_metrics[[1]]$overall["Accuracy"]
@@ -303,13 +369,14 @@ nn_acc <- nn_fit_metrics[[1]]$overall["Accuracy"]
 
 #Plot Sensitivities
 ct_Sens <- ct_fit_metrics[[1]]$byClass[, "Sensitivity"]
+gbm_Sens <- gbm_fit_metrics[[1]]$byClass[, "Sensitivity"]
 rf_Sens <- rf_fit_metrics[[1]]$byClass[, "Sensitivity"]
 lr_Sens <- lr_fit_metrics[[1]]$byClass[, "Sensitivity"]
 nb_Sens <- nb_fit_metrics[[1]]$byClass[, "Sensitivity"]
 svm_Sens <- svm_fit_metrics[[1]]$byClass[, "Sensitivity"]
 nn_Sens <- nn_fit_metrics[[1]]$byClass[, "Sensitivity"]
 
-c(ct_Sens, rf_Sens, lr_Sens, nb_Sens, svm_Sens, nn_Sens)
+c(ct_Sens, gbm_Send, rf_Sens, lr_Sens, nb_Sens, svm_Sens, nn_Sens)
 c(rf_Sens, nn_Sens)
 
 plot(x = 1:4, y = ct_Sens, ylim = c(0, 1), xlab = "Party", ylab = "Sensitivity",
@@ -317,44 +384,49 @@ plot(x = 1:4, y = ct_Sens, ylim = c(0, 1), xlab = "Party", ylab = "Sensitivity",
      type = "b", col = "red", xaxt = "n")
 axis(1, at = seq(1, 4, by = 1), labels = c("Conservative", "Labour", 
                                            "Other", "Scottish\nNational Party"))
+points(x = 1:4, y = gbm_Sens, type = "b", col = "black", lty = 2)
 points(x = 1:4, y = rf_Sens, type = "b", col = "purple", lty = 2)
 points(x = 1:4, y = lr_Sens, type = "b", col = "yellow")
 points(x = 1:4, y = nb_Sens, type = "b", col = "green")
 points(x = 1:4, y = svm_Sens, type = "b", col = "blue")
 points(x = 1:4, y = nn_Sens, type = "b", col = "pink", lty = 2)
-legend("bottomleft", legend = c("Classification Tree",                                
+legend("bottomleft", legend = c("Classification Tree",
+                                "Gradient Boosted Tree",
                                 "Random Forest",                                 
-                                "Logistic Regression",
+                                "Multiple Logistic Regression",
                                 "Naive Bayes", 
                                 "Support Vector Machine",  
                                 "Neural Net"), 
-       col = c("red", "purple", "yellow", "green", "blue", "pink"), 
+       col = c("red", "black", "purple", "yellow", "green", "blue", "pink"), 
        lwd = 2, cex = 0.75)
 
 #Plot Specificity
 ct_Spec <- ct_fit_metrics[[1]]$byClass[, "Specificity"]
+gbm_Spec <- gbm_fit_metrics[[1]]$byClass[, "Specificity"]
 rf_Spec <- rf_fit_metrics[[1]]$byClass[, "Specificity"]
 lr_Spec <- lr_fit_metrics[[1]]$byClass[, "Specificity"]
 nb_Spec <- nb_fit_metrics[[1]]$byClass[, "Specificity"]
 svm_Spec <- svm_fit_metrics[[1]]$byClass[, "Specificity"]
 nn_Spec <- nn_fit_metrics[[1]]$byClass[, "Specificity"]
 
-plot(x = 1:4, y = ct_Spec, ylim = c(0, 1), xlab = "Party", ylab = "Specificity",
+plot(x = 1:4, y = ct_Spec, ylim = c(0.75, 1), xlab = "Party", ylab = "Specificity",
      main = "Specificity Comparison Based on Validation Set", lty = 2, 
      type = "b", col = "red", xaxt = "n")
 axis(1, at = seq(1, 4, by = 1), labels = c("Conservative", "Labour", 
                                            "Other", "Scottish\nNational Party"))
+points(x = 1:4, y = gbm_Spec, type = "b", col = "black", lty = 2)
 points(x = 1:4, y = rf_Spec, type = "b", col = "purple", lty = 2)
 points(x = 1:4, y = lr_Spec, type = "b", col = "yellow", lty = 2)
 points(x = 1:4, y = nb_Spec, type = "b", col = "green", lty = 2)
 points(x = 1:4, y = svm_Spec, type = "b", col = "blue", lty = 2)
 points(x = 1:4, y = nn_Spec, type = "b", col = "pink", lty = 2)
-legend("bottomleft", legend = c("Classification Tree",                                
+legend("bottomleft", legend = c("Classification Tree",  
+                                "Gradient Boosted Machine",
                                 "Random Forest",                                 
                                 "Logistic Regression",
                                 "Naive Bayes", 
                                 "Support Vector Machine",  
                                 "Neural Net"), 
-       col = c("red", "purple", "yellow", "green", "blue", "pink"), 
+       col = c("red", "black", "purple", "yellow", "green", "blue", "pink"), 
        lwd = 2, cex = 0.75)
 
