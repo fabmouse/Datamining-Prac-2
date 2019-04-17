@@ -95,9 +95,89 @@ dt.leave_remain_pred <- as.factor(dt.leave_remain_pred)
 dt_fit_metrics <- vector("list", length(levels(data.validation.dt$LeaveRemain)))
 for (i in seq_along(dt_fit_metrics)) {
   positive.class <- levels(data.validation.dt$LeaveRemain)[i]
-  dt_fit_metrics[[i]] <- confusionMatrix(dt.leave_remain_pred, data.validation.dt$LeaveRemain,
+  dt_fit_metrics[[i]] <- caret::confusionMatrix(dt.leave_remain_pred, data.validation.dt$LeaveRemain,
                                          positive = positive.class)
 }
+
+# BOOSTED TREE (Brooke) ------------------------------------------------------------
+#Parameters: 
+#n.trees: Integer specifying the total number of trees to fit. Default is 100.
+#interaction.depth: Integer specifying the maximum depth of each tree (i.e., 
+##the highest level of variable interactions allowed). A value of 1 implies an 
+##additive model, a value of 2 implies a model with up to 2-way interactions, 
+##etc. Default is 1.
+#shrinkage: a shrinkage parameter applied to each tree in the expansion. 
+##Also known as the learning rate or step-size reduction; 0.001 to 0.1 usually 
+##work, but a smaller learning rate typically requires more trees. Default is 0.1.
+#n.minobsinnode: Integer specifying the minimum number of observations in the 
+##terminal nodes of the trees. Note that this is the actual number of observations, 
+##not the total weight.
+set.seed(123)
+boostT_params <- train(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
+                         Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train, 
+                      method = "gbm",
+                      tuneGrid = expand.grid(n.trees = seq(50, 200, by = 50), 
+                                             interaction.depth = seq(1, 3, by = 1), 
+                                             shrinkage = seq(0.01, 0.1,by = 0.02), 
+                                             n.minobsinnode = seq(2, 4, by = 1)),
+                      trControl = fitControl)
+
+#RMSE was used to select the optimal model using the smallest value.
+#First wide serach: n.trees = seq(100, 500, by = 100), interaction.depth = seq(1, 5, by = 1), 
+#shrinkage = seq(0.01, 0.1,by = 0.04), n.minobsinnode = seq(2, 5, by = 1)),
+#n.trees = 100, interaction.depth = 2, shrinkage = 0.05 and n.minobsinnode = 2
+# -> RMSE = 8.906628  R^2 = 0.3842187  MAE = 6.898437
+#More refined search: n.trees = seq(50, 200, by = 50), interaction.depth = seq(1, 3, by = 1), 
+#shrinkage = seq(0.01, 0.1,by = 0.02), n.minobsinnode = seq(2, 4, by = 1)),
+#n.trees = 100, interaction.depth = 3, shrinkage = 0.05 and n.minobsinnode = 4.
+#-> RMSE = 8.901371  R^2 = 0.3839600  MAE = 6.899207
+#Final search: n.trees = seq(50, 150, by = 25), interaction.depth = seq(1, 3, by = 1), 
+#shrinkage = 0.05, n.minobsinnode = seq(1, 5, by = 1))
+#n.trees = 75, interaction.depth = 3, shrinkage = 0.05 and n.minobsinnode = 4.
+#-> RMSE = 8.927582  R^2 = 0.3796395  MAE = 6.934375
+
+gbm_ntrees <- boostT_params$bestTune$n.trees
+gbm_depth <- boostT_params$bestTune$interaction.depth
+gbm_shrink <- boostT_params$bestTune$shrinkage
+gbm_mtry <- boostT_params$bestTune$n.minobsinnode
+
+gbm_model <- gbm(Constituency ~ Voting.1 + Voting.2 + Voting.3 + Voting.4 + 
+                   Voting.5 + Voting.6 + Voting.7 + Voting.8, data = data.train,
+                     n.trees = gbm_ntrees,
+                     interaction.depth = gbm_depth,
+                     shrinkage = gbm_shrink,
+                     n.minobsinnode = gbm_mtry, distribution = "gaussian")
+
+#Make predictions
+gbm.pred <- predict(gbm_model, n.trees = gbm_ntrees, newdata = data.validation[, 4:11], type = "response") 
+gbm.MSE <- mean((gbm.pred  - data.validation$Constituency)^2)
+
+#Change probabilities into classes
+gbm.leave_remain_pred <- c()
+for (i in 1:nrow(data.validation)){
+  if (gbm.pred[i] >= 50) gbm.leave_remain_pred[i] = "Remain"
+  if (gbm.pred[i] < 50) gbm.leave_remain_pred[i] = "Leave"
+}
+gbm.leave_remain_pred <- as.factor(gbm.leave_remain_pred)
+
+gbm_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
+for (i in seq_along(gbm_fit_metrics)) {
+  positive.class <- levels(data.validation$LeaveRemain)[i]
+  gbm_fit_metrics[[i]] <- caret::confusionMatrix(gbm.leave_remain_pred, data.validation$LeaveRemain,
+                                         positive = positive.class)
+}
+
+
+# gbm_ntrees <- boostT_params$bestTune$n.trees
+# gbm_depth <- boostT_params$bestTune$interaction.depth
+# gbm_shrink <- boostT_params$bestTune$shrinkage
+# gbm_mtry <- boostT_params$bestTune$n.minobsinnode
+# 
+# gbm_model <- gbm(factor(Party) ~ ., data = data.train,
+#                      n.trees = gbm_ntrees,
+#                      interaction.depth = gbm_depth,
+#                      shrinkage = gbm_shrink,
+#                      n.minobsinnode = gbm_mtry, distribution = "multinomial")
 
 # RANDOM FOREST (Lei) ----------------------------------------------------------
 source("Scripts/RFFunction.R")
@@ -152,7 +232,7 @@ rf.leave_remain_pred <- as.factor(rf.leave_remain_pred)
 rf_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
 for (i in seq_along(rf_fit_metrics)) {
   positive.class <- levels(data.validation$LeaveRemain)[i]
-  rf_fit_metrics[[i]] <- confusionMatrix(rf.leave_remain_pred, data.validation$LeaveRemain,
+  rf_fit_metrics[[i]] <- caret::confusionMatrix(rf.leave_remain_pred, data.validation$LeaveRemain,
                                          positive = positive.class)
 }
 
@@ -218,7 +298,7 @@ glm.leave_remain_pred <- as.factor(glm.leave_remain_pred)
 glm_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
 for (i in seq_along(glm_fit_metrics)) {
   positive.class <- levels(data.validation$LeaveRemain)[i]
-  glm_fit_metrics[[i]] <- confusionMatrix(glm.leave_remain_pred, data.validation$LeaveRemain,
+  glm_fit_metrics[[i]] <- caret::confusionMatrix(glm.leave_remain_pred, data.validation$LeaveRemain,
                                           positive = positive.class)
 }
 # SUPPORT VECTOR MACHINE (José) ------------------------------------------------
@@ -253,7 +333,7 @@ leave_remain_pred <- as.factor(leave_remain_pred)
 svm_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
 for (i in seq_along(svm_fit_metrics)) {
   positive.class <- levels(data.validation$LeaveRemain)[i]
-  svm_fit_metrics[[i]] <- confusionMatrix(leave_remain_pred, data.validation$LeaveRemain,
+  svm_fit_metrics[[i]] <- caret::confusionMatrix(leave_remain_pred, data.validation$LeaveRemain,
                                           positive = positive.class)
 }
 
@@ -283,60 +363,64 @@ nn.pred  <- predict(nn_model, data.validation[, 4:11])
 nn.MSE <- mean((nn.pred  - data.validation$Constituency)^2)
 
 #Change probabilities into classes
-predclass <- c()
+nn.leave_remain_pred <- c()
 for (i in 1:nrow(data.validation)){
-  if (nn.pred[i] >= 50) predclass[i] = "Remain"
-  if (nn.pred[i] < 50) predclass[i] = "Leave"
+  if (nn.pred[i] >= 50) nn.leave_remain_pred[i] = "Remain"
+  if (nn.pred[i] < 50) nn.leave_remain_pred[i] = "Leave"
 }
-predclass <- as.factor(predclass)
+nn.leave_remain_pred <- as.factor(nn.leave_remain_pred)
 
 nn_fit_metrics <- vector("list", length(levels(data.validation$LeaveRemain)))
 for (i in seq_along(nn_fit_metrics)) {
   positive.class <- levels(data.validation$LeaveRemain)[i]
-  nn_fit_metrics[[i]] <- confusionMatrix(predclass, data.validation$LeaveRemain,
+  nn_fit_metrics[[i]] <- caret::confusionMatrix(nn.leave_remain_pred, data.validation$LeaveRemain,
                                          positive = positive.class)
 }
-nn.leave_remain_pred <- predclass
+
 # COMPARING MODEL ACCURACY (Brooke) --------------------------------------------
 #Obtain Kappas
 dt_kappa <- dt_fit_metrics[[1]]$overall["Kappa"]
+gbm_kappa <- gbm_fit_metrics[[1]]$overall["Kappa"]
 rf_kappa <- rf_fit_metrics[[1]]$overall["Kappa"]
 glm_kappa <- glm_fit_metrics[[1]]$overall["Kappa"]
 svm_kappa <- svm_fit_metrics[[1]]$overall["Kappa"] #Appears to be the best kappa?
 nn_kappa <- nn_fit_metrics[[1]]$overall["Kappa"]
 
 dt_acc <- dt_fit_metrics[[1]]$overall["Accuracy"]
+gbm_acc <- gbm_fit_metrics[[1]]$overall["Accuracy"]
 rf_acc <- rf_fit_metrics[[1]]$overall["Accuracy"]
 glm_acc <- glm_fit_metrics[[1]]$overall["Accuracy"]
 svm_acc <- svm_fit_metrics[[1]]$overall["Accuracy"] #Appears to be the best kappa?
 nn_acc <- nn_fit_metrics[[1]]$overall["Accuracy"]
 
-kappas <- round(c(DT = dt_kappa, RF = rf_kappa, GLM = glm_kappa, SVM = svm_kappa, NN = nn_kappa), 4)
-accs <- round(c(DT = dt_acc, RF = rf_acc, GLM = glm_acc, SVM = svm_acc, NN = nn_acc), 4)
-mse <- round(c(DT = dt.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm.MSE, NN = nn.MSE), 4)
+kappas <- round(c(DT = dt_kappa, GBM = gbm_kappa, RF = rf_kappa, GLM = glm_kappa, SVM = svm_kappa, NN = nn_kappa), 4)
+accs <- round(c(DT = dt_acc, GBM = gbm_acc, RF = rf_acc, GLM = glm_acc, SVM = svm_acc, NN = nn_acc), 4)
+mse <- round(c(DT = dt.MSE, GBM = gbm.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm.MSE, NN = nn.MSE), 4)
 
-camparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
+comparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
+comparison
 
-#ROC Curve
+# #ROC Curve
 # 
 # dt.roc <- plot(roc(data.validation$LeaveRemain, order(dt.leave_remain_pred)),
-#                col="red", lwd = 2,  print.auc = TRUE, 
-#                print.auc.x = 1.1, print.auc.y = 1, xlim=c(0,1))
-# rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.pred/100)), 
-#                print.auc = TRUE, lwd = 2,
-#                col = "purple", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.9)
-# glm.roc <- plot(roc(data.validation$LeaveRemain, order(glm.pred/100)), 
-#                 print.auc = TRUE, lwd = 2,
-#                 col = "yellow", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.8)
-# svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.pred/100)), 
-#                 print.auc = TRUE, lwd = 2,
-#                 col = "blue", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.7)
-# nn.roc <- plot(roc(data.validation$LeaveRemain, order(nn.pred/100)),
-#                print.auc = TRUE, lwd = 2,
-#                col = "green", add = TRUE, print.auc.x = 1.1, print.auc.y = 0.6)
+#                col="red", lwd = 2)
+# gbm.roc <- plot(roc(data.validation$LeaveRemain, order(gbm.leave_remain_pred)),
+#                col="black", lwd = 2, add = TRUE)
+# rf.roc <- plot(roc(data.validation$LeaveRemain, order(rf.leave_remain_pred)),
+#                lwd = 2, col = "purple", add = TRUE)
+# glm.roc <- plot(roc(data.validation$LeaveRemain, order(glm.leave_remain_pred)),
+#                 lwd = 2, col = "yellow", add = TRUE)
+# svm.roc <- plot(roc(data.validation$LeaveRemain, order(svm.leave_remain_pred)),
+#                 lwd = 2, col = "blue", add = TRUE)
+# nn.roc <- plot(roc(data.validation$LeaveRemain, order(nn.leave_remain_pred)),
+#                lwd = 2, col = "green", add = TRUE)
 # legend("bottomright", 
-#        legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
-#                   "Support Vector Machine", "Neural Net"), cex = 0.75,
+#        legend = c("Decision Tree (AUC = 0.725/0.635)",
+#                   "Gradient Boosted Tree (AUC = 0.734/0.624)", 
+#                   "Random Forest (AUC = 0.703/0.612)", 
+#                   "Generalized Linear Model (AUC = 0.728/0.639)", 
+#                   "Support Vector Machine (AUC = 0.731/0.653)", 
+#                   "Neural Net (AUC = 0.731/0.613)"), cex = 0.75,
 #        col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
 
 
@@ -345,15 +429,20 @@ camparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
 #                                       geom_abline(intercept = 0, slope = 1)
 
 
-
-roc.curve(data.validation$LeaveRemain, dt.leave_remain_pred, plotit = TRUE, add.roc = FALSE, col = "red", auc = TRUE)
+par(mfrow = c(1,1))
+roc.curve(data.validation$LeaveRemain, dt.leave_remain_pred, plotit = TRUE, add.roc = FALSE, col = "red")
+roc.curve(data.validation$LeaveRemain, gbm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "black")
 roc.curve(data.validation$LeaveRemain, rf.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "purple")
 roc.curve(data.validation$LeaveRemain, glm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "yellow")
 roc.curve(data.validation$LeaveRemain, svm.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "blue")
 roc.curve(data.validation$LeaveRemain, nn.leave_remain_pred, plotit = TRUE, add.roc = TRUE, col = "green")
 legend("bottomright", 
-       legend = c("Decision Tree", "Random Forest", "Generalized Linear Model", 
-                  "Support Vector Machine", "Neural Net"), cex = 0.75,
+       legend = c("Decision Tree (AUC = 0.725)",
+                  "Gradient Boosted Tree (AUC = 0.734)", 
+                  "Random Forest (AUC = 0.703)", 
+                  "Generalized Linear Model (AUC = 0.728)", 
+                  "Support Vector Machine (AUC = 0.731)", 
+                  "Neural Net (AUC = 0.731)"), cex = 0.75,
        col = c("red", "purple", "yellow", "blue", "green"), lwd = 2)
 
 # par(mfrow = c(1, 2))
