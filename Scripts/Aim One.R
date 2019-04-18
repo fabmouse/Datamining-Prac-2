@@ -368,6 +368,21 @@ nb_acc <- nb_fit_metrics[[1]]$overall["Accuracy"]
 svm_acc <- svm_fit_metrics[[1]]$overall["Accuracy"]
 nn_acc <- nn_fit_metrics[[1]]$overall["Accuracy"]
 
+Comparison_Table <- round(cbind(c(ct_kappa, gbm_kappa, rf_kappa, lr_kappa,
+                                nb_kappa, svm_kappa, nn_kappa), 
+                          c(ct_acc, gbm_acc, rf_acc, lr_acc, nb_acc,
+                                svm_acc, nn_acc)), 4)
+colnames(Comparison_Table) <- c("Kappa", "Accuracy")
+rownames(Comparison_Table) <- c("Classification Tree",
+                                "Gradient Boosted Tree",
+                                "Random Forest",                                 
+                                "Multiple Logistic Regression",
+                                "Naive Bayes", 
+                                "Support Vector Machine",  
+                                "Neural Net")
+
+Comparison_Table
+
 #Plot Sensitivities
 ct_Sens <- ct_fit_metrics[[1]]$byClass[, "Sensitivity"]
 gbm_Sens <- gbm_fit_metrics[[1]]$byClass[, "Sensitivity"]
