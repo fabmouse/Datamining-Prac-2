@@ -19,7 +19,6 @@ library(dplyr)
 
 # Set up the datasets -----------------------------------------------------
 data.vote <- read.csv("data/Final Vote Data.csv", header = TRUE)
-data.vote[, 6:13] <- data.vote[, 6:13] %>% mutate_if(is.numeric, as.factor)
 head(data.vote)
 
 #Split dataset into a training set (75%) and hold back (25%) for validation
@@ -42,6 +41,7 @@ fitControl <- trainControl(method = "cv", number = 5)
 set.seed(123)
 # Change levels into Yes, No, No Vote for nicer plots
 data.vote.dt <- data.vote
+data.vote.dt[, 6:13] <- data.vote.dt[, 6:13] %>% mutate_if(is.numeric, as.factor)
 for(i in 6:13){ data.vote.dt[, i]  <- recode(data.vote.dt[, i], 
                                              "1" = "Yes", "0" = "No Vote", "-1" = "No")
 }
