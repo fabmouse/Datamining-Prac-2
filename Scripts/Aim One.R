@@ -297,17 +297,15 @@ for (i in seq_along(nb_fit_metrics)) {
 # SUPPORT VECTOR MACHINE (Brooke and Carlotta) ---------------------------------
 set.seed(123)
 svm_params <- train(factor(Party) ~ ., data = data.train, 
-                    method = "svmRadial", 
-                    tuneGrid = expand.grid(C = seq(0.1, 1, 0.1), 
-                                           sigma = seq(1, 5, 1)),
+                    method = "svmLinear", 
+                    tuneGrid = expand.grid(C = seq(1, 10, 0.5)),
                     trControl = fitControl)
 #Accuracy was used to select the optimal model using the largest value.
-#The final values used for the model were sigma = 5 and C = 0.5.
+#The final values used for the model were C = 2.
 
 svm_cost <- svm_params$bestTune$C
-svm_gamma <- svm_params$bestTune$sigma
 svm_model <- svm(factor(Party) ~ ., data = data.train,
-                type = "C", kernel = "radial", cost = svm_cost, gamma = 1)
+                 type = "C", kernel = "linear", cost = svm_cost)
 
 predclass <- predict(svm_model, newdata = data.validation[, -1]) 
 
