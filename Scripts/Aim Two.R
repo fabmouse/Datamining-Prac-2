@@ -405,12 +405,18 @@ glm_acc <- glm_fit_metrics[[1]]$overall["Accuracy"]
 svm_acc <- svm_fit_metrics[[1]]$overall["Accuracy"] #Appears to be the best kappa?
 nn_acc <- nn_fit_metrics[[1]]$overall["Accuracy"]
 
-kappas <- round(c(DT = dt_kappa, GBM = gbm_kappa, RF = rf_kappa, GLM = glm_kappa, SVM = svm_kappa, NN = nn_kappa), 4)
-accs <- round(c(DT = dt_acc, GBM = gbm_acc, RF = rf_acc, GLM = glm_acc, SVM = svm_acc, NN = nn_acc), 4)
-mse <- round(c(DT = dt.MSE, GBM = gbm.MSE, RF = rf.MSE, GLM = glm.MSE, SVM = svm.MSE, NN = nn.MSE), 4)
+Comparison_Table <- round(cbind(c(dt_kappa, gbm_kappa, rf_kappa, glm_kappa, svm_kappa, nn_kappa), 
+                                c(dt_acc, gbm_acc, rf_acc, glm_acc, svm_acc, nn_acc),
+                                c(dt.MSE, gbm.MSE, rf.MSE, glm.MSE, svm.MSE, nn.MSE)), 4)
+colnames(Comparison_Table) <- c("MSE", "Kappa", "Accuracy")
+rownames(Comparison_Table) <- c("Regression Tree",
+                                "Gradient Boosted Tree",
+                                "Random Forest",                                 
+                                "Generalised Linear Model",
+                                "Support Vector Machine",  
+                                "Neural Net")
 
-comparison <- cbind(MSE = mse, ACC = accs, KAPPA = kappas)
-comparison
+Comparison_Table
 
 #ROC CURVES
 
