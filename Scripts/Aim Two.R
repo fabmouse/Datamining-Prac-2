@@ -405,9 +405,9 @@ glm_acc <- glm_fit_metrics[[1]]$overall["Accuracy"]
 svm_acc <- svm_fit_metrics[[1]]$overall["Accuracy"] #Appears to be the best kappa?
 nn_acc <- nn_fit_metrics[[1]]$overall["Accuracy"]
 
-Comparison_Table <- round(cbind(c(dt_kappa, gbm_kappa, rf_kappa, glm_kappa, svm_kappa, nn_kappa), 
-                                c(dt_acc, gbm_acc, rf_acc, glm_acc, svm_acc, nn_acc),
-                                c(dt.MSE, gbm.MSE, rf.MSE, glm.MSE, svm.MSE, nn.MSE)), 4)
+Comparison_Table <- round(cbind(c(dt.MSE, gbm.MSE, rf.MSE, glm.MSE, svm.MSE, nn.MSE),
+                                c(dt_kappa, gbm_kappa, rf_kappa, glm_kappa, svm_kappa, nn_kappa), 
+                                c(dt_acc, gbm_acc, rf_acc, glm_acc, svm_acc, nn_acc)), 4)
 colnames(Comparison_Table) <- c("MSE", "Kappa", "Accuracy")
 rownames(Comparison_Table) <- c("Regression Tree",
                                 "Gradient Boosted Tree",
