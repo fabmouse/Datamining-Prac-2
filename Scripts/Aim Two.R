@@ -435,9 +435,9 @@ plot(dt.roc$FPR, dt.roc$TPR, type = "l", lwd = 1.5,
 abline(0, 1)
 points(gbm.roc$FPR, gbm.roc$TPR, type = "l", lwd = 1.5, col = "black")
 points(rf.roc$FPR, rf.roc$TPR, type = "l", lwd = 1.5, col = "purple")
-points(glm.roc$FPR, glm.roc$TPR, type = "l", lwd = 1.5, col = "yellow")
-points(svm.roc$FPR, svm.roc$TPR, type = "l", lwd = 1.5, col = "blue")
-points(nn.roc$FPR, nn.roc$TPR, type = "l", lwd = 1.5, col = "green")
+points(glm.roc$FPR, glm.roc$TPR, type = "l", lwd = 1.5, col = "yellow", lty = 2)
+points(svm.roc$FPR, svm.roc$TPR, type = "l", lwd = 1.5, col = "blue", lty = 2)
+points(nn.roc$FPR, nn.roc$TPR, type = "l", lwd = 1.5, col = "green", lty = 2)
 legend("bottomright", 
        legend = c("Decision Tree",
                   "Gradient Boosting", 
